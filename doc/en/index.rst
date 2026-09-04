@@ -13,7 +13,8 @@
     exercises are in your home directory on the platform.
 
     You can also follow this workshop on your own and do the exercises on your
-    computer (after having previously installed ParaView 6.0+), or on any
+    computer (after having previously installed `ParaView 6.1
+    <https://www.paraview.org/download/?version=v6.1>`__), or on any
     Calcul Québec or Digital Research Alliance of Canada cluster. Your jobs’
     wait time, however, will be longer than on the cloud platform. Download the
     necessary files with the following command or `browse them online

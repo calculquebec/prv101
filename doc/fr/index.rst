@@ -29,7 +29,8 @@ Table des matières
     pour les exercices sont dans votre répertoire personnel sur la plateforme.
 
     Vous pouvez aussi suivre cet atelier par vous-même et faire les exercices
-    sur votre ordinateur (en ayant préalablement installé ParaView 6.0+) ou
+    sur votre ordinateur (en ayant préalablement installé `ParaView 6.1
+    <https://www.paraview.org/download/?version=v6.1>`__) ou
     sur n’importe quelle grappe de Calcul Québec ou de l’Alliance de recherche
     numérique du Canada. Le temps d’attente pour l’exécution des tâches sera
     toutefois plus long que sur la plateforme infonuagique. Téléchargez les

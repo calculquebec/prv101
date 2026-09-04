@@ -1,7 +1,7 @@
 Visualisation de données 2D et 3D avec ParaView
 ===============================================
 
-`English <../en/index.html>`_
+`English <../en/index.html>`__
 
 À propos
 --------
@@ -47,6 +47,9 @@ Table des matières
     :hidden:
 
     1-introduction
+    2-architecture
+    3-donnees
+    4-filtres
 
 .. toctree::
     :caption: Liens externes

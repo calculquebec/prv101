@@ -1,7 +1,7 @@
 2D and 3D data visualization with ParaView
 ==========================================
 
-`Français <../fr/index.html>`_
+`Français <../fr/index.html>`__
 
 *This page is under construction. For the original material in English, see*
 `this website <https://folio.vastcloud.org/introParaview.html>`__.
@@ -30,6 +30,9 @@
     :hidden:
 
     1-introduction
+    2-architecture
+    3-data
+    4-filters
 
 .. toctree::
     :caption: External links

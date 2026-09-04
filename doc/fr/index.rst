@@ -13,6 +13,7 @@ Visualisation de données 2D et 3D avec ParaView
   - Le contenu est une version réduite et traduite du `matériel de formation en
     anglais <https://folio.vastcloud.org/introParaview.html>`__ géré par notre
     collègue Alex Razoumov, expert de ParaView.
+  - Certains fichiers de données proviennent des exemples de ParaView.
 
 - Les différents concepts sont montrés avec ParaView version 6.0 ou plus
   récente.

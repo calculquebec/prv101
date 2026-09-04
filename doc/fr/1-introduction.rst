@@ -22,3 +22,39 @@ scientifique**.
     - *IEEE SciVis*, en 2021
 
 .. figure:: ../images/gallery.png
+
+Visualisation scientifique de données définies dans l’espace
+------------------------------------------------------------
+
+C’est le processus permettant l’analyse de données sous une **forme visuelle**.
+
+- Il est plus facile de comprendre des images que de grands ensembles de
+  nombres.
+- Cela permet d’explorer interactivement des données, de déboguer une analyse
+  et de communiquer avec les pairs.
+
+.. list-table::
+    :header-rows: 1
+
+    * - Domaine de recherche
+      - Données à visualiser
+    * - Mécanique des fluides
+      - Écoulements 2D/3D, densité, température, traceurs
+    * - Climat, météorologie, océanographie, intérieurs planétaires
+      - Fluides dynamiques, nuages, chimie, etc.
+    * - Astrophysique, de la formation des galaxies et des étoiles à
+        l'hydrodynamique stellaire
+      - Fluides 2D/3D, données particulaires, champ de rayonnement ≤6D, champs
+        magnétiques, champs gravitationnels
+    * - Chimie quantique
+      - Fonctions d'onde 3D
+    * - Dynamique moléculaire (physique, chimie, biologie)
+      - Particules (atomes, molécules)
+    * - Bioinformatique
+      - Réseaux, arbres, séquences
+    * - Imagerie médicale
+      - IRM, CT scans, ultrason, données temporelles
+    * - Systèmes d'information géographique
+      - Altitude, rivières, villes, routes, strates, etc.
+    * - Sciences humaines et sociales
+      - Données abstraites, ou l'un des types ci-dessus

@@ -61,7 +61,7 @@ C’est le processus permettant l’analyse de données sous une **forme visuell
       - Données abstraites, ou l’un des types ci-dessus
 
 Traçage 1D/2D vs visualisation multi-dimensionnelle
----------------------------------------------------
+'''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Quelles sont les différences entre le traçage de graphiques 1D/2D et la
 visualisation 2D/3D?
@@ -155,3 +155,52 @@ L’outil de visualisation 3D **doit avoir les caractéristiques suivantes** :
   en parallèle.
 - Manipulations interactives via l’interface graphique et automatisation via
   des scripts Python.
+
+ParaView et VisIt
+'''''''''''''''''
+
+Depuis le début des années 2000, les deux outils conformes les plus populaires
+sont ParaView (~85%) et VisIt (~15%).
+
+.. grid:: 2
+
+    .. grid-item-card:: ParaView
+
+        .. figure:: ../images/paraview.jpg
+
+        - https://www.paraview.org/
+        - Collaboration lancée en 2000 entre Los Alamos NL et Kitware Inc.,
+          rejointe plus tard par Sandia NL et d’autres partenaires ; première
+          version publique en 2002.
+        - Développé pour visualiser des données très volumineuses sur des
+          machines à mémoire distribuée.
+
+          - Utilise MPI pour le parallélisme à mémoire distribuée sur les
+            grappes de calcul.
+
+        - Basé sur VTK (Visualization Toolkit) :
+
+          - Développés par les mêmes auteurs.
+          - ParaView = Interface graphique sur les classes C++ de VTK.
+
+        - Large écosystème d’outils : Web, *in-situ*, Cinema.
+        - Dernière version suggérée : 6.1.1
+
+    .. grid-item-card:: VisIt
+
+        .. figure:: ../images/visit.png
+
+        - https://visit-dav.github.io/visit-website
+        - Première version en automne 2002.
+        - Développé pour visualiser des résultats de simulations à l’échelle
+          du téraoctet.
+
+          - Utilise MPI pour le parallélisme à mémoire distribuée sur les
+            grappes de calcul.
+
+        - Plus de 80 fonctionnalités de visualisation (contour, maillage,
+          coupe, volume, molécule, ...)
+        - Prend en charge plus de 110 formats de fichiers différents.
+        - Intégration complète avec la bibliothèque VTK.
+        - Plus petit écosystème.
+        - Dernière version suggérée : 3.4.2

@@ -112,10 +112,14 @@ Voici des exemples de traçages 1D/2D :
 
 Alors que plusieurs des outils mentionnés ci-haut permettent de générer ces
 deux figures 1D/2D, que devrait-on utiliser pour faire de la visualization 3D?
-Autant que possible, il vaut mieux éviter les outils propriétaires, sauf s’il y
-a un réel avantage (probablement pas). Voici les raisons :
 
-- Grande quantité d’argent à l’achat initial.
+Outils de visualisation multi-dimensionnelle
+--------------------------------------------
+
+D’emblée, il vaut mieux **éviter les outils propriétaires**, sauf s’il y a un
+réel avantage (probablement pas). Voici pourquoi :
+
+- Coûte une grande quantité d’argent à l’achat initial.
 - La license peut imposer des limitations sur l’endroit où l’outil peut être
   utilisé, sur quel type de machine ou de plateforme, etc.
 - La communauté utilisatrice est généralement plus petite que pour les outils à
@@ -123,3 +127,31 @@ a un réel avantage (probablement pas). Voici les raisons :
 - Une fois que vous commencez à accumuler des scripts, vous vous retrouvez
   contraint d’utiliser ces outils et, par conséquent, de payer régulièrement de
   l’argent.
+
+**La visualisation en 3D** apporte son lot de particularités :
+
+- Plus difficile à naviguer.
+- Plusieurs champs superposées :math:`\Rightarrow` besoin de visualiser par
+  couches et d’utiliser des filtres interactifs.
+- Données massives :math:`\Rightarrow` temps de traitement plus long
+  :math:`\Rightarrow` traitement distribué ou GPU.
+
+L’outil de visualisation 3D **doit avoir les caractéristiques suivantes** :
+
+- Code source ouvert + multi-plateforme (Linux/MacOS/Windows) + usage général.
+- Pouvoir visualiser des champs scalaires et vectoriels.
+
+  - Prise en charge de données sur des maillages structurés et non structurés
+    en 2D et en 3D, sur des particules, des polygones, des topologies
+    irrégulières ou des maillages à multi-résolution.
+
+- Capacité à traiter de très grands ensembles de données (de Go à To),
+  jusqu’à :math:`10^{\sim 12}` éléments.
+
+  - Pouvoir utiliser la puissance des grappes de calcul (jusqu’à
+    :math:`10^3-10^5` coeurs CPU par tâche).
+
+- Prise en charge des formats de données les plus courants, lecture et écriture
+  en parallèle.
+- Manipulations interactives via l’interface graphique et automatisation via
+  des scripts Python.

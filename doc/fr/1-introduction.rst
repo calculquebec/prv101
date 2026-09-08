@@ -178,6 +178,7 @@ sont ParaView (~85%) et VisIt (~15%).
           - Utilise MPI pour le parallélisme à mémoire distribuée sur les
             grappes de calcul.
 
+        - Prend en charge plus de 130 formats de fichiers différents.
         - Basé sur VTK (Visualization Toolkit) :
 
           - Développés par les mêmes auteurs.
@@ -204,3 +205,43 @@ sont ParaView (~85%) et VisIt (~15%).
         - Intégration complète avec la bibliothèque VTK.
         - Plus petit écosystème.
         - Dernière version suggérée : 3.4.2
+
+Pourquoi ParaView pour cet atelier?
+'''''''''''''''''''''''''''''''''''
+
+- Il fallait faire un choix.
+
+  - Les binaires de ParaView et de VisIt sont largement disponibles et
+    leur développement est toujours actif.
+  - Les deux permettent la visualisation client-serveur à distance et offrent
+    une excellente scalabilité.
+  - Cependant, ParaView et VisIt ont une interface très différente.
+
+- ParaView est fortement intégré avec VTK (mêmes développeurs) et peut lire
+  davantage de formats de données en entrée.
+- Un certain nombre de projets complémentaires :
+
+  - **vtk.js** est une bibliothèque de rendu scientifique pour le Web (WebGL
+    autonome, aucun rendu sur serveur).
+
+    - **ParaView Glance** est une application Web permettant la visualisation
+      scientifique 3D directement dans le navigateur.
+    - **ParaView Cinema** permet la visualisation interactive d’images
+      pré-rendues (rotation, panoramique, zoom, activation/désactivation de
+      variables).
+
+  - **Trame** est une plateforme Web de tableaux de bord 3D. Elle se connecte à
+    un serveur distant doté d’une interface Python utilisant ParaView et VTK
+    pour générer des visualisations 3D interactives.
+
+    - Le serveur distant exécute du code Python et retourne des *widgets*
+      interactifs (VTK, vtk.js, ParaView Python, Matplotlib, Plotly, etc.) qui
+      s’affichent dans votre navigateur.
+    - Trame constitue donc un remplaçant moderne de ParaViewWeb (une ancienne
+      bibliothèque JavaScript).
+
+  - **Catalyst2** est une bibliothèque de *visualisation in situ* utilisable à
+    même votre code de simulation ; intéraction via des scripts ParaView.
+
+L’équipe nationale de visualisation offre aussi `d’autres formations sur VisIt
+<https://docs.alliancecan.ca/wiki/Visualization/fr#Formation>`__.

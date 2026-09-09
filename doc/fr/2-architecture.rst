@@ -71,3 +71,25 @@ interactivement à distance sur un serveur de 64 cœurs avec un processus
 ``pvserver`` prenant environ 120 Go de mémoire.
 
 Pour cet atelier d’introduction, nous allons nous contenter du *mode autonome*.
+
+Démarrer ParaView
+-----------------
+
+Selon l’environnement utilisé, voici comment démarrer ParaView :
+
+- **Séance JupyterLab** sur les grappes de l’Alliance :
+
+  1. S’assurer que le `module
+     <https://docs.alliancecan.ca/wiki/JupyterLab/fr#Software_Modules>`__
+     ``paraview/6.0.0`` est bien chargé.
+  2. Cliquer sur le `bouton
+     <https://docs.alliancecan.ca/wiki/JupyterLab/fr#ParaView>`__
+     *ParaView* dans la page d’accueil. Cela démarre ParaView dans un bureau
+     distant accessible via un nouvel onglet du navigateur Web.
+
+- **Linux/Unix** : entrer ``paraview`` à la ligne de commande.
+- **MacOS** : cliquer sur *ParaView* dans les Applications.
+- **Windows** : sélectionner *ParaView* dans le menu Démarrer.
+
+L’interface graphique de ParaView devrait apparaître. En arrière-plan, un
+processus ``pvserver`` est démarré automatiquement.

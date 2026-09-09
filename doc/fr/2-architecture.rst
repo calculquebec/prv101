@@ -42,3 +42,32 @@ Il y a deux principaux modes d’utilisation :
 
         Une instance parallèle de ``pvserver`` s’exécute à distance sur un
         serveur multicœur ou sur une grappe de calcul.
+
+Or, le *mode autonome* est **limité par l’ordinateur utilisé** :
+
+- Bande-passante de la lecture des données ;
+- Mémoire système ;
+- Puissance CPU / GPU.
+
+Par exemple, **un ordinateur doté de 48 Go de mémoire** pourrait traiter des
+modèles jusqu’à :math:`2048^3` valeurs, mais sous certaines conditions :
+
+1. les valeurs sont à virgule flottante à simple précision ...
+2. sur des grilles structurées ...
+3. stockées localement (faible latence).
+
+Ainsi, un tel ordinateur ne pourrait traiter :
+
+- des données plus larges ou de plus haute résolution ;
+- des grilles plus complexes ;
+- des données nécessitant des filtres complexes.
+
+Par exemple, une **simulation d’écoulement d’air autour d’une aile d’avion**
+sur une *grille non structurée* ayant :math:`246\times10^6` cellules
+(:math:`\sim627^3`) est un problème typique qui ne tiendrait pas sur un
+ordinateur de 48 Go : une seule variable contenant tout le modèle prendrait
+déjà 25 Go. Par contre, il serait possible de visualiser ce modèle
+interactivement à distance sur un serveur de 64 cœurs avec un processus
+``pvserver`` prenant environ 120 Go de mémoire.
+
+Pour cet atelier d’introduction, nous allons nous contenter du *mode autonome*.

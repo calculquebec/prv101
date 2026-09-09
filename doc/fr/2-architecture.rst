@@ -93,3 +93,44 @@ Selon l’environnement utilisé, voici comment démarrer ParaView :
 
 L’interface graphique de ParaView devrait apparaître. En arrière-plan, un
 processus ``pvserver`` est démarré automatiquement.
+
+Survol de l’interface graphique
+-------------------------------
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 4
+
+        - **Pipeline Browser** :
+
+          - Arborescence de lecteurs et de filtres de données ;
+          - Permet d’activer ou de désactiver la visibilité de chaque objet.
+
+        - **Inspecteur d’objet** : via les onglets *Properties* et
+          *Information*, voir et modifier les paramètres de l’objet
+          sélectionné dans le pipeline.
+        - **Fenêtre de visualisation** : affiche le résultat.
+
+    .. grid-item::
+        :columns: 8
+
+        .. figure:: ../images/interface.png
+
+Pour vous familiariser :
+
+1. Dans la barre d'outils, trouvez les boutons :
+
+   - *Connect*
+   - *Disconnect*
+   - *Toggle Color Legend Visibility*
+   - *Edit Color Map*
+   - *Rescale to Data Range*
+
+2. Chargez un ensemble de données prédéfini : menu *Sources*
+   :math:`\rightarrow` *Geometric Shapes* :math:`\rightarrow` *Cylinder*.
+3. Essayez de bouger le cylindre en appuyant sur le bouton gauche de la
+   souris ; essayez aussi avec le bouton droit et le bouton central.
+4. Familiarisez-vous avec le menu contextuel ; changez la *Representation* du
+   cylindre (par exemple, de *Surface* à *Wireframe*) ou changez sa couleur via
+   *Edit Color*.

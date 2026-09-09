@@ -119,7 +119,7 @@ Survol de l’interface graphique
 
 Pour vous familiariser :
 
-1. Dans la barre d'outils, trouvez les boutons :
+1. Dans la barre d’outils, trouvez les boutons :
 
    - *Connect*
    - *Disconnect*
@@ -134,3 +134,29 @@ Pour vous familiariser :
 4. Familiarisez-vous avec le menu contextuel ; changez la *Representation* du
    cylindre (par exemple, de *Surface* à *Wireframe*) ou changez sa couleur via
    *Edit Color*.
+
+Exercice -- Fenêtres de visualisation
+'''''''''''''''''''''''''''''''''''''
+
+**Objectif** : créer de multiples fenêtres de visualisation et, pour chacune
+d’entre elles, configurer les propriétés des objets du pipeline.
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 4
+
+        **Instructions**
+
+        - Ajoutez un objet du menu *Sources* (*cone*, *sphere*, *cylinder* ou
+          *box*) et éditez ses propriétés.
+        - Utilisez un des boutons en haut à droite de la fenêtre de
+          visualisation pour diviser la vue.
+        - Répétez avec l’objet ou les objets suivants.
+        - **Liez deux vues** : bouton droit de souris sur une vue, sélectionnez
+          *Link Camera* et cliquez sur une autre vue.
+
+    .. grid-item::
+        :columns: 8
+
+        .. figure:: ../images/multiWindow.png

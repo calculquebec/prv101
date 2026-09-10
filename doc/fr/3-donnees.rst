@@ -9,7 +9,7 @@ Sources de données
 Il y a deux types de sources de données :
 
 1. On peut créer des données de base à partir d’un **objet Source**.
-2. On peut aussi lire des données à partir d'un **fichier**.
+2. On peut aussi lire des données à partir d’un **fichier**.
 
 Tel que mentionné en introduction, ParaView peut charger des dizaines de
 formats de données -- les principaux sont listés dans la note ci-dessous.
@@ -202,3 +202,48 @@ formats de données -- les principaux sont listés dans la note ci-dessous.
     - Xmdv Files (``*.okc``)
     - XMol Molecule Files (``*.xyz``)
     - XYZ Files (``*.xyz``)
+
+Exemple -- Lire des données brutes ou binaires
+''''''''''''''''''''''''''''''''''''''''''''''
+
+On souhaite visualiser la fonction suivante pour :math:`x,y,z\in[0,1]` sur une
+grille :math:`16 \times 16 \times 16` :
+
+:math:`f(x,y,z)=(1-z)\left[(1-y)\sin(\pi x) + y\sin^2(2\pi x)\right] + z\left[(1-x)\sin(\pi y) + x\sin^2(2\pi y)\right]`
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 8
+
+        1. Ouvrez le fichier ``~/prv101-main/lab/simpleData.raw``.
+
+           - Lorsque demandé, sélectionnez *Image Reader*.
+
+        2. Spécifiez ensuite les propriétés des données :
+
+           - *Data Scalar Type* : ``float``
+           - *Data Byte Order* : ``LittleEndian``
+           - *Scalar Array Name* : ``density``
+           - *File Dimensionality* : ``3``
+           - *Data Extent* : ``0`` à ``15`` pour chaque dimension (``1`` à
+             ``16`` chargerait les données incorrectement).
+
+        3. Modifiez la vue : *Outline*, *Points*, *Wireframe*, *Volume*.
+        4. Avec la vue en *Volume*, éditez l’échelle de couleurs.
+
+    .. grid-item::
+        :columns: 4
+
+        .. figure:: ../images/twist.png
+
+    .. grid-item::
+        :columns: 12
+
+        5. (Optionnel) Sauvegardez et rechargez les données.
+
+           - Via *File* :math:`\rightarrow` *Save Data...*, sauvegardez l’objet
+             dans un fichier de données ParaView (``*.pvd``).
+           - Supprimez l’objet.
+           - Chargez le fichier ``*.pvd`` -- ce fichier de données contient
+             effectivement toutes les propriétés que nous avons définies.

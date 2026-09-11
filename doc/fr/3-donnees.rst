@@ -358,7 +358,7 @@ de l’un des types suivants :
 - **Coordonnées de texture** : utilisées pour le mappage de textures.
 - **Données de champs** (``FieldData``) : tableaux de tableaux de données.
 
-Exemples -- lire un fichier VTK de l'ancien format
+Exemples -- Lire un fichier VTK de l'ancien format
 ''''''''''''''''''''''''''''''''''''''''''''''''''
 
 **Attention** : Stocker de grandes quantités de données en ASCII n’est pas une
@@ -503,3 +503,42 @@ pédagogiques.
         1.0 0.0 1.0 1.0
         0.0 1.0 1.0 1.0
         1.0 1.0 1.0 1.0
+
+Exercice pour la maison -- Fichier de données VTK 3D
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 6
+
+        | **Objectif** : visualiser la fonction *cylindre* 3D
+        |
+        | :math:`f(x,y,z) = e^{-|r-0.4|}`
+        |
+        | dans le domaine :math:`x,y,z\in[0,1]` avec
+        |
+        | :math:`r = \sqrt{(x-0.5)^2+(y-0.5)^2}`,
+        |
+        | et reproduisez la vue ci-contre :math:`\Rightarrow`
+
+    .. grid-item::
+        :columns: 5
+
+        .. figure:: ../images/cylinder.png
+
+    .. grid-item::
+        :columns: 12
+
+        **Instructions**
+
+        - Créez un fichier ``*.vtk`` avec les :math:`30^3` valeurs du fichier
+          ``~/prv101-main/lab/cylinder.dat``.
+        - Ajoutez et ajustez une entête ASCII en s’inspirant de
+          ``~/prv101-main/lab/volume.vtk``.
+        - Dans ParaView, visualisez ensuite les données en mode *Volume*.
+        - Éditez le *Color Map* :
+
+          - Cliquez sur *Choose Preset* et sélectionnez *Warm to Cool* dans
+            *All*.
+          - Ensuite, abaissez la courbe d’opacité à 0 vis-à-vis le bleu pâle.

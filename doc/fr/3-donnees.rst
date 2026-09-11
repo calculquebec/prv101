@@ -249,11 +249,11 @@ grille :math:`16 \times 16 \times 16` :
              effectivement toutes les propriétés que nous avons définies.
 
 VTK = Visualization Toolkit
-'''''''''''''''''''''''''''
+---------------------------
 
 Qu’est-ce que le *Visualization Toolkit*, plus connu sous l’acronyme **VTK**?
 
-- C'est un système logiciel libre pour l’infographie 3D, le traitement d’images
+- C’est un système logiciel libre pour l’infographie 3D, le traitement d’images
   et la visualisation.
 - Des interfaces sont fournies pour C++, Tcl, Java et Python, ainsi que pour
   JavaScript (partiellement, depuis seulement 2016).
@@ -282,3 +282,53 @@ Qu’est-ce que le *Visualization Toolkit*, plus connu sous l’acronyme **VTK**
        parallèles.
      - Prise en charge des structures de données hiérarchiques.
      - Devrait éventuellement remplacer les autres formats VTK.
+
+Principaux types de discrétisation des données
+''''''''''''''''''''''''''''''''''''''''''''''
+
+VTK prend en charge plusieurs types de discrétisation de données 1D, 2D et 3D :
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 6
+
+        Discrétisations structurées :
+
+        - **Image ou points structurés** : ``*.vti``, points sur une grille
+          rectangulaire régulière, des scalaires ou des vecteurs à chaque
+          point.
+        - **Grille rectiligne** : ``*.vtr``, comme le précédent, mais
+          l’espacement entre les points peut varier ; il faut fournir les
+          intervalles le long des axes de coordonnées et non les coordonnées de
+          chaque point.
+        - **Grille structurée** : ``*.vts``, topologie régulière, mais
+          géométrie irrégulière ; il faut indiquer les coordonnées de chaque
+          point.
+
+    .. grid-item::
+        :columns: 3
+
+        .. figure:: ../images/grids1.png
+            :width: 80%
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 6
+
+        Autres discrétisations :
+
+        - **Particles/Points non structurés** : ``*.particles``.
+        - **Données polygonales** : ``*.vtp``, topologie et géométrie non
+          structurées, coordonnées de points, cellules 2D uniquement
+          (c’est-à-dire pas de polyèdres), adapté aux cartes géographiques.
+        - **Grille non structurée** : ``*.vtu``, topologie et géométrie
+          irrégulières, coordonnées de points, cellules 2D/3D, adaptée à
+          l’analyse par éléments finis et à la conception de structures.
+
+    .. grid-item::
+        :columns: 3
+
+        .. figure:: ../images/grids2.png
+            :width: 80%

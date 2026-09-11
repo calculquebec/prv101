@@ -520,7 +520,7 @@ Exercice pour la maison -- Fichier de données VTK 3D
         |
         | :math:`r = \sqrt{(x-0.5)^2+(y-0.5)^2}`,
         |
-        | et reproduisez la vue ci-contre :math:`\Rightarrow`
+        | et reproduire la vue ci-contre :math:`\Rightarrow`
 
     .. grid-item::
         :columns: 5

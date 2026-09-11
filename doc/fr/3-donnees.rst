@@ -248,8 +248,8 @@ grille :math:`16 \times 16 \times 16` :
            - Chargez le fichier ``*.pvd`` -- ce fichier de données contient
              effectivement toutes les propriétés que nous avons définies.
 
-VTK = Visualization Toolkit
----------------------------
+VTK, le *Visualization Toolkit* derrière ParaView
+-------------------------------------------------
 
 Qu’est-ce que le *Visualization Toolkit*, plus connu sous l’acronyme **VTK**?
 
@@ -262,26 +262,29 @@ Qu’est-ce que le *Visualization Toolkit*, plus connu sous l’acronyme **VTK**
 
   - https://docs.vtk.org/en/latest/supported_data_formats.html
 
-- VTK a aussi ses propres formats de fichiers :
-  https://docs.vtk.org/en/latest/vtk_file_formats
+À propos des fichiers VTK
+-------------------------
 
-  1. **Anciens formats séquentiels** (``*.vtk``) : lignes d’entête en ASCII +
-     données ASCII/binaires.
-  2. **Formats XML** : balises XML + données ASCII/binaires/compressées.
+VTK a aussi ses propres formats de fichiers :
+https://docs.vtk.org/en/latest/vtk_file_formats
 
-     - Plus récent, largement préféré aux anciens formats VTK.
-     - Prend en charge **la lecture et l’écriture en parallèle**, la
-       compression, l’encodage binaire portable (*big/little endian*), les
-       accès aléatoires, etc.
+1. **Anciens formats séquentiels** (``*.vtk``) : lignes d’entête en ASCII +
+   données ASCII/binaires.
+2. **Formats XML** : balises XML + données ASCII/binaires/compressées.
 
-  3. **Formats VTKHDF** (en développement depuis 2022) :
+   - Plus récent, largement préféré aux anciens formats VTK.
+   - Prend en charge **la lecture et l’écriture en parallèle**, la
+     compression, l’encodage binaire portable (*big/little endian*), les
+     accès aléatoires, etc.
 
-     - `HDF5 <https://docs.alliancecan.ca/wiki/HDF5/fr>`__ est utilisé pour le
-       stockage des données.
-     - Performance améliorée des lectures et écritures séquentielles et
-       parallèles.
-     - Prise en charge des structures de données hiérarchiques.
-     - Devrait éventuellement remplacer les autres formats VTK.
+3. **Formats VTKHDF** (en développement depuis 2022) :
+
+   - `HDF5 <https://docs.alliancecan.ca/wiki/HDF5/fr>`__ est utilisé pour le
+     stockage des données.
+   - Performance améliorée des lectures et écritures séquentielles et
+     parallèles.
+   - Prise en charge des structures de données hiérarchiques.
+   - Devrait éventuellement remplacer les autres formats VTK.
 
 Principaux types de discrétisation des données
 ''''''''''''''''''''''''''''''''''''''''''''''
@@ -358,8 +361,8 @@ de l’un des types suivants :
 - **Coordonnées de texture** : utilisées pour le mappage de textures.
 - **Données de champs** (``FieldData``) : tableaux de tableaux de données.
 
-Exemples -- Lire un fichier VTK de l'ancien format
-''''''''''''''''''''''''''''''''''''''''''''''''''
+Lire des fichiers VTK de l’ancien format
+----------------------------------------
 
 **Attention** : Stocker de grandes quantités de données en ASCII n’est pas une
 bonne idée ; nous allons ici examiner des fichiers VTK textuels à des fins
@@ -542,3 +545,6 @@ Exercice pour la maison -- Fichier de données VTK 3D
           - Cliquez sur *Choose Preset* et sélectionnez *Warm to Cool* dans
             *All*.
           - Ensuite, abaissez la courbe d’opacité à 0 vis-à-vis le bleu pâle.
+
+Créer un fichier VTK XML
+------------------------

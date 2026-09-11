@@ -1,0 +1,997 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Importer des données &#8212; PRV101</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/translations.js?v=e6b791cb"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3-donnees';</script>
+    <link rel="icon" href="_static/logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Enrichir la visualisation avec des filtres" href="4-filtres.html" />
+    <link rel="prev" title="Architecture et interface graphique" href="2-architecture.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Visualisation de données 2D et 3D avec ParaView (PRV101)</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapitres</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1-introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-architecture.html">Architecture et interface graphique</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Importer des données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-filtres.html">Enrichir la visualisation avec des filtres</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Liens externes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://docs.alliancecan.ca/wiki/Technical_documentation/fr">Documentation technique de l’Alliance</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.calculquebec.ca/services-aux-chercheurs/formation/">Formations de Calcul Québec</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/3-donnees.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Thème" data-bs-title="Thème"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Clair"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Sombre"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Paramètres système"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Importer des données</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-de-donnees">Sources de données</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-lire-des-donnees-brutes-ou-binaires">Exemple – Lire des données brutes ou binaires</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vtk-visualization-toolkit">VTK = Visualization Toolkit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principaux-types-de-discretisation-des-donnees">Principaux types de discrétisation des données</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attributs-des-donnees">Attributs des données</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemples-lire-un-fichier-vtk-de-l-ancien-format">Exemples – Lire un fichier VTK de l’ancien format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-pour-la-maison-fichier-de-donnees-vtk-3d">Exercice pour la maison – Fichier de données VTK 3D</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="importer-des-donnees">
+<h1>Importer des données<a class="headerlink" href="#importer-des-donnees" title="Lien vers cette rubrique">#</a></h1>
+<p><a class="reference external" href="../en/3-data.html">English</a></p>
+<section id="sources-de-donnees">
+<h2>Sources de données<a class="headerlink" href="#sources-de-donnees" title="Lien vers cette rubrique">#</a></h2>
+<p>Il y a deux types de sources de données :</p>
+<ol class="arabic simple">
+<li><p>On peut créer des données de base à partir d’un <strong>objet Source</strong>.</p></li>
+<li><p>On peut aussi lire des données à partir d’un <strong>fichier</strong>.</p></li>
+</ol>
+<p>Tel que mentionné en introduction, ParaView peut charger des dizaines de
+formats de données – les principaux sont listés dans la note ci-dessous.</p>
+<details class="admonition-liste-des-formats-de-donnees-pris-en-charge admonition">
+<summary class="admonition-title">Liste des formats de données pris en charge</summary>
+<p>La liste ci-dessous est basée sur ParaView 5.9.0 en date du 2 avril 2021.</p>
+<ul class="simple">
+<li><p>ADAPT Files (<code class="docutils literal notranslate"><span class="pre">*.nc</span> <span class="pre">*.cdf</span> <span class="pre">*.elev</span> <span class="pre">*.ncd</span></code>)</p></li>
+<li><p>Adaptive cosmo files (<code class="docutils literal notranslate"><span class="pre">*.cosmo</span></code>)</p></li>
+<li><p>ADIOS2 BP3 File (Corelmage) (<code class="docutils literal notranslate"><span class="pre">*.bp</span></code>)</p></li>
+<li><p>ADIOS2 BP4 Directory (Corelmage) (<code class="docutils literal notranslate"><span class="pre">*.bp</span></code>)</p></li>
+<li><p>ADIOS2 BP4 Metadata File (Corelmage) (<code class="docutils literal notranslate"><span class="pre">md.idx</span></code>)</p></li>
+<li><p>AMR Enzo Files (<code class="docutils literal notranslate"><span class="pre">*.boundary</span> <span class="pre">*.hierarchy</span></code>)</p></li>
+<li><p>AMR Flash Files (<code class="docutils literal notranslate"><span class="pre">*.Flash</span> <span class="pre">*.flash</span></code>)</p></li>
+<li><p>AMR Velodyne Files (<code class="docutils literal notranslate"><span class="pre">*.xarnr</span> <span class="pre">*.Xamr</span> <span class="pre">*.XAMR</span></code>)</p></li>
+<li><p>AMReX/BoxLib plotfiles (grids) (<code class="docutils literal notranslate"><span class="pre">plt*</span></code>)</p></li>
+<li><p>AMReX/BoxLib plotfiles (particles) (<code class="docutils literal notranslate"><span class="pre">plt*</span></code>)</p></li>
+<li><p>ANSYS Files (<code class="docutils literal notranslate"><span class="pre">*.inp</span></code>)</p></li>
+<li><p>AU File Files (<code class="docutils literal notranslate"><span class="pre">*.aux</span></code>)</p></li>
+<li><p>AVS UCD Binary/ASCII Files (<code class="docutils literal notranslate"><span class="pre">*.inp</span></code>)</p></li>
+<li><p>BOV Files (<code class="docutils literal notranslate"><span class="pre">*.bov</span></code>)</p></li>
+<li><p>BYU Files (<code class="docutils literal notranslate"><span class="pre">*.g</span></code>)</p></li>
+<li><p>CAM NetCDF (Unstructured) (<code class="docutils literal notranslate"><span class="pre">*.nc</span> <span class="pre">*.ncdf</span></code>)</p></li>
+<li><p>Case file for restarted CTH outputs</p></li>
+<li><p>CCSM MTSD Files (<code class="docutils literal notranslate"><span class="pre">*.nc</span> <span class="pre">*.cdf</span> <span class="pre">*.elev</span> <span class="pre">*.ncd</span></code>)</p></li>
+<li><p>CCSM STSD Files (<code class="docutils literal notranslate"><span class="pre">*.nc</span> <span class="pre">*.cdf</span> <span class="pre">*.elev</span> <span class="pre">*.ncd</span></code>)</p></li>
+<li><p>CEAucd Files (<code class="docutils literal notranslate"><span class="pre">*.ucd</span> <span class="pre">*.inp</span></code>)</p></li>
+<li><p>CGNS Files (<code class="docutils literal notranslate"><span class="pre">*.cgns</span></code>)</p></li>
+<li><p>Chombo Files (<code class="docutils literal notranslate"><span class="pre">*.hdf5</span> <span class="pre">*.h5</span></code>)</p></li>
+<li><p>CityGML files (<code class="docutils literal notranslate"><span class="pre">*.gml</span> <span class="pre">*.xml</span></code>)</p></li>
+<li><p>Claw Files (<code class="docutils literal notranslate"><span class="pre">*.claw</span></code>)</p></li>
+<li><p>CMAT Files (<code class="docutils literal notranslate"><span class="pre">*.cmat</span></code>)</p></li>
+<li><p>CML (<code class="docutils literal notranslate"><span class="pre">*.cml</span></code>)</p></li>
+<li><p>CONVERGE CFD (<code class="docutils literal notranslate"><span class="pre">*.h5</span></code>)</p></li>
+<li><p>Cosmology Files (<code class="docutils literal notranslate"><span class="pre">*.cosmo64</span> <span class="pre">*.cosmo</span></code>)</p></li>
+<li><p>CTRL Files (<code class="docutils literal notranslate"><span class="pre">*.ctrl</span></code>)</p></li>
+<li><p>Curve2D Files (<code class="docutils literal notranslate"><span class="pre">*.curve</span> <span class="pre">*.ultra</span> <span class="pre">*.ult</span> <span class="pre">*.u</span></code>)</p></li>
+<li><p>DDCMD Files (<code class="docutils literal notranslate"><span class="pre">*.ddcmd</span></code>)</p></li>
+<li><p>Delimited Text (<code class="docutils literal notranslate"><span class="pre">*.csv</span> <span class="pre">*.tsv</span> <span class="pre">*.txt</span> <span class="pre">*.CSV</span> <span class="pre">*.TSV</span> <span class="pre">*.TXT</span></code>)</p></li>
+<li><p>DICOM Files (directory) (<code class="docutils literal notranslate"><span class="pre">*.dcm</span></code>)</p></li>
+<li><p>DICOM Files (single) (<code class="docutils literal notranslate"><span class="pre">*.dcm</span></code>)</p></li>
+<li><p>Digital Elevation Map Files (<code class="docutils literal notranslate"><span class="pre">*.dem</span></code>)</p></li>
+<li><p>Dyna3D Files (<code class="docutils literal notranslate"><span class="pre">*.dyn</span></code>)</p></li>
+<li><p>EnSight Files (<code class="docutils literal notranslate"><span class="pre">*.case</span> <span class="pre">*.CASE</span> <span class="pre">*.Case</span></code>)</p></li>
+<li><p>EnSight Master Server Files (<code class="docutils literal notranslate"><span class="pre">*.sos</span> <span class="pre">*.SOS</span></code>)</p></li>
+<li><p>ENZO AMR Particles (<code class="docutils literal notranslate"><span class="pre">*.boundary</span> <span class="pre">*.hierarchy</span></code>)</p></li>
+<li><p>Exodus11 (<code class="docutils literal notranslate"><span class="pre">*.g</span> <span class="pre">*.gc</span> <span class="pre">*.ex2</span> <span class="pre">*.ex2v2</span> <span class="pre">*.exo</span> <span class="pre">*.gen</span> <span class="pre">*.par</span></code>)</p></li>
+<li><p>ExtrudedVol Files (<code class="docutils literal notranslate"><span class="pre">*.exvol</span></code>)</p></li>
+<li><p>Facet Polygonal Data Files (<code class="docutils literal notranslate"><span class="pre">*.facet</span></code>)</p></li>
+<li><p>Fides Data Model File (JSON) (<code class="docutils literal notranslate"><span class="pre">*.json</span></code>)</p></li>
+<li><p>Fides Files (ADIOS2 BP) (<code class="docutils literal notranslate"><span class="pre">*.bp</span></code>)</p></li>
+<li><p>FLASH AMR Particles Reader (<code class="docutils literal notranslate"><span class="pre">*.Flash</span> <span class="pre">*.flash</span></code>)</p></li>
+<li><p>FLASH Files (Visit) (<code class="docutils literal notranslate"><span class="pre">*.flash</span> <span class="pre">*.f5</span></code>)</p></li>
+<li><p>Fluent Case Files (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>)</p></li>
+<li><p>Fluent Files (Visit) (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>)</p></li>
+<li><p>FVCOM MTMD Files (<code class="docutils literal notranslate"><span class="pre">*.nc</span> <span class="pre">*.cdf</span> <span class="pre">*.elev</span> <span class="pre">*.ncd</span></code>)</p></li>
+<li><p>FVCOM MTSD Files (<code class="docutils literal notranslate"><span class="pre">*.nc</span> <span class="pre">*.cdf</span> <span class="pre">*.elev</span> <span class="pre">*.ncd</span></code>)</p></li>
+<li><p>FVCOM Particle Files (<code class="docutils literal notranslate"><span class="pre">*.nc</span> <span class="pre">*.cdf</span> <span class="pre">*.elev</span> <span class="pre">*.ncd</span></code>)</p></li>
+<li><p>FVCOM STSD Files (<code class="docutils literal notranslate"><span class="pre">*.nc</span> <span class="pre">*.cdf</span> <span class="pre">*.elev</span> <span class="pre">*.ncd</span></code>)</p></li>
+<li><p>Gadget Files (<code class="docutils literal notranslate"><span class="pre">*.gadget</span></code>)</p></li>
+<li><p>Gaussian Cube Files (<code class="docutils literal notranslate"><span class="pre">*.cube</span></code>)</p></li>
+<li><p>GDAL Raster (<code class="docutils literal notranslate"><span class="pre">*.tif</span> <span class="pre">*.gen</span> <span class="pre">*.thf</span> <span class="pre">*.adf</span> <span class="pre">*.arg</span> <span class="pre">*.blx</span> <span class="pre">*.xlb</span></code>)</p></li>
+<li><p>GDAL Vector (<code class="docutils literal notranslate"><span class="pre">*.shp</span> <span class="pre">*.faa</span> <span class="pre">*.bnn</span> <span class="pre">*.dxf</span> <span class="pre">*.csv</span> <span class="pre">*.geojson</span></code>)</p></li>
+<li><p>Generic10 files to MultiBlockDataSet (<code class="docutils literal notranslate"><span class="pre">*.gio</span></code>)</p></li>
+<li><p>Generic10 files to UnstructuredGrid (<code class="docutils literal notranslate"><span class="pre">*.gio</span></code>)</p></li>
+<li><p>GGCM Files (<code class="docutils literal notranslate"><span class="pre">*.3df</span> <span class="pre">*.mer</span></code>)</p></li>
+<li><p>gITF 2.0 Files (<code class="docutils literal notranslate"><span class="pre">*.gltf</span> <span class="pre">*.glb</span></code>)</p></li>
+<li><p>GTC Files (<code class="docutils literal notranslate"><span class="pre">*.h5</span></code>)</p></li>
+<li><p>GULP Files (<code class="docutils literal notranslate"><span class="pre">*.trg</span></code>)</p></li>
+<li><p>H5Nimrod Files (<code class="docutils literal notranslate"><span class="pre">*.h5nimrod</span></code>)</p></li>
+<li><p>H5Part particle files (<code class="docutils literal notranslate"><span class="pre">*.h5part</span></code>)</p></li>
+<li><p>HyperTreeGrid (<code class="docutils literal notranslate"><span class="pre">*.htg</span></code>)</p></li>
+<li><p>HyperTreeGrid (partitioned) (<code class="docutils literal notranslate"><span class="pre">*.phtg</span></code>)</p></li>
+<li><p>Image Files (<code class="docutils literal notranslate"><span class="pre">*.pnm</span> <span class="pre">*.ppm</span> <span class="pre">*.sdt</span> <span class="pre">*.spr</span> <span class="pre">*.imgvol</span></code>)</p></li>
+<li><p>JPEG Image</p></li>
+<li><p>LAMMPS Dump Files (<code class="docutils literal notranslate"><span class="pre">*.dump</span></code>)</p></li>
+<li><p>LAMMPS Struct. (<code class="docutils literal notranslate"><span class="pre">*.eam</span> <span class="pre">*.meam</span> <span class="pre">*.rigid</span> <span class="pre">*.lammps</span></code>)</p></li>
+<li><p>Legacy VTK files (<code class="docutils literal notranslate"><span class="pre">*.vtk</span> <span class="pre">*.vtk.series</span></code>)</p></li>
+<li><p>Legacy VTK Files (partitioned) (<code class="docutils literal notranslate"><span class="pre">*.pvtk</span></code>)</p></li>
+<li><p>Lines Files (<code class="docutils literal notranslate"><span class="pre">*.lines</span></code>)</p></li>
+<li><p>LODI Files (<code class="docutils literal notranslate"><span class="pre">*.no</span> <span class="pre">*.cdf</span> <span class="pre">*.elev</span> <span class="pre">*.ncd</span></code>)</p></li>
+<li><p>LODI Particle Files (<code class="docutils literal notranslate"><span class="pre">*.nc</span> <span class="pre">*.cdf</span> <span class="pre">*.elev</span> <span class="pre">*.ncd</span></code>)</p></li>
+<li><p>LSDyna (<code class="docutils literal notranslate"><span class="pre">*.k</span> <span class="pre">*.lsdyna</span> <span class="pre">*.d3plot</span></code>)</p></li>
+<li><p>M3DC1 Files (<code class="docutils literal notranslate"><span class="pre">*.h5</span></code>)</p></li>
+<li><p>Meta Image Files (<code class="docutils literal notranslate"><span class="pre">*.mhd</span> <span class="pre">*.mha</span></code>)</p></li>
+<li><p>Meta-Generic10 files (<code class="docutils literal notranslate"><span class="pre">*.gios</span></code>)</p></li>
+<li><p>Metafile for restarted exodus outputs</p></li>
+<li><p>MFiX netcdf Files (<code class="docutils literal notranslate"><span class="pre">*.nc</span></code>)</p></li>
+<li><p>MFiX Res Files (Visit) (<code class="docutils literal notranslate"><span class="pre">*.RES</span></code>)</p></li>
+<li><p>MFIX Unstructured Grid Files (<code class="docutils literal notranslate"><span class="pre">*.RES</span></code>)</p></li>
+<li><p>Mill Files (<code class="docutils literal notranslate"><span class="pre">*.m</span></code>)</p></li>
+<li><p>Miranda Files (<code class="docutils literal notranslate"><span class="pre">*.mir</span> <span class="pre">*.raw</span></code>)</p></li>
+<li><p>MM5 Files (<code class="docutils literal notranslate"><span class="pre">*.mm5</span></code>)</p></li>
+<li><p>MotionFX CFG Files (<code class="docutils literal notranslate"><span class="pre">*.cfg</span></code>)</p></li>
+<li><p>MPAS NetCDF (Unstructured) (<code class="docutils literal notranslate"><span class="pre">*.ncdf</span> <span class="pre">*sic</span></code>)</p></li>
+<li><p>MRC Image Files (<code class="docutils literal notranslate"><span class="pre">*.mrc</span> <span class="pre">*.ali</span> <span class="pre">*.st</span> <span class="pre">*.rec</span></code>)</p></li>
+<li><p>Multilevel 3D Plasma Files (<code class="docutils literal notranslate"><span class="pre">*.m3d</span> <span class="pre">*.h5</span></code>)</p></li>
+<li><p>NASTRAN Files (<code class="docutils literal notranslate"><span class="pre">*.nas</span> <span class="pre">*.f06</span></code>)</p></li>
+<li><p>Nek5000 (<code class="docutils literal notranslate"><span class="pre">*.nek3d</span> <span class="pre">*.nek2d</span> <span class="pre">*.nek5d</span> <span class="pre">*.nek5000</span> <span class="pre">*.nek</span></code>)</p></li>
+<li><p>netCDF generic and CF conventions (<code class="docutils literal notranslate"><span class="pre">*.ncdf</span> <span class="pre">*.nc</span></code>)</p></li>
+<li><p>Nrrd Raw Image Files (<code class="docutils literal notranslate"><span class="pre">*.nrrd</span> <span class="pre">*.nhdr</span></code>)</p></li>
+<li><p>OME TIFF Files (<code class="docutils literal notranslate"><span class="pre">*.ome.tif</span> <span class="pre">*.ome.tiff</span></code>)</p></li>
+<li><p>OpenFOAM (<code class="docutils literal notranslate"><span class="pre">*.foam</span></code>)</p></li>
+<li><p>OpenFOAM Files (Visit) (<code class="docutils literal notranslate"><span class="pre">*.controlDict</span></code>)</p></li>
+<li><p>openPMD files (<code class="docutils literal notranslate"><span class="pre">*.pmd</span></code>)</p></li>
+<li><p>OVERFLOW Files (Visit) (<code class="docutils literal notranslate"><span class="pre">*.dat</span> <span class="pre">*.save</span></code>)</p></li>
+<li><p>ParaDIS Files (<code class="docutils literal notranslate"><span class="pre">*.prds</span> <span class="pre">*.data</span> <span class="pre">*.dat</span></code>)</p></li>
+<li><p>ParaDIS Tecplot (<code class="docutils literal notranslate"><span class="pre">Mid</span> <span class="pre">*.field</span> <span class="pre">*.cyl</span> <span class="pre">*.cylinder</span> <span class="pre">*.dat</span></code>)</p></li>
+<li><p>Parallel POP Ocean NetCDF (<code class="docutils literal notranslate"><span class="pre">*.pop.ncdf</span> <span class="pre">*.pop.nc</span></code>)</p></li>
+<li><p>ParaView Data Files (<code class="docutils literal notranslate"><span class="pre">*.pvd</span></code>)</p></li>
+<li><p>ParaView Ensemble Data (<code class="docutils literal notranslate"><span class="pre">*.pve</span></code>)</p></li>
+<li><p>PATRAN Files (<code class="docutils literal notranslate"><span class="pre">*.neu</span></code>)</p></li>
+<li><p>PFLOTRAN Files (<code class="docutils literal notranslate"><span class="pre">*.h5</span></code>)</p></li>
+<li><p>Phasta Files (<code class="docutils literal notranslate"><span class="pre">*.pht</span></code>)</p></li>
+<li><p>PIO Dump Files (<code class="docutils literal notranslate"><span class="pre">*.pio</span></code>)</p></li>
+<li><p>Pixie Files (<code class="docutils literal notranslate"><span class="pre">*.h5</span></code>)</p></li>
+<li><p>PLOT2D Files (<code class="docutils literal notranslate"><span class="pre">*.p2d</span></code>)</p></li>
+<li><p>PLOT3D Files (<code class="docutils literal notranslate"><span class="pre">*.xyz</span></code>)</p></li>
+<li><p>PLOT3D Meta Files (<code class="docutils literal notranslate"><span class="pre">*.p3d</span></code>)</p></li>
+<li><p>PLY Polygonal File Format (<code class="docutils literal notranslate"><span class="pre">*.ply</span> <span class="pre">*.ply.series</span></code>)</p></li>
+<li><p>PNG Image Files (<code class="docutils literal notranslate"><span class="pre">*.png</span></code>)</p></li>
+<li><p>POINT3D Files (<code class="docutils literal notranslate"><span class="pre">*.3D</span></code>)</p></li>
+<li><p>POP Ocean NetCDF Rectilinear (<code class="docutils literal notranslate"><span class="pre">*.pop.nc*</span></code>)</p></li>
+<li><p>POP Ocean NetCDF Unstructured (<code class="docutils literal notranslate"><span class="pre">*.pop.nc*</span></code>)</p></li>
+<li><p>proSTAR Files (<code class="docutils literal notranslate"><span class="pre">*.cel</span> <span class="pre">*.vrt</span></code>)</p></li>
+<li><p>Protein Data Bank Files (<code class="docutils literal notranslate"><span class="pre">*.pdb</span></code>)</p></li>
+<li><p>Protein Data Bank Files (Visit) (<code class="docutils literal notranslate"><span class="pre">*.ent</span> <span class="pre">*.pdb</span></code>)</p></li>
+<li><p>PTS (Point Cloud) Files (<code class="docutils literal notranslate"><span class="pre">*.pts</span></code>)</p></li>
+<li><p>Radiance HDR file (<code class="docutils literal notranslate"><span class="pre">*.hdr</span></code>)</p></li>
+<li><p>Raw (binary) Files (<code class="docutils literal notranslate"><span class="pre">*.raw</span></code>)</p></li>
+<li><p>RAW Files (<code class="docutils literal notranslate"><span class="pre">*.raw</span></code>)</p></li>
+<li><p>SAMRAI series files (<code class="docutils literal notranslate"><span class="pre">*.samrai</span></code>)</p></li>
+<li><p>SAR Files (<code class="docutils literal notranslate"><span class="pre">*.SAR</span> <span class="pre">*.sar</span></code>)</p></li>
+<li><p>SAS Files (<code class="docutils literal notranslate"><span class="pre">*.sasgeom</span> <span class="pre">*.sas</span> <span class="pre">*.sasdata</span></code>)</p></li>
+<li><p>SEG-Y Files (<code class="docutils literal notranslate"><span class="pre">*.sgy</span> <span class="pre">*.segy</span></code>)</p></li>
+<li><p>SEP file (Plugin) (<code class="docutils literal notranslate"><span class="pre">*.H</span></code>)</p></li>
+<li><p>Silo Files (<code class="docutils literal notranslate"><span class="pre">*.silo</span> <span class="pre">*.pdb</span> <span class="pre">*.silo.series</span> <span class="pre">*.pdb.series</span></code>)</p></li>
+<li><p>SLAC Mesh Files (<code class="docutils literal notranslate"><span class="pre">*.ncdf</span> <span class="pre">*.nc</span></code>)</p></li>
+<li><p>SLAC Particle Files (<code class="docutils literal notranslate"><span class="pre">*.ncdf</span> <span class="pre">*.netcdf</span></code>)</p></li>
+<li><p>Spheral Files (<code class="docutils literal notranslate"><span class="pre">*.spheral</span> <span class="pre">*.sv</span></code>)</p></li>
+<li><p>Spy Plot History Files (<code class="docutils literal notranslate"><span class="pre">*.hscth</span> <span class="pre">*hsct*</span></code>)</p></li>
+<li><p>SpyPlot CTH dataset (<code class="docutils literal notranslate"><span class="pre">*.spct*</span> <span class="pre">spot*</span></code>)</p></li>
+<li><p>Stereo Lithography (<code class="docutils literal notranslate"><span class="pre">*.stl</span> <span class="pre">*.stl.series</span></code>)</p></li>
+<li><p>Tecplot Binary Files (Visit) (<code class="docutils literal notranslate"><span class="pre">*.plt</span></code>)</p></li>
+<li><p>Tecplot Files (<code class="docutils literal notranslate"><span class="pre">*.tee</span> <span class="pre">*.TEC</span> <span class="pre">*.Tec</span> <span class="pre">*.tp</span> <span class="pre">*.TP</span> <span class="pre">*.dat</span></code>)</p></li>
+<li><p>Tecplot Files (Visit) (<code class="docutils literal notranslate"><span class="pre">*.tec</span> <span class="pre">*.TEC</span> <span class="pre">*.Tec</span> <span class="pre">*.tp</span> <span class="pre">*.TP</span></code>)</p></li>
+<li><p>Tecplot Table (<code class="docutils literal notranslate"><span class="pre">*.dat</span> <span class="pre">*.DAT</span></code>)</p></li>
+<li><p>Tetrad Files (<code class="docutils literal notranslate"><span class="pre">*.hdf5</span> <span class="pre">*.h5</span></code>)</p></li>
+<li><p>TFT Files (<code class="docutils literal notranslate"><span class="pre">*.dat</span> <span class="pre">*.tft</span></code>)</p></li>
+<li><p>TIFF Image Files (<code class="docutils literal notranslate"><span class="pre">*.tif</span> <span class="pre">*.tiff</span></code>)</p></li>
+<li><p>TRUCHAS dataset (<code class="docutils literal notranslate"><span class="pre">*.hdf5</span> <span class="pre">*.h5</span></code>)</p></li>
+<li><p>TSurf Files (<code class="docutils literal notranslate"><span class="pre">*.ts_deg83</span></code>)</p></li>
+<li><p>UNIC Files (<code class="docutils literal notranslate"><span class="pre">*.h5</span></code>)</p></li>
+<li><p>VASP Animation Files (<code class="docutils literal notranslate"><span class="pre">*.out</span></code>)</p></li>
+<li><p>VASP CHGCA Files (<code class="docutils literal notranslate"><span class="pre">*.CHG*</span></code>)</p></li>
+<li><p>VASP OUT Files (<code class="docutils literal notranslate"><span class="pre">*.OUT*</span></code>)</p></li>
+<li><p>VASP POSCAR Files (<code class="docutils literal notranslate"><span class="pre">*.POS*</span></code>)</p></li>
+<li><p>VASP Tessellation Files (<code class="docutils literal notranslate"><span class="pre">*.out</span></code>)</p></li>
+<li><p>Velodyne Files (<code class="docutils literal notranslate"><span class="pre">*.vld</span> <span class="pre">*.rst</span></code>)</p></li>
+<li><p>Visit MetaPLOT3D Files (Visit) (<code class="docutils literal notranslate"><span class="pre">*.vp3d</span></code>)</p></li>
+<li><p>VizSchema Files (<code class="docutils literal notranslate"><span class="pre">*.h5</span> <span class="pre">*.vsh5</span></code>)</p></li>
+<li><p>VPIC Files (<code class="docutils literal notranslate"><span class="pre">*.vpc</span></code>)</p></li>
+<li><p>VRML 2 Files (<code class="docutils literal notranslate"><span class="pre">*.wrl</span> <span class="pre">*.vrml</span></code>)</p></li>
+<li><p>VTK Hierarchical Box Data Files (<code class="docutils literal notranslate"><span class="pre">*.vthb</span></code>)</p></li>
+<li><p>VTK ImageData Files (<code class="docutils literal notranslate"><span class="pre">*.vti</span> <span class="pre">*.vti.series</span></code>)</p></li>
+<li><p>VTK ImageData Files (partitioned) (<code class="docutils literal notranslate"><span class="pre">*.pvti</span></code>)</p></li>
+<li><p>VTK MultiBlock Data Files (<code class="docutils literal notranslate"><span class="pre">*.vtm</span> <span class="pre">*.vtmb</span></code>)</p></li>
+<li><p>VTK Particle Files (<code class="docutils literal notranslate"><span class="pre">*.particles</span></code>)</p></li>
+<li><p>VTK Partitioned Dataset Collection Files (<code class="docutils literal notranslate"><span class="pre">*.vtpc</span></code>)</p></li>
+<li><p>VTK Partitioned Dataset Files (<code class="docutils literal notranslate"><span class="pre">*.vtpd</span> <span class="pre">*.vtpd.series</span></code>)</p></li>
+<li><p>VTK PolyData Files (<code class="docutils literal notranslate"><span class="pre">*.vtp</span> <span class="pre">*.vtp.series</span></code>)</p></li>
+<li><p>VTK PolyData Files (partitioned) (<code class="docutils literal notranslate"><span class="pre">*.pvtp</span></code>)</p></li>
+<li><p>VTK RectilinearGrid Files (<code class="docutils literal notranslate"><span class="pre">*.vtr</span> <span class="pre">*.vtr.series</span></code>)</p></li>
+<li><p>VTK RectiiinearGrid Files (partitioned) (<code class="docutils literal notranslate"><span class="pre">*.pvtr</span></code>)</p></li>
+<li><p>VTK StructuredGrid Files (<code class="docutils literal notranslate"><span class="pre">*.vts</span> <span class="pre">*.vts.series</span></code>)</p></li>
+<li><p>VTK StructuredGrid Files (partitioned) (<code class="docutils literal notranslate"><span class="pre">*.pvts</span></code>)</p></li>
+<li><p>VTK Table (partitioned) (<code class="docutils literal notranslate"><span class="pre">*.pvtt</span> <span class="pre">*.pvtt.series</span></code>)</p></li>
+<li><p>VTK Table Files (<code class="docutils literal notranslate"><span class="pre">*.vtt</span> <span class="pre">*.vtt.series</span></code>)</p></li>
+<li><p>VTK UnstructuredGrid Files (<code class="docutils literal notranslate"><span class="pre">*.vtu</span> <span class="pre">*.vtu.series</span></code>)</p></li>
+<li><p>VTK UnstructuredGrid Files (partitioned) (<code class="docutils literal notranslate"><span class="pre">*.pvtu</span></code>)</p></li>
+<li><p>VTX reader: ADIOS2 BP3 File (<code class="docutils literal notranslate"><span class="pre">*.bp</span></code>)</p></li>
+<li><p>VTX reader: ADIOS2 BP4 Directory (<code class="docutils literal notranslate"><span class="pre">*.bp</span> <span class="pre">*.bp4</span></code>)</p></li>
+<li><p>Wavefront OBJ Files (<code class="docutils literal notranslate"><span class="pre">*.obj</span></code>)</p></li>
+<li><p>WindBlade Data (<code class="docutils literal notranslate"><span class="pre">*.wind</span></code>)</p></li>
+<li><p>Xdmf Reader (<code class="docutils literal notranslate"><span class="pre">*.xmf</span> <span class="pre">*.xdmf</span> <span class="pre">*.xmf2</span> <span class="pre">*.xdmf2</span></code>)</p></li>
+<li><p>Xdmf3 Reader (<code class="docutils literal notranslate"><span class="pre">*.xmf</span> <span class="pre">*.xdmf</span> <span class="pre">*.xmf3</span> <span class="pre">*.xdmf3</span></code>)</p></li>
+<li><p>Xdmf3 Reader (Top Level Partition) (<code class="docutils literal notranslate"><span class="pre">*.xmf*</span> <span class="pre">*.xdmf</span></code>)</p></li>
+<li><p>Xmdv Files (<code class="docutils literal notranslate"><span class="pre">*.okc</span></code>)</p></li>
+<li><p>XMol Molecule Files (<code class="docutils literal notranslate"><span class="pre">*.xyz</span></code>)</p></li>
+<li><p>XYZ Files (<code class="docutils literal notranslate"><span class="pre">*.xyz</span></code>)</p></li>
+</ul>
+</details>
+<section id="exemple-lire-des-donnees-brutes-ou-binaires">
+<h3>Exemple – Lire des données brutes ou binaires<a class="headerlink" href="#exemple-lire-des-donnees-brutes-ou-binaires" title="Lien vers cette rubrique">#</a></h3>
+<p>On souhaite visualiser la fonction suivante pour <span class="math notranslate nohighlight">\(x,y,z\in[0,1]\)</span> sur une
+grille <span class="math notranslate nohighlight">\(16 \times 16 \times 16\)</span> :</p>
+<p><span class="math notranslate nohighlight">\(f(x,y,z)=(1-z)\left[(1-y)\sin(\pi x) + y\sin^2(2\pi x)\right] + z\left[(1-x)\sin(\pi y) + x\sin^2(2\pi y)\right]\)</span></p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-8 sd-col-xs-8 sd-col-sm-8 sd-col-md-8 sd-col-lg-8 docutils">
+<ol class="arabic simple">
+<li><p>Ouvrez le fichier <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/simpleData.raw</span></code>.</p>
+<ul class="simple">
+<li><p>Lorsque demandé, sélectionnez <em>Image Reader</em>.</p></li>
+</ul>
+</li>
+<li><p>Spécifiez ensuite les propriétés des données :</p>
+<ul class="simple">
+<li><p><em>Data Scalar Type</em> : <code class="docutils literal notranslate"><span class="pre">float</span></code></p></li>
+<li><p><em>Data Byte Order</em> : <code class="docutils literal notranslate"><span class="pre">LittleEndian</span></code></p></li>
+<li><p><em>Scalar Array Name</em> : <code class="docutils literal notranslate"><span class="pre">density</span></code></p></li>
+<li><p><em>File Dimensionality</em> : <code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
+<li><p><em>Data Extent</em> : <code class="docutils literal notranslate"><span class="pre">0</span></code> à <code class="docutils literal notranslate"><span class="pre">15</span></code> pour chaque dimension (<code class="docutils literal notranslate"><span class="pre">1</span></code> à
+<code class="docutils literal notranslate"><span class="pre">16</span></code> chargerait les données incorrectement).</p></li>
+</ul>
+</li>
+<li><p>Modifiez la vue : <em>Outline</em>, <em>Points</em>, <em>Wireframe</em>, <em>Volume</em>.</p></li>
+<li><p>Avec la vue en <em>Volume</em>, éditez l’échelle de couleurs.</p></li>
+</ol>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-4 sd-col-xs-4 sd-col-sm-4 sd-col-md-4 sd-col-lg-4 docutils">
+<figure class="align-default">
+<img alt="_images/twist.png" src="_images/twist.png" />
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-12 sd-col-xs-12 sd-col-sm-12 sd-col-md-12 sd-col-lg-12 docutils">
+<ol class="arabic simple" start="5">
+<li><p>(Optionnel) Sauvegardez et rechargez les données.</p>
+<ul class="simple">
+<li><p>Via <em>File</em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em>Save Data…</em>, sauvegardez l’objet
+dans un fichier de données ParaView (<code class="docutils literal notranslate"><span class="pre">*.pvd</span></code>).</p></li>
+<li><p>Supprimez l’objet.</p></li>
+<li><p>Chargez le fichier <code class="docutils literal notranslate"><span class="pre">*.pvd</span></code> – ce fichier de données contient
+effectivement toutes les propriétés que nous avons définies.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="vtk-visualization-toolkit">
+<h2>VTK = Visualization Toolkit<a class="headerlink" href="#vtk-visualization-toolkit" title="Lien vers cette rubrique">#</a></h2>
+<p>Qu’est-ce que le <em>Visualization Toolkit</em>, plus connu sous l’acronyme <strong>VTK</strong>?</p>
+<ul class="simple">
+<li><p>C’est un système logiciel libre pour l’infographie 3D, le traitement d’images
+et la visualisation.</p></li>
+<li><p>Des interfaces sont fournies pour C++, Tcl, Java et Python, ainsi que pour
+JavaScript (partiellement, depuis seulement 2016).</p></li>
+<li><p>ParaView est basé sur VTK, donc il est compatible avec les mêmes formats de
+fichiers standards pris en charge par VTK :</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.vtk.org/en/latest/supported_data_formats.html">https://docs.vtk.org/en/latest/supported_data_formats.html</a></p></li>
+</ul>
+</li>
+<li><p>VTK a aussi ses propres formats de fichiers :
+<a class="reference external" href="https://docs.vtk.org/en/latest/vtk_file_formats">https://docs.vtk.org/en/latest/vtk_file_formats</a></p>
+<ol class="arabic simple">
+<li><p><strong>Anciens formats séquentiels</strong> (<code class="docutils literal notranslate"><span class="pre">*.vtk</span></code>) : lignes d’entête en ASCII +
+données ASCII/binaires.</p></li>
+<li><p><strong>Formats XML</strong> : balises XML + données ASCII/binaires/compressées.</p>
+<ul>
+<li><p>Plus récent, largement préféré aux anciens formats VTK.</p></li>
+<li><p>Prend en charge <strong>la lecture et l’écriture en parallèle</strong>, la
+compression, l’encodage binaire portable (<em>big/little endian</em>), les
+accès aléatoires, etc.</p></li>
+</ul>
+</li>
+<li><p><strong>Formats VTKHDF</strong> (en développement depuis 2022) :</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/HDF5/fr">HDF5</a> est utilisé pour le
+stockage des données.</p></li>
+<li><p>Performance améliorée des lectures et écritures séquentielles et
+parallèles.</p></li>
+<li><p>Prise en charge des structures de données hiérarchiques.</p></li>
+<li><p>Devrait éventuellement remplacer les autres formats VTK.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<section id="principaux-types-de-discretisation-des-donnees">
+<h3>Principaux types de discrétisation des données<a class="headerlink" href="#principaux-types-de-discretisation-des-donnees" title="Lien vers cette rubrique">#</a></h3>
+<p>VTK prend en charge plusieurs types de discrétisation de données 1D, 2D et 3D :</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<p>Discrétisations structurées :</p>
+<ul class="simple">
+<li><p><strong>Image ou points structurés</strong> : <code class="docutils literal notranslate"><span class="pre">*.vti</span></code>, points sur une grille
+rectangulaire régulière, des scalaires ou des vecteurs à chaque
+point.</p></li>
+<li><p><strong>Grille rectiligne</strong> : <code class="docutils literal notranslate"><span class="pre">*.vtr</span></code>, comme le précédent, mais
+l’espacement entre les points peut varier ; il faut fournir les
+intervalles le long des axes de coordonnées et non les coordonnées de
+chaque point.</p></li>
+<li><p><strong>Grille structurée</strong> : <code class="docutils literal notranslate"><span class="pre">*.vts</span></code>, topologie régulière, mais
+géométrie irrégulière ; il faut indiquer les coordonnées de chaque
+point.</p></li>
+</ul>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-3 sd-col-xs-3 sd-col-sm-3 sd-col-md-3 sd-col-lg-3 docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/grids1.png"><img alt="_images/grids1.png" src="_images/grids1.png" style="width: 80%;" />
+</a>
+</figure>
+</div>
+</div>
+</div>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<p>Autres discrétisations :</p>
+<ul class="simple">
+<li><p><strong>Particles/Points non structurés</strong> : <code class="docutils literal notranslate"><span class="pre">*.particles</span></code>.</p></li>
+<li><p><strong>Données polygonales</strong> : <code class="docutils literal notranslate"><span class="pre">*.vtp</span></code>, topologie et géométrie non
+structurées, coordonnées de points, cellules 2D uniquement
+(c’est-à-dire pas de polyèdres), adapté aux cartes géographiques.</p></li>
+<li><p><strong>Grille non structurée</strong> : <code class="docutils literal notranslate"><span class="pre">*.vtu</span></code>, topologie et géométrie
+irrégulières, coordonnées de points, cellules 2D/3D, adaptée à
+l’analyse par éléments finis et à la conception de structures.</p></li>
+</ul>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-3 sd-col-xs-3 sd-col-sm-3 sd-col-md-3 sd-col-lg-3 docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/grids2.png"><img alt="_images/grids2.png" src="_images/grids2.png" style="width: 80%;" />
+</a>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="attributs-des-donnees">
+<h3>Attributs des données<a class="headerlink" href="#attributs-des-donnees" title="Lien vers cette rubrique">#</a></h3>
+<p>Un fichier VTK peut stocker plusieurs ensembles de données, chacun pouvant être
+de l’un des types suivants :</p>
+<ul class="simple">
+<li><p><strong>Scalaires</strong> : des valeurs individuelles de densité, de température, de
+pression, etc.</p></li>
+<li><p><strong>Vecteurs</strong> : direction et magnitude, par exemple des vecteurs de vitesse.</p>
+<ul>
+<li><p><strong>Normales</strong> : vecteurs de direction (<span class="math notranslate nohighlight">\(|\vec{n}|=1\)</span>) surtout utilisés
+pour des effets d’ombrage dans le rendu.</p></li>
+</ul>
+</li>
+<li><p><strong>Tenseurs</strong> : <a class="reference external" href="https://fr.wikipedia.org/wiki/Tenseur">tenseurs</a>
+symétriques de <span class="math notranslate nohighlight">\(3\times3\)</span> valeurs réelles, par exemple des tenseurs de
+stress mécanique.</p></li>
+<li><p><strong>Indices d’une table de correspondance</strong> : chaque valeur est un indice vers
+une ligne spécifique dans une table de correspondance, par exemple une table
+de couleurs prédéterminées qui contiendrait des tuples rouge-vert-bleu-alpha
+(où alpha=1 est opaque et alpha=0 est transparent) ; dans cet exemple, si le
+format du fichier est en ASCII, les valeurs de la table de correspondance
+doivent être des nombres à virgule flottante dans la plage [0,1].</p></li>
+<li><p><strong>Coordonnées de texture</strong> : utilisées pour le mappage de textures.</p></li>
+<li><p><strong>Données de champs</strong> (<code class="docutils literal notranslate"><span class="pre">FieldData</span></code>) : tableaux de tableaux de données.</p></li>
+</ul>
+</section>
+<section id="exemples-lire-un-fichier-vtk-de-l-ancien-format">
+<h3>Exemples – Lire un fichier VTK de l’ancien format<a class="headerlink" href="#exemples-lire-un-fichier-vtk-de-l-ancien-format" title="Lien vers cette rubrique">#</a></h3>
+<p><strong>Attention</strong> : Stocker de grandes quantités de données en ASCII n’est pas une
+bonne idée ; nous allons ici examiner des fichiers VTK textuels à des fins
+pédagogiques.</p>
+<ol class="arabic">
+<li><p>Exemple de points structurés : <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/volume.vtk</span></code></p>
+<ul class="simple">
+<li><p>Grille régulière de <span class="math notranslate nohighlight">\(3\times4\times6\)</span> points, un champ scalaire
+(<code class="docutils literal notranslate"><span class="pre">density</span></code>) et un champ vectoriel (<code class="docutils literal notranslate"><span class="pre">velocity</span></code>).</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># vtk DataFile Version 3.0</span>
+<span class="n">Volume</span> <span class="n">example</span>
+<span class="n">ASCII</span>
+<span class="hll"><span class="n">DATASET</span> <span class="n">STRUCTURED_POINTS</span>
+</span><span class="hll"><span class="n">DIMENSIONS</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">6</span>
+</span><span class="hll"><span class="n">SPACING</span> <span class="mf">0.1</span> <span class="mf">0.1</span> <span class="mf">0.1</span>
+</span><span class="n">ORIGIN</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="n">POINT_DATA</span> <span class="mi">72</span>
+<span class="hll"><span class="n">SCALARS</span> <span class="n">density</span> <span class="nb">float</span> <span class="mi">1</span>
+</span><span class="n">LOOKUP_TABLE</span> <span class="n">default</span>
+<span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span>
+<span class="mf">0.</span> <span class="mf">5.</span> <span class="mf">10.</span> <span class="mf">15.</span> <span class="mf">20.</span> <span class="mf">25.</span> <span class="mf">25.</span> <span class="mf">20.</span> <span class="mf">15.</span> <span class="mf">10.</span> <span class="mf">5.</span> <span class="mf">0.</span>
+<span class="mf">0.</span> <span class="mf">10.</span> <span class="mf">20.</span> <span class="mf">30.</span> <span class="mf">40.</span> <span class="mf">50.</span> <span class="mf">50.</span> <span class="mf">40.</span> <span class="mf">30.</span> <span class="mf">20.</span> <span class="mf">10.</span> <span class="mf">0.</span>
+<span class="mf">0.</span> <span class="mf">10.</span> <span class="mf">20.</span> <span class="mf">30.</span> <span class="mf">40.</span> <span class="mf">50.</span> <span class="mf">50.</span> <span class="mf">40.</span> <span class="mf">30.</span> <span class="mf">20.</span> <span class="mf">10.</span> <span class="mf">0.</span>
+<span class="mf">0.</span> <span class="mf">5.</span> <span class="mf">10.</span> <span class="mf">15.</span> <span class="mf">20.</span> <span class="mf">25.</span> <span class="mf">25.</span> <span class="mf">20.</span> <span class="mf">15.</span> <span class="mf">10.</span> <span class="mf">5.</span> <span class="mf">0.</span>
+<span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">0.</span>
+<span class="hll"><span class="n">VECTORS</span> <span class="n">velocity</span> <span class="nb">float</span>
+</span><span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">1.</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Exemple de grille structurée : <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/density.vtk</span></code></p>
+<ul class="simple">
+<li><p>Grille de <span class="math notranslate nohighlight">\(2\times2\times2\)</span> points, un seul champ scalaire.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># vtk DataFile Version 3.0</span>
+<span class="n">vtk</span> <span class="n">output</span>
+<span class="n">ASCII</span>
+<span class="hll"><span class="n">DATASET</span> <span class="n">STRUCTURED_GRID</span>
+</span><span class="hll"><span class="n">DIMENSIONS</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>
+</span><span class="hll"><span class="n">POINTS</span> <span class="mi">8</span> <span class="nb">float</span>
+</span><span class="mf">2.667</span> <span class="o">-</span><span class="mf">3.7747</span> <span class="mf">23.8329</span>
+<span class="mf">2.94346</span> <span class="o">-</span><span class="mf">3.7482</span> <span class="mf">23.66</span>
+<span class="mf">3.21986</span> <span class="o">-</span><span class="mf">3.7217</span> <span class="mf">23.49</span>
+<span class="mf">3.50007</span> <span class="o">-</span><span class="mf">3.7020</span> <span class="mf">23.37</span>
+<span class="mf">3.9116</span> <span class="o">-</span><span class="mf">3.7270</span> <span class="mf">23.53</span>
+<span class="mf">4.1656</span> <span class="o">-</span><span class="mf">3.69529</span> <span class="mf">23.33</span>
+<span class="mf">4.2278</span> <span class="o">-</span><span class="mf">3.7105</span> <span class="mf">22.48</span>
+<span class="mf">4.3876</span> <span class="o">-</span><span class="mf">3.6832</span> <span class="mf">21.73</span>
+<span class="n">POINT_DATA</span> <span class="mi">8</span>
+<span class="hll"><span class="n">SCALARS</span> <span class="n">density</span> <span class="nb">float</span>
+</span><span class="n">LOOKUP_TABLE</span> <span class="n">default</span>
+<span class="mf">0.498983</span> <span class="mf">0.376668</span> <span class="mf">0.333115</span> <span class="mf">0.311612</span>
+<span class="mf">0.267114</span> <span class="mf">0.639897</span> <span class="mf">0.479756</span> <span class="mf">0.477011</span>
+</pre></div>
+</div>
+</li>
+<li><p>Exemple plus complexe (données de polygone) : <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/cube.vtk</span></code></p>
+<ul>
+<li><p>Un cube est représenté par six faces polygonales.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># vtk DataFile Version 2.0</span>
+<span class="n">cube</span> <span class="n">represented</span> <span class="n">by</span> <span class="n">six</span> <span class="n">polygonal</span> <span class="n">faces</span>
+<span class="n">ASCII</span>
+<span class="hll"><span class="n">DATASET</span> <span class="n">POLYDATA</span>
+</span><span class="hll"><span class="n">POINTS</span> <span class="mi">8</span> <span class="nb">float</span>
+</span><span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span>
+<span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span>
+<span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span>
+<span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span>
+<span class="hll"><span class="n">POLYGONS</span> <span class="mi">6</span> <span class="mi">30</span>
+</span><span class="mi">4</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="mi">4</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span>
+<span class="mi">4</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">4</span>
+<span class="mi">4</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">7</span> <span class="mi">6</span>
+<span class="mi">4</span> <span class="mi">0</span> <span class="mi">4</span> <span class="mi">7</span> <span class="mi">3</span>
+<span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">6</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</li>
+<li><p>Une composante scalaire, une normale et des données de champs sont
+définies pour chacune des six faces (<code class="docutils literal notranslate"><span class="pre">CELL_DATA</span></code>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="n">CELL_DATA</span> <span class="mi">6</span>
+</span><span class="hll"><span class="n">SCALARS</span> <span class="n">cell_scalars</span> <span class="nb">int</span> <span class="mi">1</span>
+</span><span class="n">LOOKUP_TABLE</span> <span class="n">default</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="hll"><span class="n">NORMALS</span> <span class="n">cell_normals</span> <span class="nb">float</span>
+</span><span class="mi">0</span> <span class="mi">0</span> <span class="o">-</span><span class="mi">1</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="mi">0</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="o">-</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="hll"><span class="n">FIELD</span> <span class="n">FieldData</span> <span class="mi">2</span>
+</span><span class="n">cellIds</span> <span class="mi">1</span> <span class="mi">6</span> <span class="nb">int</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span>
+<span class="n">faceAttributes</span> <span class="mi">2</span> <span class="mi">6</span> <span class="nb">float</span>
+<span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">2.0</span> <span class="mf">2.0</span> <span class="mf">3.0</span> <span class="mf">3.0</span> <span class="mf">4.0</span> <span class="mf">4.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">6.0</span>
+</pre></div>
+</div>
+</li>
+<li><p>Des données scalaires sont associées aux huit sommets (<code class="docutils literal notranslate"><span class="pre">POINT_DATA</span></code>).
+Une table de correspondance de huit couleurs, associées aux données
+scalaires, est également définie.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="n">POINT_DATA</span> <span class="mi">8</span>
+</span><span class="hll"><span class="n">SCALARS</span> <span class="n">sample_scalars</span> <span class="nb">float</span> <span class="mi">1</span>
+</span><span class="n">LOOKUP_TABLE</span> <span class="n">my_table</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">1</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">2</span>
+<span class="hll"><span class="n">LOOKUP_TABLE</span> <span class="n">my_table</span> <span class="mi">8</span>
+</span><span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span>
+<span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span>
+<span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span>
+<span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="exercice-pour-la-maison-fichier-de-donnees-vtk-3d">
+<h3>Exercice pour la maison – Fichier de données VTK 3D<a class="headerlink" href="#exercice-pour-la-maison-fichier-de-donnees-vtk-3d" title="Lien vers cette rubrique">#</a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<div class="line-block">
+<div class="line"><strong>Objectif</strong> : visualiser la fonction <em>cylindre</em> 3D</div>
+<div class="line"><br /></div>
+<div class="line"><span class="math notranslate nohighlight">\(f(x,y,z) = e^{-|r-0.4|}\)</span></div>
+<div class="line"><br /></div>
+<div class="line">dans le domaine <span class="math notranslate nohighlight">\(x,y,z\in[0,1]\)</span> avec</div>
+<div class="line"><br /></div>
+<div class="line"><span class="math notranslate nohighlight">\(r = \sqrt{(x-0.5)^2+(y-0.5)^2}\)</span>,</div>
+<div class="line"><br /></div>
+<div class="line">et reproduisez la vue ci-contre <span class="math notranslate nohighlight">\(\Rightarrow\)</span></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-5 sd-col-xs-5 sd-col-sm-5 sd-col-md-5 sd-col-lg-5 docutils">
+<figure class="align-default">
+<img alt="_images/cylinder.png" src="_images/cylinder.png" />
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-12 sd-col-xs-12 sd-col-sm-12 sd-col-md-12 sd-col-lg-12 docutils">
+<p><strong>Instructions</strong></p>
+<ul class="simple">
+<li><p>Créez un fichier <code class="docutils literal notranslate"><span class="pre">*.vtk</span></code> avec les <span class="math notranslate nohighlight">\(30^3\)</span> valeurs du fichier
+<code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/cylinder.dat</span></code>.</p></li>
+<li><p>Ajoutez et ajustez une entête ASCII en s’inspirant de
+<code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/volume.vtk</span></code>.</p></li>
+<li><p>Dans ParaView, visualisez ensuite les données en mode <em>Volume</em>.</p></li>
+<li><p>Éditez le <em>Color Map</em> :</p>
+<ul>
+<li><p>Cliquez sur <em>Choose Preset</em> et sélectionnez <em>Warm to Cool</em> dans
+<em>All</em>.</p></li>
+<li><p>Ensuite, abaissez la courbe d’opacité à 0 vis-à-vis le bleu pâle.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2-architecture.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Architecture et interface graphique</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4-filtres.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Enrichir la visualisation avec des filtres</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources-de-donnees">Sources de données</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-lire-des-donnees-brutes-ou-binaires">Exemple – Lire des données brutes ou binaires</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vtk-visualization-toolkit">VTK = Visualization Toolkit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principaux-types-de-discretisation-des-donnees">Principaux types de discrétisation des données</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attributs-des-donnees">Attributs des données</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemples-lire-un-fichier-vtk-de-l-ancien-format">Exemples – Lire un fichier VTK de l’ancien format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-pour-la-maison-fichier-de-donnees-vtk-3d">Exercice pour la maison – Fichier de données VTK 3D</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Calcul Québec
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Calcul Québec.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

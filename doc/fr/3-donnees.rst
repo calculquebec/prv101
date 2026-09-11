@@ -357,3 +357,149 @@ de l’un des types suivants :
   doivent être des nombres à virgule flottante dans la plage [0,1].
 - **Coordonnées de texture** : utilisées pour le mappage de textures.
 - **Données de champs** (``FieldData``) : tableaux de tableaux de données.
+
+Exemples -- lire un fichier VTK de l'ancien format
+''''''''''''''''''''''''''''''''''''''''''''''''''
+
+**Attention** : Stocker de grandes quantités de données en ASCII n’est pas une
+bonne idée ; nous allons ici examiner des fichiers VTK textuels à des fins
+pédagogiques.
+
+1. Exemple de points structurés : ``~/prv101-main/lab/volume.vtk``
+
+   - Grille régulière de :math:`3\times4\times6` points, un champ scalaire
+     (``density``) et un champ vectoriel (``velocity``).
+
+   .. code-block::
+      :emphasize-lines: 4-6,9,17
+
+      # vtk DataFile Version 3.0
+      Volume example
+      ASCII
+      DATASET STRUCTURED_POINTS
+      DIMENSIONS 3 4 6
+      SPACING 0.1 0.1 0.1
+      ORIGIN 0 0 0
+      POINT_DATA 72
+      SCALARS density float 1
+      LOOKUP_TABLE default
+      0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+      0. 5. 10. 15. 20. 25. 25. 20. 15. 10. 5. 0.
+      0. 10. 20. 30. 40. 50. 50. 40. 30. 20. 10. 0.
+      0. 10. 20. 30. 40. 50. 50. 40. 30. 20. 10. 0.
+      0. 5. 10. 15. 20. 25. 25. 20. 15. 10. 5. 0.
+      0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+      VECTORS velocity float
+      1. 1. 1.
+      [...]
+
+2. Exemple de grille structurée : ``~/prv101-main/lab/density.vtk``
+
+   - Grille de :math:`2\times2\times2` points, un seul champ scalaire.
+
+   .. code-block::
+      :emphasize-lines: 4-6,16
+
+      # vtk DataFile Version 3.0
+      vtk output
+      ASCII
+      DATASET STRUCTURED_GRID
+      DIMENSIONS 2 2 2
+      POINTS 8 float
+      2.667 -3.7747 23.8329
+      2.94346 -3.7482 23.66
+      3.21986 -3.7217 23.49
+      3.50007 -3.7020 23.37
+      3.9116 -3.7270 23.53
+      4.1656 -3.69529 23.33
+      4.2278 -3.7105 22.48
+      4.3876 -3.6832 21.73
+      POINT_DATA 8
+      SCALARS density float
+      LOOKUP_TABLE default
+      0.498983 0.376668 0.333115 0.311612
+      0.267114 0.639897 0.479756 0.477011
+
+3. Exemple plus complexe (données de polygone) : ``~/prv101-main/lab/cube.vtk``
+
+   - Un cube est représenté par six faces polygonales.
+
+     .. code-block::
+        :emphasize-lines: 4-5,14
+
+        # vtk DataFile Version 2.0
+        cube represented by six polygonal faces
+        ASCII
+        DATASET POLYDATA
+        POINTS 8 float
+        0.0 0.0 0.0
+        1.0 0.0 0.0
+        1.0 1.0 0.0
+        0.0 1.0 0.0
+        0.0 0.0 1.0
+        1.0 0.0 1.0
+        1.0 1.0 1.0
+        0.0 1.0 1.0
+        POLYGONS 6 30
+        4 0 1 2 3
+        4 4 5 6 7
+        4 0 1 5 4
+        4 2 3 7 6
+        4 0 4 7 3
+        4 1 2 6 5
+
+   - Une composante scalaire, une normale et des données de champs sont
+     définies pour chacune des six faces (``CELL_DATA``).
+
+     .. code-block::
+        :emphasize-lines: 1-2,10,17
+
+        CELL_DATA 6
+        SCALARS cell_scalars int 1
+        LOOKUP_TABLE default
+        0
+        1
+        2
+        3
+        4
+        5
+        NORMALS cell_normals float
+        0 0 -1
+        0 0 1
+        0 -1 0
+        0 1 0
+        -1 0 0
+        1 0 0
+        FIELD FieldData 2
+        cellIds 1 6 int
+        0 1 2 3 4 5
+        faceAttributes 2 6 float
+        0.0 1.0 1.0 2.0 2.0 3.0 3.0 4.0 4.0 5.0 5.0 6.0
+
+   - Des données scalaires sont associées aux huit sommets (``POINT_DATA``).
+     Une table de correspondance de huit couleurs, associées aux données
+     scalaires, est également définie.
+
+     .. code-block::
+        :emphasize-lines: 1-2,12
+
+        POINT_DATA 8
+        SCALARS sample_scalars float 1
+        LOOKUP_TABLE my_table
+        0
+        1
+        2
+        1
+        1
+        2
+        3
+        2
+        LOOKUP_TABLE my_table 8
+        0.0 0.0 0.0 1.0
+        1.0 0.0 0.0 1.0
+        0.0 1.0 0.0 1.0
+        1.0 1.0 0.0 1.0
+        0.0 0.0 1.0 1.0
+        1.0 0.0 1.0 1.0
+        0.0 1.0 1.0 1.0
+        1.0 1.0 1.0 1.0

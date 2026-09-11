@@ -332,3 +332,28 @@ VTK prend en charge plusieurs types de discrétisation de données 1D, 2D et 3D�
 
         .. figure:: ../images/grids2.png
             :width: 80%
+
+Attributs des données
+'''''''''''''''''''''
+
+Un fichier VTK peut stocker plusieurs ensembles de données, chacun pouvant être
+de l’un des types suivants :
+
+- **Scalaires** : des valeurs individuelles de densité, de température, de
+  pression, etc.
+- **Vecteurs** : direction et magnitude, par exemple des vecteurs de vitesse.
+
+  - **Normales** : vecteurs de direction (:math:`|\vec{n}|=1`) surtout utilisés
+    pour des effets d’ombrage dans le rendu.
+
+- **Tenseurs** : `tenseurs <https://fr.wikipedia.org/wiki/Tenseur>`__
+  symétriques de :math:`3\times3` valeurs réelles, par exemple des tenseurs de
+  stress mécanique.
+- **Indices d’une table de correspondance** : chaque valeur est un indice vers
+  une ligne spécifique dans une table de correspondance, par exemple une table
+  de couleurs prédéterminées qui contiendrait des tuples rouge-vert-bleu-alpha
+  (où alpha=1 est opaque et alpha=0 est transparent) ; dans cet exemple, si le
+  format du fichier est en ASCII, les valeurs de la table de correspondance
+  doivent être des nombres à virgule flottante dans la plage [0,1].
+- **Coordonnées de texture** : utilisées pour le mappage de textures.
+- **Données de champs** (``FieldData``) : tableaux de tableaux de données.

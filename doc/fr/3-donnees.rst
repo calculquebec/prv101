@@ -247,3 +247,38 @@ grille :math:`16 \times 16 \times 16` :
            - Supprimez l’objet.
            - Chargez le fichier ``*.pvd`` -- ce fichier de données contient
              effectivement toutes les propriétés que nous avons définies.
+
+VTK = Visualization Toolkit
+'''''''''''''''''''''''''''
+
+Qu’est-ce que le *Visualization Toolkit*, plus connu sous l’acronyme **VTK**?
+
+- C'est un système logiciel libre pour l’infographie 3D, le traitement d’images
+  et la visualisation.
+- Des interfaces sont fournies pour C++, Tcl, Java et Python, ainsi que pour
+  JavaScript (partiellement, depuis seulement 2016).
+- ParaView est basé sur VTK, donc il est compatible avec les mêmes formats de
+  fichiers standards pris en charge par VTK :
+
+  - https://docs.vtk.org/en/latest/supported_data_formats.html
+
+- VTK a aussi ses propres formats de fichiers :
+  https://docs.vtk.org/en/latest/vtk_file_formats
+
+  1. **Anciens formats séquentiels** (``*.vtk``) : lignes d’entête en ASCII +
+     données ASCII/binaires.
+  2. **Formats XML** : balises XML + données ASCII/binaires/compressées.
+
+     - Plus récent, largement préféré aux anciens formats VTK.
+     - Prend en charge **la lecture et l’écriture en parallèle**, la
+       compression, l’encodage binaire portable (*big/little endian*), les
+       accès aléatoires, etc.
+
+  3. **Formats VTKHDF** (en développement depuis 2022) :
+
+     - `HDF5 <https://docs.alliancecan.ca/wiki/HDF5/fr>`__ est utilisé pour le
+       stockage des données.
+     - Performance améliorée des lectures et écritures séquentielles et
+       parallèles.
+     - Prise en charge des structures de données hiérarchiques.
+     - Devrait éventuellement remplacer les autres formats VTK.

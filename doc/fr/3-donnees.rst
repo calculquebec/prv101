@@ -701,3 +701,30 @@ Comment lire et écrire des fichiers ``*.vtkhdf``?
 
 Fichiers NetCDF et HDF5
 -----------------------
+
+Les formats VTK sont incroyablement polyvalents et peuvent décrire de nombreux
+types de données. Or, très souvent en science, on a uniquement besoin de
+stocker et de visualiser des tableaux multidimensionnels.
+
+- Problème : comment stocker un tableau de :math:`2000^3` nombres à simple
+  précision (environ 32 Go)?
+
+  - En ASCII? Oubliez-ça : trop de caractères par nombre, sinon perte de
+    précision.
+  - En binaire brut? Possible, mais avec plusieurs problèmes de portabilité.
+  - Un des formats VTK? C’est probablement exagéré pour des tableaux simples.
+
+- Solution : utiliser un des formats de données scientifiques les plus
+  populaires, par exemple, NetCDF et HDF5.
+
+  - Binaire (bien sûr!).
+  - Auto-descriptif (avec métadonnées).
+  - Portable (multiplateforme) :
+
+    - Types de données universels.
+    - Gestion de l’ordre des octets (petit-boutiste ou gros-boutiste).
+    - Des bibliothèques sont disponibles pour les principaux systèmes
+      d’exploitation.
+
+  - Permet des lectures et des écritures en parallèle (via MPI-IO).
+  - Permet la compression des données.

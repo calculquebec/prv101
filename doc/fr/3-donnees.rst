@@ -678,3 +678,35 @@ divisé en deux scripts :
       grid.origin = (0.0, 0.0, 0.0)
       grid.point_data["scalar"] = data.flatten(order="F")
       grid.save("decoCube.vti")
+
+Fichiers VTKHDF
+---------------
+
+Quel est l’état du format VTKHDF?
+
+- En cours de développement.
+
+  - Une fois complété, il devrait remplacer les autres formats VTK.
+
+- Utilise `HDF5 <https://www.hdfgroup.org/solutions/hdf5>`__ pour le stockage
+  des données, ce qui donne accès à tous les avantages de HDF5, incluant :
+
+  - Meilleure performance de lecture-écriture séquentielle et parallèle.
+  - Prise en charge des structures de données hiérarchiques.
+
+- Les fichiers ont cependant l’extension ``*.vtkhdf``.
+
+Comment lire et écrire des fichiers VTKHDF?
+
+- En utilisant les fonctions VTKHDF de VTK.
+
+  - Pour l’instant, `la classe
+    <https://vtk.org/doc/nightly/html/classvtkHDFWriter.html>`__
+    ``vtkHDFWriter`` peut écrire seulement certaines structures de données.
+
+- En utilisant des outils standards du format HDF5, car le fichier généré est
+  effectivement un fichier HDF5. Par exemple, on pourrait utiliser `la
+  bibliothèque Python <https://docs.h5py.org/en/stable/index.html>`__ ``h5py``.
+- `La bibliothèque
+  <https://docs.pyvista.org/api/core/_autosummary/pyvista.dataobject.save>`__
+  ``pyvista`` prend déjà assez bien en charge les fichiers VTKHDF.

@@ -728,3 +728,10 @@ stocker et de visualiser des tableaux multidimensionnels.
 
   - Permet des lectures et des écritures en parallèle (via MPI-IO).
   - Permet la compression des données.
+
+Alors que ParaView peut lire nativement le format NetCDF et ses métadonnées les
+plus courantes, ce ne sont pas tous les fichiers HDF5 qui sont compatibles avec
+ParaView. Cependant, ParaView prend en charge le format conteneur `XDMF
+(eXtensible Data Model and Format) <https://www.xdmf.org>`__ qui utilise HDF5
+pour stocker les données. D'autres formats de fichiers pris en charge par
+ParaView utilisent aussi HDF5 sous-jacent.

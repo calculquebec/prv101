@@ -554,112 +554,127 @@ préférable. Une bonne option serait le **format XML** avec des données binair
 et des métadonnées XML, et d’écrire ces données via une bibliothèque VTK à
 partir d’un code C++, Java ou Python.
 
-- Par exemple, `le programme
-  <https://github.com/calculquebec/prv101/blob/main/lab/codes/SGrid.cpp>`__
-  ``~/prv101-main/lab/codes/SGrid.cpp`` génère `le fichier VTK XML
-  <https://github.com/calculquebec/prv101/blob/main/lab/halfCylinder.vts>`__
-  ``~/prv101-main/lab/halfCylinder.vts``.
+Par exemple, **en C++**, `le programme
+<https://github.com/calculquebec/prv101/blob/main/lab/codes/SGrid.cpp>`__
+``~/prv101-main/lab/codes/SGrid.cpp`` génère `le fichier VTK XML
+<https://github.com/calculquebec/prv101/blob/main/lab/halfCylinder.vts>`__
+``~/prv101-main/lab/halfCylinder.vts``.
 
-  - Cet exemple montre comment créer une grille structurée, définir ses
-    coordonnées, la remplir avec des scalaires et des vecteurs, et l’écrire en
-    XML dans un fichier ``*.vts``.
-  - Pour le compiler et l’exécuter, la bibliothèque VTK C++ doit être installée
-    (de manière autonome ou via ParaView) ; regardez dans `le fichier
-    <https://github.com/calculquebec/prv101/blob/main/lab/codes/Makefile#L3>`__
-    ``~/prv101-main/lab/codes/Makefile`` pour voir les fichiers requis. Enfin,
-    voici les commandes à entrer dans un terminal :
-
-    .. code-block:: console
-
-        cd ~/prv101-main/lab/codes
-        make SGrid
-        ./SGrid
-
-  - D’autres exemples en C++ sont annexés au code source de VTK et sont aussi
-    disponibles en ligne : https://examples.vtk.org/site/Cxx
-
-- Un autre exemple, en Python, est divisé en deux scripts :
-
-  - Dans `le fichier
-    <https://github.com/calculquebec/prv101/blob/main/lab/codes/writeNodesEdges.py#L3>`__
-    ``~/prv101-main/lab/codes/writeNodesEdges.py``, on y retrouve une fonction
-    utilitaire recevant des sommets, des arêtes et des valeurs scalaires.
-
-    .. code-block:: python
-
-        def writeObjects(nodeCoords,
-                        edges = [],
-                        scalar = [], name = '', power = 1,
-                        scalar2 = [], name2 = '', power2 = 1,
-                        nodeLabel = [],
-                        method = 'vtkPolyData',
-                        fileout = 'test'):
-            [...]
-
-  - Dans `le fichier
-    <https://github.com/calculquebec/prv101/blob/main/lab/codes/dgm.py>`__
-    ``~/prv101-main/lab/codes/dgm.py``, un graphe aléatoire d’une profondeur
-    maximale donnée en argument est généré. Les valeurs scalaires associées aux
-    somments correspondent à la profondeur des sommets dans le graphe.
-
-    .. code-block:: python
-        :emphasize-lines: 5,9-11
-
-        [...]
-        generation = int(sys.argv[1])
-        H = nx.dorogovtsev_goltsev_mendes_graph(generation)
-        pos = nx.spring_layout(H, dim=3)
-        xyz = [list(pos[i]) for i in pos] # list of [x,y,z]
-
-        print(nx.number_of_nodes(H), 'nodes and',
-              nx.number_of_edges(H), 'edges')
-        degree = [d for i,d in H.degree(H.nodes())]
-        writeObjects(xyz, edges=H.edges(), scalar=degree,
-                name='degree', power=0.333, fileout='network')
-
-  .. grid:: 2
-
-      .. grid-item::
-
-          Pour exécuter cet exemple :
-
-          .. code-block:: console
-
-              cd ~/prv101-main/lab/codes
-              pip install vtk networkx scipy
-              python dgm.py 7
-
-          Ce qui génère un graphe semblable à celui de la figure ci-contre
-          :math:`\Rightarrow`
-
-      .. grid-item::
-
-          .. figure:: ../images/firstGraph.png
-
-- La `bibliothèque PyEVTK <https://github.com/paulo-herrera/PyEVTK>`__ est une
-  autre option pour écrire des fichiers VTK XML via Python.
+- Cet exemple montre comment créer une grille structurée, définir ses
+  coordonnées, la remplir avec des scalaires et des vecteurs, et l’écrire en
+  XML dans un fichier ``*.vts``.
+- Pour le compiler et l’exécuter, la bibliothèque VTK C++ doit être installée
+  (de manière autonome ou via ParaView) ; regardez dans `le fichier
+  <https://github.com/calculquebec/prv101/blob/main/lab/codes/Makefile#L3>`__
+  ``~/prv101-main/lab/codes/Makefile`` pour voir les fichiers requis. Ensuite,
+  dans un terminal :
 
   .. code-block:: console
 
-      pip install pyevtk
+      cd ~/prv101-main/lab/codes
+      make SGrid
+      ./SGrid
 
-  - Par exemple :
+- D’autres exemples en C++ sont annexés au code source de VTK et sont aussi
+  disponibles en ligne : https://examples.vtk.org/site/Cxx
 
-    .. code-block:: python
+**En Python**, le premier exemple ci-dessous utilise `la bibliothèque
+<https://docs.vtk.org/en/latest/api/python.html>`__ ``vtk``. Cet exemple est
+divisé en deux scripts :
 
-        from pyevtk.hl import imageToVTK
-        import numpy as np
+- Dans `le fichier
+  <https://github.com/calculquebec/prv101/blob/main/lab/codes/writeNodesEdges.py#L3>`__
+  ``~/prv101-main/lab/codes/writeNodesEdges.py``, on y trouve une fonction
+  utilitaire recevant des sommets, des arêtes et des valeurs scalaires. Selon
+  la ``method`` spécifiée, cette fonction génère un fichier VTK XML ``.vtp`` ou
+  ``.vtu``.
 
-        n = 30
-        lin = np.linspace(-1.2, 1.2, n)
-        x, y, z = np.meshgrid(lin, lin, lin)
-        data = (
-              ((x**2 + y**2 - 0.64) ** 2 + (z**2 - 1.0) ** 2)
-            * ((y**2 + z**2 - 0.64) ** 2 + (x**2 - 1.0) ** 2)
-            * ((z**2 + x**2 - 0.64) ** 2 + (y**2 - 1.0) ** 2)
-        )
+  .. code-block:: python
 
-        imageToVTK("decoCube", pointData={"scalar" : data})
+      def writeObjects(nodeCoords,
+                      edges = [],
+                      scalar = [], name = '', power = 1,
+                      scalar2 = [], name2 = '', power2 = 1,
+                      nodeLabel = [],
+                      method = 'vtkPolyData',
+                      fileout = 'test'):
+          [...]
+
+- Dans `le fichier
+  <https://github.com/calculquebec/prv101/blob/main/lab/codes/dgm.py>`__
+  ``~/prv101-main/lab/codes/dgm.py``, un graphe aléatoire est généré selon une
+  profondeur maximale donnée en argument. Les valeurs scalaires associées aux
+  sommets correspondent au nombre d’arêtes qui y sont connectées.
+
+  .. code-block:: python
+      :emphasize-lines: 5,9-11
+
+      [...]
+      generation = int(sys.argv[1])
+      H = nx.dorogovtsev_goltsev_mendes_graph(generation)
+      pos = nx.spring_layout(H, dim=3)
+      xyz = [list(pos[i]) for i in pos] # list of [x,y,z]
+
+      print(nx.number_of_nodes(H), 'nodes and',
+            nx.number_of_edges(H), 'edges')
+      degree = [d for i,d in H.degree(H.nodes())]
+      writeObjects(xyz, edges=H.edges(), scalar=degree,
+              name='degree', power=0.333, fileout='network')
+
+.. grid:: 2
+
+    .. grid-item::
+
+        Pour exécuter cet exemple :
+
+        .. code-block:: console
+
+            cd ~/prv101-main/lab/codes
+            pip install vtk networkx scipy
+            python dgm.py 7
+
+        Ce qui génère un graphe semblable à celui de la figure ci-contre
+        :math:`\Rightarrow`
+
+    .. grid-item::
+
+        .. figure:: ../images/firstGraph.png
+
+- `La bibliothèque <https://github.com/paulo-herrera/PyEVTK>`__ ``pyevtk`` est
+  une autre option pour écrire des fichiers VTK XML via Python. Par exemple :
+
+  .. code-block:: python
+
+      from pyevtk.hl import imageToVTK
+      import numpy as np
+
+      n = 30
+      lin = np.linspace(-1.2, 1.2, n)
+      x, y, z = np.meshgrid(lin, lin, lin)
+      data = (
+            ((x**2 + y**2 - 0.64) ** 2 + (z**2 - 1.0) ** 2)
+          * ((y**2 + z**2 - 0.64) ** 2 + (x**2 - 1.0) ** 2)
+          * ((z**2 + x**2 - 0.64) ** 2 + (y**2 - 1.0) ** 2)
+      )
+
+      imageToVTK("decoCube", pointData={"scalar" : data})
 
   - Plusieurs autres exemples se trouvent dans ce répertoire :
     https://github.com/paulo-herrera/PyEVTK/tree/master/evtk/examples
+
+- Pour faire la même chose, mais avec `la bibliothèque
+  <https://docs.pyvista.org/user-guide/vtk_to_pyvista>`__ ``pyvista``, nous
+  aurions :
+
+  .. code-block:: python
+
+      import pyvista as pv
+
+      [...]
+
+      grid = pv.ImageData()
+      grid.dimensions = (n, n, n)
+      grid.spacing = (1.0, 1.0, 1.0)
+      grid.origin = (0.0, 0.0, 0.0)
+      grid.point_data["scalar"] = data.flatten(order="F")
+      grid.save("decoCube.vti")

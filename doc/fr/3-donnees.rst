@@ -262,8 +262,8 @@ Qu’est-ce que le *Visualization Toolkit*, plus connu sous l’acronyme **VTK**
 
   - https://docs.vtk.org/en/latest/supported_data_formats.html
 
-À propos des fichiers VTK
--------------------------
+Différents formats de fichiers VTK
+''''''''''''''''''''''''''''''''''
 
 VTK a aussi ses propres formats de fichiers :
 https://docs.vtk.org/en/latest/vtk_file_formats
@@ -285,6 +285,8 @@ https://docs.vtk.org/en/latest/vtk_file_formats
      parallèles.
    - Prise en charge des structures de données hiérarchiques.
    - Devrait éventuellement remplacer les autres formats VTK.
+
+Nous y reviendrons plus en détail dans les prochaines sections.
 
 Principaux types de discrétisation des données
 ''''''''''''''''''''''''''''''''''''''''''''''
@@ -682,21 +684,7 @@ divisé en deux scripts :
 Fichiers VTKHDF
 ---------------
 
-Quel est l’état du format VTKHDF?
-
-- En cours de développement.
-
-  - Une fois complété, il devrait remplacer les autres formats VTK.
-
-- Utilise `HDF5 <https://www.hdfgroup.org/solutions/hdf5>`__ pour le stockage
-  des données, ce qui donne accès à tous les avantages de HDF5, incluant :
-
-  - Meilleure performance de lecture-écriture séquentielle et parallèle.
-  - Prise en charge des structures de données hiérarchiques.
-
-- Les fichiers ont cependant l’extension ``*.vtkhdf``.
-
-Comment lire et écrire des fichiers VTKHDF?
+Comment lire et écrire des fichiers ``*.vtkhdf``?
 
 - En utilisant les fonctions VTKHDF de VTK.
 
@@ -710,3 +698,6 @@ Comment lire et écrire des fichiers VTKHDF?
 - `La bibliothèque
   <https://docs.pyvista.org/api/core/_autosummary/pyvista.dataobject.save>`__
   ``pyvista`` prend déjà assez bien en charge les fichiers VTKHDF.
+
+Fichiers NetCDF et HDF5
+-----------------------

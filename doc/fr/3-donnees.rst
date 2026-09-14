@@ -733,5 +733,27 @@ Alors que ParaView peut lire nativement le format NetCDF et ses métadonnées le
 plus courantes, ce ne sont pas tous les fichiers HDF5 qui sont compatibles avec
 ParaView. Cependant, ParaView prend en charge le format conteneur `XDMF
 (eXtensible Data Model and Format) <https://www.xdmf.org>`__ qui utilise HDF5
-pour stocker les données. D'autres formats de fichiers pris en charge par
+pour stocker les données. D’autres formats de fichiers pris en charge par
 ParaView utilisent aussi HDF5 sous-jacent.
+
+Récapitulatif des formats de fichiers en entrée
+-----------------------------------------------
+
+- Données binaires brutes.
+- Anciens formats VTK (``*.vtk``), avec les données écrites en ASCII, pour les
+  petits ensembles de données.
+
+  - Points structurés (image).
+  - Grille structurée.
+  - Données polygonales.
+
+- Des formats VTK XML pour les grands ensembles de données : ce sont les plus
+  polyvalents, utilisables en C++ et en Python.
+
+  - Grande grille structurée (``*.vts``).
+  - D’autres discrétisations peuvent être sauvegardées en utilisant la classe
+    correspondante, par exemple : ``vtkPolyData``, ``vtkRectilinearGrid``,
+    ``vtkStructuredGrid``, ``vtkUnstructuredGrid``, etc.
+
+- NetCDF est pris en charge nativement et le format HDF5, via XDMF.
+- ParaView prend en charge nativement de nombreux autres formats.

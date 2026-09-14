@@ -548,3 +548,83 @@ Exercice pour la maison -- Fichier de données VTK 3D
 
 Créer un fichier VTK XML
 ------------------------
+
+Pour des **données plus volumineuses (Mo, Go)**, un format binaire est
+préférable. Une bonne option serait le **format XML** avec des données binaires
+et des métadonnées XML, et d’écrire ces données via une bibliothèque VTK à
+partir d’un code C++, Java ou Python.
+
+- Par exemple, le programme ``~/prv101-main/lab/codes/SGrid.cpp`` génère le
+  fichier ``~/prv101-main/lab/halfCylinder.vts``.
+
+  - Cet exemple montre comment créer une grille structurée, définir ses
+    coordonnées, la remplir avec des scalaires et des vecteurs, et l’écrire en
+    XML dans un fichier ``*.vts``.
+  - Pour le compiler et l’exécuter, la bibliothèque VTK C++ doit être installée
+    (de manière autonome ou via ParaView) ; regardez dans le
+    ``~/prv101-main/lab/codes/Makefile`` pour voir les fichiers requis.
+
+    .. code-block:: console
+
+        cd ~/prv101-main/lab/codes
+        make SGrid
+        ./SGrid
+
+- Un autre exemple, en Python, est divisé en deux scripts :
+
+  - Dans ``~/prv101-main/lab/codes/writeNodesEdges.py``, on y retrouve une
+    fonction utilitaire recevant des sommets, des arêtes et des valeurs
+    scalaires.
+
+    .. code-block:: python
+
+        def writeObjects(nodeCoords,
+                        edges = [],
+                        scalar = [], name = '', power = 1,
+                        scalar2 = [], name2 = '', power2 = 1,
+                        nodeLabel = [],
+                        method = 'vtkPolyData',
+                        fileout = 'test'):
+            [...]
+
+  - Dans ``~/prv101-main/lab/codes/dgm.py``, un graphe aléatoire d’une
+    profondeur maximale donnée en argument est généré. Les valeurs scalaires
+    associées aux somments correspondent à la profondeur des sommets dans le
+    graphe.
+
+    .. code-block:: python
+        :emphasize-lines: 5,9-11
+
+        [...]
+        generation = int(sys.argv[1])
+        H = nx.dorogovtsev_goltsev_mendes_graph(generation)
+        pos = nx.spring_layout(H, dim=3)
+        xyz = [list(pos[i]) for i in pos] # list of [x,y,z]
+
+        print(nx.number_of_nodes(H), 'nodes and',
+              nx.number_of_edges(H), 'edges')
+        degree = [d for i,d in H.degree(H.nodes())]
+        writeObjects(xyz, edges=H.edges(), scalar=degree,
+                name='degree', power=0.333, fileout='network')
+
+  .. grid:: 2
+
+      .. grid-item::
+
+          Pour exécuter cet exemple :
+
+          .. code-block:: console
+
+              cd ~/prv101-main/lab/codes
+              pip install vtk networkx scipy
+              python dgm.py 7
+
+          Ce qui génère un graphe semblable à celui de la figure ci-contre
+          :math:`\Rightarrow`
+
+      .. grid-item::
+
+          .. figure:: ../images/firstGraph.png
+
+- D’autres exemples sont annexés au code source de VTK et sont aussi
+  disponibles en ligne : https://examples.vtk.org/site/Cxx

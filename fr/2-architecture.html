@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Architecture et interface graphique &#8212; PRV101</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/translations.js?v=e6b791cb"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '2-architecture';</script>
+    <link rel="icon" href="_static/logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Importer des données" href="3-donnees.html" />
+    <link rel="prev" title="Introduction" href="1-introduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Visualisation de données 2D et 3D avec ParaView (PRV101)</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapitres</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1-introduction.html">Introduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Architecture et interface graphique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-donnees.html">Importer des données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-filtres.html">Enrichir la visualisation avec des filtres</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Liens externes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://docs.alliancecan.ca/wiki/Technical_documentation/fr">Documentation technique de l’Alliance</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.calculquebec.ca/services-aux-chercheurs/formation/">Formations de Calcul Québec</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/2-architecture.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Thème" data-bs-title="Thème"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Clair"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Sombre"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Paramètres système"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Architecture et interface graphique</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-parallele-distribuee">Architecture parallèle distribuée</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demarrer-paraview">Démarrer ParaView</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survol-de-linterface-graphique">Survol de l’interface graphique</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-fenetres-de-visualisation">Exercice – Fenêtres de visualisation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="architecture-et-interface-graphique">
+<h1>Architecture et interface graphique<a class="headerlink" href="#architecture-et-interface-graphique" title="Lien vers cette rubrique">#</a></h1>
+<p><a class="reference external" href="../en/2-architecture.html">English</a></p>
+<section id="architecture-parallele-distribuee">
+<h2>Architecture parallèle distribuée<a class="headerlink" href="#architecture-parallele-distribuee" title="Lien vers cette rubrique">#</a></h2>
+<p>ParaView comprend trois composants logiques qui sont intégrés dans une même
+application à utiliser sur un ordinateur personnel, mais qui peuvent également
+s’exécuter séparément sur des machines différentes :</p>
+<ul class="simple">
+<li><p><strong>Serveur de données</strong> – composant responsable de la lecture, du filtrage et
+de l’écriture des données. Tous les objets du pipeline visibles dans
+l’explorateur de pipelines sont contenus dans le serveur de données.
+Ce serveur peut être exécuté en parallèle.</p></li>
+<li><p><strong>Serveur de rendu</strong> – composant responsable du rendu. Le serveur de rendu
+peut également être parallèle.</p></li>
+<li><p><strong>Client</strong> – composant responsable de la visualisation. Le client contrôle
+la création, l’exécution et la destruction des objets sur les serveurs, mais
+ne contient aucune donnée, ce qui permet aux serveurs de prendre toute la
+charge. Si une interface graphique est présente, elle se trouve également du
+côté client. Le client est toujours une application séquentielle.</p></li>
+</ul>
+<p>Il y a deux principaux modes d’utilisation :</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row sd-col-5 sd-col-xs-5 sd-col-sm-5 sd-col-md-5 sd-col-lg-5 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Mode autonome</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/client1.png"><img alt="_images/client1.png" src="_images/client1.png" style="width: 83%;" />
+</a>
+</figure>
+<p class="sd-card-text">Les calculs et l’interface utilisateur s’exécutent sur le même
+ordinateur (local ou distant).</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row sd-col-7 sd-col-xs-7 sd-col-sm-7 sd-col-md-7 sd-col-lg-7 docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Mode client-serveur</div>
+<figure class="align-default">
+<img alt="_images/client2.png" src="_images/client2.png" />
+</figure>
+<p class="sd-card-text">Une instance parallèle de <code class="docutils literal notranslate"><span class="pre">pvserver</span></code> s’exécute à distance sur un
+serveur multicœur ou sur une grappe de calcul.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Or, le <em>mode autonome</em> est <strong>limité par l’ordinateur utilisé</strong> :</p>
+<ul class="simple">
+<li><p>Bande-passante de la lecture des données ;</p></li>
+<li><p>Mémoire système ;</p></li>
+<li><p>Puissance CPU / GPU.</p></li>
+</ul>
+<p>Par exemple, <strong>un ordinateur doté de 48 Go de mémoire</strong> pourrait traiter des
+modèles jusqu’à <span class="math notranslate nohighlight">\(2048^3\)</span> valeurs, mais sous certaines conditions :</p>
+<ol class="arabic simple">
+<li><p>les valeurs sont à virgule flottante à simple précision …</p></li>
+<li><p>sur des grilles structurées …</p></li>
+<li><p>stockées localement (faible latence).</p></li>
+</ol>
+<p>Ainsi, un tel ordinateur ne pourrait traiter :</p>
+<ul class="simple">
+<li><p>des données plus larges ou de plus haute résolution ;</p></li>
+<li><p>des grilles plus complexes ;</p></li>
+<li><p>des données nécessitant des filtres complexes.</p></li>
+</ul>
+<p>Par exemple, une <strong>simulation d’écoulement d’air autour d’une aile d’avion</strong>
+sur une <em>grille non structurée</em> ayant <span class="math notranslate nohighlight">\(246\times10^6\)</span> cellules
+(<span class="math notranslate nohighlight">\(\sim627^3\)</span>) est un problème typique qui ne tiendrait pas sur un
+ordinateur de 48 Go : une seule variable contenant tout le modèle prendrait
+déjà 25 Go. Par contre, il serait possible de visualiser ce modèle
+interactivement à distance sur un serveur de 64 cœurs avec un processus
+<code class="docutils literal notranslate"><span class="pre">pvserver</span></code> prenant environ 120 Go de mémoire.</p>
+<p>Pour cet atelier d’introduction, nous allons nous contenter du <em>mode autonome</em>.</p>
+</section>
+<section id="demarrer-paraview">
+<h2>Démarrer ParaView<a class="headerlink" href="#demarrer-paraview" title="Lien vers cette rubrique">#</a></h2>
+<p>Selon l’environnement utilisé, voici comment démarrer ParaView :</p>
+<ul class="simple">
+<li><p><strong>Séance JupyterLab</strong> sur les grappes de l’Alliance :</p>
+<ol class="arabic simple">
+<li><p>S’assurer que le <a class="reference external" href="https://docs.alliancecan.ca/wiki/JupyterLab/fr#Software_Modules">module</a>
+<code class="docutils literal notranslate"><span class="pre">paraview/6.0.0</span></code> est bien chargé.</p></li>
+<li><p>Cliquer sur le <a class="reference external" href="https://docs.alliancecan.ca/wiki/JupyterLab/fr#ParaView">bouton</a>
+<em>ParaView</em> dans la page d’accueil. Cela démarre ParaView dans un bureau
+distant accessible via un nouvel onglet du navigateur Web.</p></li>
+</ol>
+</li>
+<li><p><strong>Linux/Unix</strong> : entrer <code class="docutils literal notranslate"><span class="pre">paraview</span></code> à la ligne de commande.</p></li>
+<li><p><strong>MacOS</strong> : cliquer sur <em>ParaView</em> dans les Applications.</p></li>
+<li><p><strong>Windows</strong> : sélectionner <em>ParaView</em> dans le menu Démarrer.</p></li>
+</ul>
+<p>L’interface graphique de ParaView devrait apparaître. En arrière-plan, un
+processus <code class="docutils literal notranslate"><span class="pre">pvserver</span></code> est démarré automatiquement.</p>
+</section>
+<section id="survol-de-linterface-graphique">
+<h2>Survol de l’interface graphique<a class="headerlink" href="#survol-de-linterface-graphique" title="Lien vers cette rubrique">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-4 sd-col-xs-4 sd-col-sm-4 sd-col-md-4 sd-col-lg-4 docutils">
+<ul class="simple">
+<li><p><strong>Pipeline Browser</strong> :</p>
+<ul>
+<li><p>Arborescence de lecteurs et de filtres de données ;</p></li>
+<li><p>Permet d’activer ou de désactiver la visibilité de chaque objet.</p></li>
+</ul>
+</li>
+<li><p><strong>Inspecteur d’objet</strong> : via les onglets <em>Properties</em> et
+<em>Information</em>, voir et modifier les paramètres de l’objet
+sélectionné dans le pipeline.</p></li>
+<li><p><strong>Fenêtre de visualisation</strong> : affiche le résultat.</p></li>
+</ul>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-8 sd-col-xs-8 sd-col-sm-8 sd-col-md-8 sd-col-lg-8 docutils">
+<figure class="align-default">
+<img alt="_images/interface.png" src="_images/interface.png" />
+</figure>
+</div>
+</div>
+</div>
+<p>Pour vous familiariser :</p>
+<ol class="arabic simple">
+<li><p>Dans la barre d’outils, trouvez les boutons :</p>
+<ul class="simple">
+<li><p><em>Connect</em></p></li>
+<li><p><em>Disconnect</em></p></li>
+<li><p><em>Toggle Color Legend Visibility</em></p></li>
+<li><p><em>Edit Color Map</em></p></li>
+<li><p><em>Rescale to Data Range</em></p></li>
+</ul>
+</li>
+<li><p>Chargez un ensemble de données prédéfini : menu <em>Sources</em>
+<span class="math notranslate nohighlight">\(\rightarrow\)</span> <em>Geometric Shapes</em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em>Cylinder</em>.</p></li>
+<li><p>Essayez de bouger le cylindre en appuyant sur le bouton gauche de la
+souris ; essayez aussi avec le bouton droit et le bouton central.</p></li>
+<li><p>Familiarisez-vous avec le menu contextuel ; changez la <em>Representation</em> du
+cylindre (par exemple, de <em>Surface</em> à <em>Wireframe</em>) ou changez sa couleur via
+<em>Edit Color</em>.</p></li>
+</ol>
+<section id="exercice-fenetres-de-visualisation">
+<h3>Exercice – Fenêtres de visualisation<a class="headerlink" href="#exercice-fenetres-de-visualisation" title="Lien vers cette rubrique">#</a></h3>
+<p><strong>Objectif</strong> : créer de multiples fenêtres de visualisation et, pour chacune
+d’entre elles, configurer les propriétés des objets du pipeline.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-4 sd-col-xs-4 sd-col-sm-4 sd-col-md-4 sd-col-lg-4 docutils">
+<p><strong>Instructions</strong></p>
+<ul class="simple">
+<li><p>Ajoutez un objet du menu <em>Sources</em> (<em>cone</em>, <em>sphere</em>, <em>cylinder</em> ou
+<em>box</em>) et éditez ses propriétés.</p></li>
+<li><p>Utilisez un des boutons en haut à droite de la fenêtre de
+visualisation pour diviser la vue.</p></li>
+<li><p>Répétez avec l’objet ou les objets suivants.</p></li>
+<li><p><strong>Liez deux vues</strong> : bouton droit de souris sur une vue, sélectionnez
+<em>Link Camera</em> et cliquez sur une autre vue.</p></li>
+</ul>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-8 sd-col-xs-8 sd-col-sm-8 sd-col-md-8 sd-col-lg-8 docutils">
+<figure class="align-default">
+<img alt="_images/multiWindow.png" src="_images/multiWindow.png" />
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1-introduction.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="3-donnees.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Importer des données</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-parallele-distribuee">Architecture parallèle distribuée</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demarrer-paraview">Démarrer ParaView</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survol-de-linterface-graphique">Survol de l’interface graphique</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-fenetres-de-visualisation">Exercice – Fenêtres de visualisation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Calcul Québec
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Calcul Québec.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

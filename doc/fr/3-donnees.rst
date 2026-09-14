@@ -554,15 +554,20 @@ préférable. Une bonne option serait le **format XML** avec des données binair
 et des métadonnées XML, et d’écrire ces données via une bibliothèque VTK à
 partir d’un code C++, Java ou Python.
 
-- Par exemple, le programme ``~/prv101-main/lab/codes/SGrid.cpp`` génère le
-  fichier ``~/prv101-main/lab/halfCylinder.vts``.
+- Par exemple, `le programme
+  <https://github.com/calculquebec/prv101/blob/main/lab/codes/SGrid.cpp>`__
+  ``~/prv101-main/lab/codes/SGrid.cpp`` génère `le fichier VTK XML
+  <https://github.com/calculquebec/prv101/blob/main/lab/halfCylinder.vts>`__
+  ``~/prv101-main/lab/halfCylinder.vts``.
 
   - Cet exemple montre comment créer une grille structurée, définir ses
     coordonnées, la remplir avec des scalaires et des vecteurs, et l’écrire en
     XML dans un fichier ``*.vts``.
   - Pour le compiler et l’exécuter, la bibliothèque VTK C++ doit être installée
-    (de manière autonome ou via ParaView) ; regardez dans le
-    ``~/prv101-main/lab/codes/Makefile`` pour voir les fichiers requis.
+    (de manière autonome ou via ParaView) ; regardez dans `le fichier
+    <https://github.com/calculquebec/prv101/blob/main/lab/codes/Makefile#L3>`__
+    ``~/prv101-main/lab/codes/Makefile`` pour voir les fichiers requis. Enfin,
+    voici les commandes à entrer dans un terminal :
 
     .. code-block:: console
 
@@ -572,9 +577,10 @@ partir d’un code C++, Java ou Python.
 
 - Un autre exemple, en Python, est divisé en deux scripts :
 
-  - Dans ``~/prv101-main/lab/codes/writeNodesEdges.py``, on y retrouve une
-    fonction utilitaire recevant des sommets, des arêtes et des valeurs
-    scalaires.
+  - Dans `le fichier
+    <https://github.com/calculquebec/prv101/blob/main/lab/codes/writeNodesEdges.py#L3>`__
+    ``~/prv101-main/lab/codes/writeNodesEdges.py``, on y retrouve une fonction
+    utilitaire recevant des sommets, des arêtes et des valeurs scalaires.
 
     .. code-block:: python
 
@@ -587,10 +593,11 @@ partir d’un code C++, Java ou Python.
                         fileout = 'test'):
             [...]
 
-  - Dans ``~/prv101-main/lab/codes/dgm.py``, un graphe aléatoire d’une
-    profondeur maximale donnée en argument est généré. Les valeurs scalaires
-    associées aux somments correspondent à la profondeur des sommets dans le
-    graphe.
+  - Dans `le fichier
+    <https://github.com/calculquebec/prv101/blob/main/lab/codes/dgm.py>`__
+    ``~/prv101-main/lab/codes/dgm.py``, un graphe aléatoire d’une profondeur
+    maximale donnée en argument est généré. Les valeurs scalaires associées aux
+    somments correspondent à la profondeur des sommets dans le graphe.
 
     .. code-block:: python
         :emphasize-lines: 5,9-11

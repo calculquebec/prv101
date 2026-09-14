@@ -361,8 +361,8 @@ de l’un des types suivants :
 - **Coordonnées de texture** : utilisées pour le mappage de textures.
 - **Données de champs** (``FieldData``) : tableaux de tableaux de données.
 
-Lire des fichiers VTK de l’ancien format
-----------------------------------------
+Fichiers VTK de l’ancien format
+-------------------------------
 
 **Attention** : Stocker de grandes quantités de données en ASCII n’est pas une
 bonne idée ; nous allons ici examiner des fichiers VTK textuels à des fins
@@ -546,8 +546,8 @@ Exercice pour la maison -- Fichier de données VTK 3D
             *All*.
           - Ensuite, abaissez la courbe d’opacité à 0 vis-à-vis le bleu pâle.
 
-Créer un fichier VTK XML
-------------------------
+Fichiers VTK XML
+----------------
 
 Pour des **données plus volumineuses (Mo, Go)**, un format binaire est
 préférable. Une bonne option serait le **format XML** avec des données binaires
@@ -574,6 +574,9 @@ partir d’un code C++, Java ou Python.
         cd ~/prv101-main/lab/codes
         make SGrid
         ./SGrid
+
+  - D’autres exemples en C++ sont annexés au code source de VTK et sont aussi
+    disponibles en ligne : https://examples.vtk.org/site/Cxx
 
 - Un autre exemple, en Python, est divisé en deux scripts :
 
@@ -633,5 +636,30 @@ partir d’un code C++, Java ou Python.
 
           .. figure:: ../images/firstGraph.png
 
-- D’autres exemples sont annexés au code source de VTK et sont aussi
-  disponibles en ligne : https://examples.vtk.org/site/Cxx
+- La `bibliothèque PyEVTK <https://github.com/paulo-herrera/PyEVTK>`__ est une
+  autre option pour écrire des fichiers VTK XML via Python.
+
+  .. code-block:: console
+
+      pip install pyevtk
+
+  - Par exemple :
+
+    .. code-block:: python
+
+        from pyevtk.hl import imageToVTK
+        import numpy as np
+
+        n = 30
+        lin = np.linspace(-1.2, 1.2, n)
+        x, y, z = np.meshgrid(lin, lin, lin)
+        data = (
+              ((x**2 + y**2 - 0.64) ** 2 + (z**2 - 1.0) ** 2)
+            * ((y**2 + z**2 - 0.64) ** 2 + (x**2 - 1.0) ** 2)
+            * ((z**2 + x**2 - 0.64) ** 2 + (y**2 - 1.0) ** 2)
+        )
+
+        imageToVTK("decoCube", pointData={"scalar" : data})
+
+  - Plusieurs autres exemples se trouvent dans ce répertoire :
+    https://github.com/paulo-herrera/PyEVTK/tree/master/evtk/examples

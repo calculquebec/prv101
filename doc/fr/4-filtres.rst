@@ -47,8 +47,30 @@ connexions entre les filtres forment un **pipeline de visualisation**.
 - ParaView fournit déjà plus de 140 filtres et on peut en ajouter via des
   scripts Python ou via des plugiciels programmés en C++.
 
-  - Explorez le menu *Filters* ; certains filtres se trouvent aussi dans la
-    barre d’outils.
+  - Tous les filtres se trouvent dans le menu *Filters*.
+  - `Certains filtres
+    <https://docs.paraview.org/en/latest/UsersGuide/filteringData.html#filters-for-sub-setting-data>`__
+    se trouvent aussi dans la barre d’outils.
+
+    .. figure:: ../images/toolbarFilters.png
+
+    - Un filtre **Calculator** évalue une expression mathématique pour chaque
+      point ou chaque cellule.
+    - Un filtre **Contour** extrait des points, des isocontours ou des
+      isosurfaces à partir d’un champ scalaire.
+    - Un filtre **Clip** (rognage) enlève toute la partie de la visualisation
+      d’un côté d’un plan dans l’espace 3D.
+    - Un filtre **Slice** (tranche) intersecte la visualisation avec un plan ;
+      l’effet est similaire au *Clip*, excepté qu’il ne reste que la géométrie
+      à l’intersection du plan et de la visualisation.
+    - Un filtre **Threshold** (seuil(s)) extrait les cellules se trouvant dans
+      un certain intervalle du champ scalaire.
+    - Un filtre **Glyph** place des *glyphes* à chaque point d’un maillage ;
+      les glyphes peuvent être orientés selon un champ vectoriel et agrandis
+      selon un champ vectoriel ou scalaire.
+    - Un filtre **Stream Tracer** initialise un champ vectoriel avec des
+      points, puis suit ces points initiaux à travers le champ vectoriel en
+      régime permanent.
 
 - L’édition des propriétés d’un filtre se fait dans le panneau *Properties*.
 

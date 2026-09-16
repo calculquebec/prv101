@@ -51,3 +51,36 @@ connexions entre les filtres forment un **pipeline de visualisation**.
     barre d’outils.
 
 - L’édition des propriétés d’un filtre se fait dans le panneau *Properties*.
+
+Exemple -- Visualiser des données 2D en 3D
+''''''''''''''''''''''''''''''''''''''''''
+
+1. Chargez le fichier ``~/prv101-main/lab/2d000.vtk`` qui contient un
+   échantillonnage de la fonction 2D
+   :math:`f(x,y)=(1-y)\sin(\pi x)+y\sin^2(2\pi x)` pour
+   :math:`x,y\in[0,1]` sur une grille :math:`30 \times 30`.
+2. Sélectionnez les données dans le *Pipeline Browser*, ajoutez le filtre
+   *Miscellaneous* :math:`\rightarrow` *Warp By Scalar* et activez la vue *3D*
+   dans la fenêtre de rendu.
+3. Dans les propriétés du filtre, ajustez le *Scale Factor* à ``0.3`` pour
+   reproduire la vue 3D ci-dessous :
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 4
+
+        .. figure:: ../images/sin2d.png
+
+    .. grid-item::
+        :columns: 1
+
+        |
+        |
+        |
+        | :math:`\Rightarrow`
+
+    .. grid-item::
+        :columns: 7
+
+        .. figure:: ../images/sin3d.png

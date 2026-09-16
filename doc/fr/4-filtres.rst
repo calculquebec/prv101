@@ -274,8 +274,39 @@ Pour reproduire cette visualisation :
 
 - Chargez ``V`` de ``~/prv101-main/lab/disk_out_ref.ex2``.
 - Ajoutez un filtre de type *Clip* et configurez sa normale à ``(1, 0, 0.4)``.
-- Sélectionnez la représentation *Surface LIC* et changez l'échelle de
+- Sélectionnez la représentation *Surface LIC* et changez l’échelle de
   couleurs (*Rainbow Uniform*).
 - Dans les propriétés du *Clip*, sous *SurfaceLIC: Integrator*, vérifiez que
   ``V`` est sélectionné.
 - Jouez ensuite avec les valeurs de *Number Of Steps* et de *Step Size*.
+
+Représentation *Stream Lines* - tracé en temps réel
+---------------------------------------------------
+
+Les détails de cet exemple sont expliqués à `cette page
+<https://www.kitware.com/new-animated-stream-lines-representation-for-paraview-5-3/>`__.
+Voici les étapes pour reproduire la vue ci-dessous :
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 6
+
+        - Dans *Tools* :math:`\rightarrow` *Manage Plugins*, activez le
+          *StreamLinesRepresentation*.
+        - Du fichier ``~/prv101-main/lab/disk_out_ref.ex2``, chargez ``Pres``,
+          ``Temp`` et ``V``.
+
+          - Affichez ``Pres`` en *Surface*, avec *opacité* = ``0.25``.
+
+        - Ajoutez un filtre *Calculator* avec la formule ``V`` et utilisez la
+          représentation *Stream Lines* (affichez aussi la source).
+
+          - Dans les propriétés du *Calculator*, coloriez selon *Temp* et
+            doublez le *Step Length*.
+
+    .. grid-item::
+        :columns: 6
+
+        .. figure:: ../images/streams.png
+            :width: 100%

@@ -250,3 +250,13 @@ Voici un exemple de visualisation des flux à l’intérieur d’un volume :
              - *Scale Factor* = ``0.5``.
 
            - Coloriez les glyphes selon ``Temp``.
+
+Exercice pour la maison -- Remplir le volume entier de vecteurs
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Chargez ``V`` de ``~/prv101-main/lab/disk_out_ref.ex2`` et affichez le champ de
+vélocité avec des flèches orientées selon ``V``, mais dimensionnées et colorées
+selon la norme de ``V``.
+
+.. figure:: ../images/velocity.png
+    :width: 60%

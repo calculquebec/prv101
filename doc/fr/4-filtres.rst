@@ -170,8 +170,8 @@ Recréez cette visualisation avec un filtre *Threshold*
           - Filtre de type *Threshold*.
           - Afficher les points dont la valeur :math:`\rho\in[0.8, 1.0]`.
           - Gradient de couleurs pour l’arrière-plan.
-          - *Ray tracing* et ombrage.
-          - *View | Light Inspector*.
+          - *Ray tracing* et *Shadows*.
+          - *View* :math:`\rightarrow` *Light Inspector*.
 
         *(3 minutes + solution)*
 

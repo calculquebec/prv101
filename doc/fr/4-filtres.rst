@@ -155,3 +155,27 @@ Bonifiez la visualisation avec un filtre *Clip*
         :columns: 5
 
         .. figure:: ../images/clipCont.png
+
+Recréez cette visualisation avec un filtre *Threshold*
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 7
+
+        - Données à la source : ``~/prv101-main/lab/sineEnvelope.nc``
+        - Indices :
+
+          - Filtre de type *Threshold*.
+          - Afficher les points dont la valeur :math:`\rho\in[0.8, 1.0]`.
+          - Gradient de couleurs pour l’arrière-plan.
+          - *Ray tracing* et ombrage.
+          - *View | Light Inspector*.
+
+        *(3 minutes + solution)*
+
+    .. grid-item::
+        :columns: 5
+
+        .. figure:: ../images/threshold0810.png

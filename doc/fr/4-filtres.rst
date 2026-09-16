@@ -106,3 +106,28 @@ Exemple -- Visualiser des données 2D en 3D
         :columns: 7
 
         .. figure:: ../images/sin3d.png
+
+Exercices avec les filtres
+--------------------------
+
+Recréez cette visualisation avec un filtre *Contour*
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 6
+
+        - Données à charger : ``~/prv101-main/lab/sineEnvelope.nc``
+        - Indices :
+
+          - Filtre de type *Contour*.
+          - Isosurface à ``0.16``.
+          - Échelle de couleurs de ``0.15`` à ``0.20``.
+
+        *(3 minutes + solution)*
+
+    .. grid-item::
+        :columns: 5
+
+        .. figure:: ../images/cont015.png

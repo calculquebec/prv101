@@ -207,8 +207,8 @@ Recréez cette visualisation avec caméras liées
         .. figure:: ../images/twoVariables.png
             :width: 100%
 
-Visualisation vectorielle -- lignes de flux et glyphes
-------------------------------------------------------
+Lignes de flux et glyphes
+-------------------------
 
 Voici un exemple de visualisation des flux à l’intérieur d’un volume :
 
@@ -260,3 +260,22 @@ selon la norme de ``V``.
 
 .. figure:: ../images/velocity.png
     :width: 60%
+
+Convolution intégrale de ligne
+------------------------------
+
+Voici un exemple de "`line integral convolution
+<https://fr.wikipedia.org/wiki/Line_integral_convolution>`__" dans ParaView :
+
+.. figure:: ../images/lic2.png
+    :width: 60%
+
+Pour reproduire cette visualisation :
+
+- Chargez ``V`` de ``~/prv101-main/lab/disk_out_ref.ex2``.
+- Ajoutez un filtre de type *Clip* et configurez sa normale à ``(1, 0, 0.4)``.
+- Sélectionnez la représentation *Surface LIC* et changez l'échelle de
+  couleurs (*Rainbow Uniform*).
+- Dans les propriétés du *Clip*, sous *SurfaceLIC: Integrator*, vérifiez que
+  ``V`` est sélectionné.
+- Jouez ensuite avec les valeurs de *Number Of Steps* et de *Step Size*.

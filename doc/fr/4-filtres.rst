@@ -107,8 +107,8 @@ Exemple -- Visualiser des données 2D en 3D
 
         .. figure:: ../images/sin3d.png
 
-Exercices avec les filtres
---------------------------
+Première série d’exercices avec les filtres
+-------------------------------------------
 
 Recréez cette visualisation avec un filtre *Contour*
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -205,3 +205,48 @@ Recréez cette visualisation avec caméras liées
         :columns: 7
 
         .. figure:: ../images/twoVariables.png
+            :width: 100%
+
+Visualisation vectorielle -- lignes de flux et glyphes
+------------------------------------------------------
+
+Voici un exemple de visualisation des flux à l’intérieur d’un volume :
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 6
+
+        1. Chargez ``Temp`` et la vélocité ``V`` du fichier
+           ``~/prv101-main/lab/disk_out_ref.ex2``.
+        2. Ajoutez un filtre *Stream Tracer*, configurez le
+           *Seed Type* = ``Point Cloud`` et le *Radius* = ``3`` pour la sphère.
+           Ensuite :
+
+           - Essayez différents *Number Of Points* et différents *Maximum
+             Streamline Length*.
+
+        3. (Optionnel) Transformez les lignes de flux en tubes en ajoutant :
+           *Filters* :math:`\rightarrow` *Miscellaneous* :math:`\rightarrow`
+           *Tube* (avec *Radius* = ``0.03``).
+
+    .. grid-item::
+        :columns: 6
+
+        .. figure:: ../images/vectorFields.png
+            :width: 100%
+
+    .. grid-item::
+        :columns: 12
+
+        4. Ajoutez des glyphes aux lignes de flux pour indiquer l’orientation
+           et l’amplitude :
+
+           - Sélectionnez le *StreamTracer* dans le *Pipeline Browser*.
+           - Ajoutez-lui un filtre *Glyph* de *Type* = ``Arrow``, avec :
+
+             - *Orientation Array* = ``V``,
+             - *Scale Array* = ``No scale array``,
+             - *Scale Factor* = ``0.5``.
+
+           - Coloriez les glyphes selon ``Temp``.

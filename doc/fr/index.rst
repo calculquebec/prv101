@@ -7,13 +7,16 @@ Visualisation de données 2D et 3D avec ParaView
 --------
 
 - Cet atelier de formation est de niveau débutant.
-- L’objectif principal est d’apprendre les bases du logiciel de visualisation
-  2D et 3D ParaView.
 
-  - Le contenu est une version réduite et traduite du `matériel de formation en
-    anglais <https://folio.vastcloud.org/introParaview.html>`__ géré par notre
-    collègue Alex Razoumov, expert de ParaView.
-  - Certains fichiers de données proviennent des exemples de ParaView.
+  - L’objectif principal est d’apprendre **les bases du logiciel** de
+    visualisation 2D et 3D **ParaView**.
+
+- Le contenu est une version simplifiée et traduite du `matériel de formation
+  original <https://folio.vastcloud.org/introParaview.html>`__ (en anglais)
+  géré par notre collègue **Alex Razoumov**, expert de ParaView.
+
+  - Note : certains fichiers de données proviennent des `exemples de ParaView
+    <https://docs.paraview.org/en/latest/Tutorials/SelfDirectedTutorial/index.html>`__.
 
 - Les différents concepts sont montrés avec ParaView version 6.0 ou plus
   récente.

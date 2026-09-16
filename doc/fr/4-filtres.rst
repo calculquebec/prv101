@@ -118,7 +118,7 @@ Recréez cette visualisation avec un filtre *Contour*
     .. grid-item::
         :columns: 6
 
-        - Données à charger : ``~/prv101-main/lab/sineEnvelope.nc``
+        - Données à la source : ``~/prv101-main/lab/sineEnvelope.nc``
         - Indices :
 
           - Filtre de type *Contour*.
@@ -140,7 +140,7 @@ Bonifiez la visualisation avec un filtre *Clip*
     .. grid-item::
         :columns: 7
 
-        - Données à charger : ``~/prv101-main/lab/sineEnvelope.nc``
+        - Données à la source : ``~/prv101-main/lab/sineEnvelope.nc``
         - Indices :
 
           - Pipeline de visualisation à deux filtres.

@@ -179,3 +179,29 @@ Recréez cette visualisation avec un filtre *Threshold*
         :columns: 5
 
         .. figure:: ../images/threshold0810.png
+
+Recréez cette visualisation avec caméras liées
+''''''''''''''''''''''''''''''''''''''''''''''
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 5
+
+        - Données à la source : ``~/prv101-main/lab/disk_out_ref.ex2``
+
+          - ``Pres`` et ``Temp`` seulement.
+
+        - Indices :
+
+          - Compléter une visualisation à la fois.
+          - Coloration selon ``Pres`` à gauche.
+          - Coloration selon ``Temp`` à droite.
+          - Lier les caméras.
+
+        *(3 minutes + solution)*
+
+    .. grid-item::
+        :columns: 7
+
+        .. figure:: ../images/twoVariables.png

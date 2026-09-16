@@ -641,6 +641,7 @@ divisé en deux scripts :
     .. grid-item::
 
         .. figure:: ../images/firstGraph.png
+            :width: 100%
 
 - `La bibliothèque <https://github.com/paulo-herrera/PyEVTK>`__ ``pyevtk`` est
   une autre option pour écrire des fichiers VTK XML via Python. Par exemple :

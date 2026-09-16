@@ -131,3 +131,27 @@ Recréez cette visualisation avec un filtre *Contour*
         :columns: 5
 
         .. figure:: ../images/cont015.png
+
+Bonifiez la visualisation avec un filtre *Clip*
+'''''''''''''''''''''''''''''''''''''''''''''''
+
+.. grid:: 2
+
+    .. grid-item::
+        :columns: 7
+
+        - Données à charger : ``~/prv101-main/lab/sineEnvelope.nc``
+        - Indices :
+
+          - Pipeline de visualisation à deux filtres.
+          - Filtre de type *Clip*.
+          - L’échelle de couleurs selon la variable *density*, partagée par les
+            deux calculateurs, s’ajuste automatiquement.
+          - Option *Show Plane*.
+
+        *(3 minutes + solution)*
+
+    .. grid-item::
+        :columns: 5
+
+        .. figure:: ../images/clipCont.png

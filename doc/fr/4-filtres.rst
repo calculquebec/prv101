@@ -107,8 +107,8 @@ Exemple -- Visualiser des données 2D en 3D
 
         .. figure:: ../images/sin3d.png
 
-Première série d’exercices avec les filtres
--------------------------------------------
+Quelques exercices avec les filtres
+-----------------------------------
 
 Recréez cette visualisation avec un filtre *Contour*
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -310,3 +310,46 @@ Voici les étapes pour reproduire la vue ci-dessous :
 
         .. figure:: ../images/streams.png
             :width: 100%
+
+Filtres pour données 3D sous forme de colonnes
+----------------------------------------------
+
+Supposons que nous avons des données sous la forme d’un fichier CSV ayant les
+colonnes ``x,y,z,scalar``.
+
+.. grid:: 2
+
+    .. grid-item-card::
+
+        Pour des coordonnées **aléatoires** :
+
+        - Exemple avec 100 points :
+          ``~/prv101-main/lab/tabulatedPoints.txt``
+        - On peut utiliser un filtre *Table To Points* et configurer les champs
+          *X/Y/Z Column*.
+        - Ensuite, on peut ajouter un filtre *Glyph* pour voir des sphères à la
+          place des points et on peut les colorier selon ``scalar``.
+        - En l’absence de topologie, on peut passer les points via un filtre
+          *Delaunay 3D*, suivi d’un filtre *Extract Edges* et ensuite d’un
+          filtre *Tube*.
+
+    .. grid-item-card::
+
+        Pour une **grille structurée** :
+
+        - Exemple avec 10×10×10 points :
+          ``~/prv101-main/lab/tabulatedGrid.txt``
+        - On peut utiliser un filtre *Table To Structured Grid* et configurer
+          les champs *Whole Extent* de ``0`` à ``9`` pour chaque dimension et
+          les champs *X/Y/Z Column*.
+
+          - Les données doivent présenter une topologie implicite pour que ce
+            filtre fonctionne.
+
+Rappel : ce format de fichier est déconseillé pour les grands ensembles de
+données, car cela cause du gaspillage d’espace disque et de bande passante.
+
+- Le fichier ``tabulatedPoints.txt`` a une taille de 6231 octets vs 1600 octets
+  en données binaires à simple précision.
+- Le fichier ``tabulatedGrid.txt`` a une taille de 20 013 octets vs 4000 octets
+  pour le champs ``scalar`` en données binaires à simple précision.

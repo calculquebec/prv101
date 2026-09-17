@@ -107,6 +107,34 @@ Exemple -- Visualiser des données 2D en 3D
 
         .. figure:: ../images/sin3d.png
 
+Exemple -- Optimisation 3D
+''''''''''''''''''''''''''
+
+Pour tester des algorithmes d’optimisation, il existe plusieurs `fonctions de
+test <https://fr.wikipedia.org/wiki/Fonction_de_test_pour_l'optimisation>`__,
+dont la fonction 3D de Styblinski-Tang :
+
+.. math::
+
+    f(x_1,x_2,x_3)=\frac{1}{2}\sum_{i=1}^3(x_i^4-16x_i^2+5x_i)\text{,
+    où }x_i\in[-5,5]
+
+Une variante discrétisée de cette fonction (avec :math:`x_i\in[-4,4]`) se
+trouve dans le fichier ``~/prv101-main/lab/stvol.nc``.
+
+- Quelle est la taille de la grille? Est-ce que cela correspond à la taille du
+  fichier?
+- Trouvons l’emplacement approximatif du **minimum global** de
+  :math:`f(x_1,x_2,x_3)` à l’aide de techniques visuelles (tranches,
+  isosurfaces, seuils, rendu volumique, etc.)
+
+.. note::
+
+    On peut trouver les coordonnées exactes du minimum global en utilisant
+    *Filters* :math:`\rightarrow` *Data Array* :math:`\rightarrow` *Statistics*
+    :math:`\rightarrow` *Descriptive Statistics* et en triant les valeurs de
+    :math:`f(x,y,z)` de ``stvol.nc``.
+
 Quelques exercices avec les filtres
 -----------------------------------
 

@@ -568,12 +568,13 @@ Par exemple, **en C++**, `le programme
 - Pour le compiler et l’exécuter, la bibliothèque VTK C++ doit être installée
   (de manière autonome ou via ParaView) ; regardez dans `le fichier
   <https://github.com/calculquebec/prv101/blob/main/lab/codes/Makefile#L3>`__
-  ``~/prv101-main/lab/codes/Makefile`` pour voir les fichiers requis. Ensuite,
-  dans un terminal :
+  ``~/prv101-main/lab/codes/Makefile`` pour voir les fichiers requis. Sur les
+  systèmes de l’Alliance, un module ``vtk`` est déjà disponible :
 
   .. code-block:: console
 
       cd ~/prv101-main/lab/codes
+      module load vtk/9.4.2
       make SGrid
       ./SGrid
 

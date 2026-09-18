@@ -623,25 +623,28 @@ divisé en deux scripts :
       writeObjects(xyz, edges=H.edges(), scalar=degree,
               name='degree', power=0.333, fileout='network')
 
-.. grid:: 2
+  Pour exécuter cet exemple sur les systèmes de l’Alliance :
 
-    .. grid-item::
+  .. grid:: 2
 
-        Pour exécuter cet exemple :
+      .. grid-item::
 
-        .. code-block:: console
+          .. code-block:: console
 
-            cd ~/prv101-main/lab/codes
-            pip install vtk networkx scipy
-            python dgm.py 7
+              cd ~/prv101-main/lab/codes
+              virtualenv --no-download venv
+              source venv/bin/activate
+              pip install --no-index --upgrade pip
+              pip install --no-index networkx scipy
+              python dgm.py 7
 
-        Ce qui génère un graphe semblable à celui de la figure ci-contre
-        :math:`\Rightarrow`
+          Ce qui génère un graphe semblable à celui de la figure ci-contre,
+          sauvegardé dans un fichier ``network.vtp``.
 
-    .. grid-item::
+      .. grid-item::
 
-        .. figure:: ../images/firstGraph.png
-            :width: 100%
+          .. figure:: ../images/firstGraph.png
+              :width: 100%
 
 - `La bibliothèque <https://github.com/paulo-herrera/PyEVTK>`__ ``pyevtk`` est
   une autre option pour écrire des fichiers VTK XML via Python. Par exemple :

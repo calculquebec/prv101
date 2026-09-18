@@ -1,0 +1,884 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Enrichir la visualisation avec des filtres &#8212; PRV101</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/translations.js?v=e6b791cb"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '4-filtres';</script>
+    <link rel="icon" href="_static/logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="prev" title="Importer des données" href="3-donnees.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Visualisation de données 2D et 3D avec ParaView (PRV101)</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapitres</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1-introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-architecture.html">Architecture et interface graphique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-donnees.html">Importer des données</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Enrichir la visualisation avec des filtres</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Liens externes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://docs.alliancecan.ca/wiki/Technical_documentation/fr">Documentation technique de l’Alliance</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.calculquebec.ca/services-aux-chercheurs/formation/">Formations de Calcul Québec</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/4-filtres.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Thème" data-bs-title="Thème"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Clair"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Sombre"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Paramètres système"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Enrichir la visualisation avec des filtres</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-aux-filtres">Introduction aux filtres</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-visualiser-des-donnees-2d-en-3d">Exemple – Visualiser des données 2D en 3D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-optimisation-3d">Exemple – Optimisation 3D</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quelques-exercices-avec-les-filtres">Quelques exercices avec les filtres</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recreez-cette-visualisation-avec-un-filtre-contour">Recréez cette visualisation avec un filtre <em>Contour</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bonifiez-la-visualisation-avec-un-filtre-clip">Bonifiez la visualisation avec un filtre <em>Clip</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recreez-cette-visualisation-avec-un-filtre-threshold">Recréez cette visualisation avec un filtre <em>Threshold</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recreez-cette-visualisation-avec-cameras-liees">Recréez cette visualisation avec caméras liées</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lignes-de-flux-et-glyphes">Lignes de flux et glyphes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-pour-la-maison-remplir-le-volume-entier-de-vecteurs">Exercice pour la maison – Remplir le volume entier de vecteurs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-integrale-de-ligne">Convolution intégrale de ligne</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representation-stream-lines-trace-en-temps-reel">Représentation <em>Stream Lines</em> – tracé en temps réel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtres-pour-donnees-3d-sous-forme-de-colonnes">Filtres pour données 3D sous forme de colonnes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="enrichir-la-visualisation-avec-des-filtres">
+<h1>Enrichir la visualisation avec des filtres<a class="headerlink" href="#enrichir-la-visualisation-avec-des-filtres" title="Lien vers cette rubrique">#</a></h1>
+<p><a class="reference external" href="../en/4-filters.html">English</a></p>
+<section id="introduction-aux-filtres">
+<h2>Introduction aux filtres<a class="headerlink" href="#introduction-aux-filtres" title="Lien vers cette rubrique">#</a></h2>
+<p>Plusieurs caractéristiques intéressantes d’un ensemble de données ne peuvent
+être observées en surface : une grande quantité d’informations utiles se
+trouve plutôt <strong>à l’intérieur</strong>, ou peut être extraite d’une <strong>combinaison de
+variables</strong>.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<p>Parfois, une vue souhaitée n’est pas disponible pour un certain type de
+données, par exemple :</p>
+<ul class="simple">
+<li><p>Un ensemble de données 2D <span class="math notranslate nohighlight">\(f(x,y)\)</span> sera affiché comme une
+surface 2D, même en 3D (essayez de charger
+<code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/2d000.vtk</span></code>), mais nous pourrions vouloir
+visualiser <strong>l’élévation</strong> <span class="math notranslate nohighlight">\(z=f(x,y)\)</span>.</p></li>
+<li><p>Une <strong>vue volumétrique</strong> – non disponible pour toutes les
+discrétisations VTK, mais disponible, entre autres, pour les <strong>points
+structurés</strong> (<em>Image Data</em>) et même les <strong>grilles non structurées
+si la connectivité est fournie</strong>.</p></li>
+</ul>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-3 sd-col-xs-3 sd-col-sm-3 sd-col-md-3 sd-col-lg-3 docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/grids1.png"><img alt="_images/grids1.png" src="_images/grids1.png" style="width: 75%;" />
+</a>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-3 sd-col-xs-3 sd-col-sm-3 sd-col-md-3 sd-col-lg-3 docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/grids2.png"><img alt="_images/grids2.png" src="_images/grids2.png" style="width: 75%;" />
+</a>
+</figure>
+</div>
+</div>
+</div>
+<p>Les <strong>filtres</strong> sont des unités fonctionnelles qui traitent les données pour
+générer, extraire ou dériver des caractéristiques supplémentaires. Les
+connexions entre les filtres forment un <strong>pipeline de visualisation</strong>.</p>
+<ul>
+<li><p>ParaView fournit déjà plus de 140 filtres et on peut en ajouter via des
+scripts Python ou via des plugiciels programmés en C++.</p>
+<ul>
+<li><p>Tous les filtres se trouvent dans le menu <em>Filters</em>.</p></li>
+<li><p><a class="reference external" href="https://docs.paraview.org/en/latest/UsersGuide/filteringData.html#filters-for-sub-setting-data">Certains filtres</a>
+se trouvent aussi dans la barre d’outils.</p>
+<figure class="align-default">
+<img alt="_images/toolbarFilters.png" src="_images/toolbarFilters.png" />
+</figure>
+<ul class="simple">
+<li><p>Un filtre <strong>Calculator</strong> évalue une expression mathématique pour chaque
+point ou chaque cellule.</p></li>
+<li><p>Un filtre <strong>Contour</strong> extrait des points, des isocontours ou des
+isosurfaces à partir d’un champ scalaire.</p></li>
+<li><p>Un filtre <strong>Clip</strong> (rognage) enlève toute la partie de la visualisation
+d’un côté d’un plan dans l’espace 3D.</p></li>
+<li><p>Un filtre <strong>Slice</strong> (tranche) intersecte la visualisation avec un plan ;
+l’effet est similaire au <em>Clip</em>, excepté qu’il ne reste que la géométrie
+à l’intersection du plan et de la visualisation.</p></li>
+<li><p>Un filtre <strong>Threshold</strong> (seuil(s)) extrait les cellules se trouvant dans
+un certain intervalle du champ scalaire.</p></li>
+<li><p>Un filtre <strong>Glyph</strong> place des <em>glyphes</em> à chaque point d’un maillage ;
+les glyphes peuvent être orientés selon un champ vectoriel et agrandis
+selon un champ vectoriel ou scalaire.</p></li>
+<li><p>Un filtre <strong>Stream Tracer</strong> initialise un champ vectoriel avec des
+points, puis suit ces points initiaux à travers le champ vectoriel en
+régime permanent.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>L’édition des propriétés d’un filtre se fait dans le panneau <em>Properties</em>.</p></li>
+</ul>
+<section id="exemple-visualiser-des-donnees-2d-en-3d">
+<h3>Exemple – Visualiser des données 2D en 3D<a class="headerlink" href="#exemple-visualiser-des-donnees-2d-en-3d" title="Lien vers cette rubrique">#</a></h3>
+<ol class="arabic simple">
+<li><p>Chargez le fichier <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/2d000.vtk</span></code> qui contient un
+échantillonnage de la fonction 2D
+<span class="math notranslate nohighlight">\(f(x,y)=(1-y)\sin(\pi x)+y\sin^2(2\pi x)\)</span> pour
+<span class="math notranslate nohighlight">\(x,y\in[0,1]\)</span> sur une grille <span class="math notranslate nohighlight">\(30 \times 30\)</span>.</p></li>
+<li><p>Sélectionnez les données dans le <em>Pipeline Browser</em>, ajoutez le filtre
+<em>Miscellaneous</em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em>Warp By Scalar</em> et activez la vue <em>3D</em>
+dans la fenêtre de rendu.</p></li>
+<li><p>Dans les propriétés du filtre, ajustez le <em>Scale Factor</em> à <code class="docutils literal notranslate"><span class="pre">0.3</span></code> pour
+reproduire la vue 3D ci-dessous :</p></li>
+</ol>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-4 sd-col-xs-4 sd-col-sm-4 sd-col-md-4 sd-col-lg-4 docutils">
+<figure class="align-default">
+<img alt="_images/sin2d.png" src="_images/sin2d.png" />
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-1 sd-col-xs-1 sd-col-sm-1 sd-col-md-1 sd-col-lg-1 docutils">
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><span class="math notranslate nohighlight">\(\Rightarrow\)</span></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-7 sd-col-xs-7 sd-col-sm-7 sd-col-md-7 sd-col-lg-7 docutils">
+<figure class="align-default">
+<img alt="_images/sin3d.png" src="_images/sin3d.png" />
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exemple-optimisation-3d">
+<h3>Exemple – Optimisation 3D<a class="headerlink" href="#exemple-optimisation-3d" title="Lien vers cette rubrique">#</a></h3>
+<p>Pour tester des algorithmes d’optimisation, il existe plusieurs <a class="reference external" href="https://fr.wikipedia.org/wiki/Fonction_de_test_pour_l'optimisation">fonctions de
+test</a>,
+dont la fonction 3D de Styblinski-Tang :</p>
+<div class="math notranslate nohighlight">
+\[f(x_1,x_2,x_3)=\frac{1}{2}\sum_{i=1}^3(x_i^4-16x_i^2+5x_i)\text{,
+où }x_i\in[-5,5]\]</div>
+<p>Une variante discrétisée de cette fonction (avec <span class="math notranslate nohighlight">\(x_i\in[-4,4]\)</span>) se
+trouve dans le fichier <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/stvol.nc</span></code>.</p>
+<ul class="simple">
+<li><p>Quelle est la taille de la grille? Est-ce que cela correspond à la taille du
+fichier?</p></li>
+<li><p>Trouvons l’emplacement approximatif du <strong>minimum global</strong> de
+<span class="math notranslate nohighlight">\(f(x_1,x_2,x_3)\)</span> à l’aide de techniques visuelles (tranches,
+isosurfaces, seuils, rendu volumique, etc.)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On peut trouver les coordonnées exactes du minimum global en utilisant
+<em>Filters</em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em>Data Array</em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em>Statistics</em>
+<span class="math notranslate nohighlight">\(\rightarrow\)</span> <em>Descriptive Statistics</em> et en triant les valeurs de
+<span class="math notranslate nohighlight">\(f(x,y,z)\)</span> de <code class="docutils literal notranslate"><span class="pre">stvol.nc</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="quelques-exercices-avec-les-filtres">
+<h2>Quelques exercices avec les filtres<a class="headerlink" href="#quelques-exercices-avec-les-filtres" title="Lien vers cette rubrique">#</a></h2>
+<section id="recreez-cette-visualisation-avec-un-filtre-contour">
+<h3>Recréez cette visualisation avec un filtre <em>Contour</em><a class="headerlink" href="#recreez-cette-visualisation-avec-un-filtre-contour" title="Lien vers cette rubrique">#</a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<ul class="simple">
+<li><p>Données à la source : <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/sineEnvelope.nc</span></code></p></li>
+<li><p>Indices :</p>
+<ul>
+<li><p>Filtre de type <em>Contour</em>.</p></li>
+<li><p>Isosurface à <code class="docutils literal notranslate"><span class="pre">0.16</span></code>.</p></li>
+<li><p>Échelle de couleurs de <code class="docutils literal notranslate"><span class="pre">0.15</span></code> à <code class="docutils literal notranslate"><span class="pre">0.20</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p><em>(3 minutes + solution)</em></p>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-5 sd-col-xs-5 sd-col-sm-5 sd-col-md-5 sd-col-lg-5 docutils">
+<figure class="align-default">
+<img alt="_images/cont015.png" src="_images/cont015.png" />
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bonifiez-la-visualisation-avec-un-filtre-clip">
+<h3>Bonifiez la visualisation avec un filtre <em>Clip</em><a class="headerlink" href="#bonifiez-la-visualisation-avec-un-filtre-clip" title="Lien vers cette rubrique">#</a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-7 sd-col-xs-7 sd-col-sm-7 sd-col-md-7 sd-col-lg-7 docutils">
+<ul class="simple">
+<li><p>Données à la source : <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/sineEnvelope.nc</span></code></p></li>
+<li><p>Indices :</p>
+<ul>
+<li><p>Pipeline de visualisation à deux filtres.</p></li>
+<li><p>Filtre de type <em>Clip</em>.</p></li>
+<li><p>L’échelle de couleurs selon la variable <em>density</em>, partagée par les
+deux calculateurs, s’ajuste automatiquement.</p></li>
+<li><p>Option <em>Show Plane</em>.</p></li>
+</ul>
+</li>
+</ul>
+<p><em>(3 minutes + solution)</em></p>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-5 sd-col-xs-5 sd-col-sm-5 sd-col-md-5 sd-col-lg-5 docutils">
+<figure class="align-default">
+<img alt="_images/clipCont.png" src="_images/clipCont.png" />
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="recreez-cette-visualisation-avec-un-filtre-threshold">
+<h3>Recréez cette visualisation avec un filtre <em>Threshold</em><a class="headerlink" href="#recreez-cette-visualisation-avec-un-filtre-threshold" title="Lien vers cette rubrique">#</a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-7 sd-col-xs-7 sd-col-sm-7 sd-col-md-7 sd-col-lg-7 docutils">
+<ul class="simple">
+<li><p>Données à la source : <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/sineEnvelope.nc</span></code></p></li>
+<li><p>Indices :</p>
+<ul>
+<li><p>Filtre de type <em>Threshold</em>.</p></li>
+<li><p>Afficher les points dont la valeur <span class="math notranslate nohighlight">\(\rho\in[0.8, 1.0]\)</span>.</p></li>
+<li><p>Gradient de couleurs pour l’arrière-plan.</p></li>
+<li><p><em>Ray tracing</em> et <em>Shadows</em>.</p></li>
+<li><p><em>View</em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em>Light Inspector</em>.</p></li>
+</ul>
+</li>
+</ul>
+<p><em>(3 minutes + solution)</em></p>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-5 sd-col-xs-5 sd-col-sm-5 sd-col-md-5 sd-col-lg-5 docutils">
+<figure class="align-default">
+<img alt="_images/threshold0810.png" src="_images/threshold0810.png" />
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="recreez-cette-visualisation-avec-cameras-liees">
+<h3>Recréez cette visualisation avec caméras liées<a class="headerlink" href="#recreez-cette-visualisation-avec-cameras-liees" title="Lien vers cette rubrique">#</a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-5 sd-col-xs-5 sd-col-sm-5 sd-col-md-5 sd-col-lg-5 docutils">
+<ul class="simple">
+<li><p>Données à la source : <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/disk_out_ref.ex2</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pres</span></code> et <code class="docutils literal notranslate"><span class="pre">Temp</span></code> seulement.</p></li>
+</ul>
+</li>
+<li><p>Indices :</p>
+<ul>
+<li><p>Compléter une visualisation à la fois.</p></li>
+<li><p>Coloration selon <code class="docutils literal notranslate"><span class="pre">Pres</span></code> à gauche.</p></li>
+<li><p>Coloration selon <code class="docutils literal notranslate"><span class="pre">Temp</span></code> à droite.</p></li>
+<li><p>Lier les caméras.</p></li>
+</ul>
+</li>
+</ul>
+<p><em>(3 minutes + solution)</em></p>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-7 sd-col-xs-7 sd-col-sm-7 sd-col-md-7 sd-col-lg-7 docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/twoVariables.png"><img alt="_images/twoVariables.png" src="_images/twoVariables.png" style="width: 100%;" />
+</a>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lignes-de-flux-et-glyphes">
+<h2>Lignes de flux et glyphes<a class="headerlink" href="#lignes-de-flux-et-glyphes" title="Lien vers cette rubrique">#</a></h2>
+<p>Voici un exemple de visualisation des flux à l’intérieur d’un volume :</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<ol class="arabic simple">
+<li><p>Chargez <code class="docutils literal notranslate"><span class="pre">Temp</span></code> et la vélocité <code class="docutils literal notranslate"><span class="pre">V</span></code> du fichier
+<code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/disk_out_ref.ex2</span></code>.</p></li>
+<li><p>Ajoutez un filtre <em>Stream Tracer</em>, configurez le
+<em>Seed Type</em> = <code class="docutils literal notranslate"><span class="pre">Point</span> <span class="pre">Cloud</span></code> et le <em>Radius</em> = <code class="docutils literal notranslate"><span class="pre">3</span></code> pour la sphère.
+Ensuite :</p>
+<ul class="simple">
+<li><p>Essayez différents <em>Number Of Points</em> et différents <em>Maximum
+Streamline Length</em>.</p></li>
+</ul>
+</li>
+<li><p>(Optionnel) Transformez les lignes de flux en tubes en ajoutant :
+<em>Filters</em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em>Miscellaneous</em> <span class="math notranslate nohighlight">\(\rightarrow\)</span>
+<em>Tube</em> (avec <em>Radius</em> = <code class="docutils literal notranslate"><span class="pre">0.03</span></code>).</p></li>
+</ol>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/vectorFields.png"><img alt="_images/vectorFields.png" src="_images/vectorFields.png" style="width: 100%;" />
+</a>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-12 sd-col-xs-12 sd-col-sm-12 sd-col-md-12 sd-col-lg-12 docutils">
+<ol class="arabic simple" start="4">
+<li><p>Ajoutez des glyphes aux lignes de flux pour indiquer l’orientation
+et l’amplitude :</p>
+<ul class="simple">
+<li><p>Sélectionnez le <em>StreamTracer</em> dans le <em>Pipeline Browser</em>.</p></li>
+<li><p>Ajoutez-lui un filtre <em>Glyph</em> de <em>Type</em> = <code class="docutils literal notranslate"><span class="pre">Arrow</span></code>, avec :</p>
+<ul>
+<li><p><em>Orientation Array</em> = <code class="docutils literal notranslate"><span class="pre">V</span></code>,</p></li>
+<li><p><em>Scale Array</em> = <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">scale</span> <span class="pre">array</span></code>,</p></li>
+<li><p><em>Scale Factor</em> = <code class="docutils literal notranslate"><span class="pre">0.5</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Coloriez les glyphes selon <code class="docutils literal notranslate"><span class="pre">Temp</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<section id="exercice-pour-la-maison-remplir-le-volume-entier-de-vecteurs">
+<h3>Exercice pour la maison – Remplir le volume entier de vecteurs<a class="headerlink" href="#exercice-pour-la-maison-remplir-le-volume-entier-de-vecteurs" title="Lien vers cette rubrique">#</a></h3>
+<p>Chargez <code class="docutils literal notranslate"><span class="pre">V</span></code> de <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/disk_out_ref.ex2</span></code> et affichez le champ de
+vélocité avec des flèches orientées selon <code class="docutils literal notranslate"><span class="pre">V</span></code>, mais dimensionnées et colorées
+selon la norme de <code class="docutils literal notranslate"><span class="pre">V</span></code>.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/velocity.png"><img alt="_images/velocity.png" src="_images/velocity.png" style="width: 60%;" />
+</a>
+</figure>
+</section>
+</section>
+<section id="convolution-integrale-de-ligne">
+<h2>Convolution intégrale de ligne<a class="headerlink" href="#convolution-integrale-de-ligne" title="Lien vers cette rubrique">#</a></h2>
+<p>Voici un exemple de « <a class="reference external" href="https://fr.wikipedia.org/wiki/Line_integral_convolution">line integral convolution</a> » dans ParaView :</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/lic2.png"><img alt="_images/lic2.png" src="_images/lic2.png" style="width: 60%;" />
+</a>
+</figure>
+<p>Pour reproduire cette visualisation :</p>
+<ul class="simple">
+<li><p>Chargez <code class="docutils literal notranslate"><span class="pre">V</span></code> de <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/disk_out_ref.ex2</span></code>.</p></li>
+<li><p>Ajoutez un filtre de type <em>Clip</em> et configurez sa normale à <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">0,</span> <span class="pre">0.4)</span></code>.</p></li>
+<li><p>Sélectionnez la représentation <em>Surface LIC</em> et changez l’échelle de
+couleurs (<em>Rainbow Uniform</em>).</p></li>
+<li><p>Dans les propriétés du <em>Clip</em>, sous <em>SurfaceLIC: Integrator</em>, vérifiez que
+<code class="docutils literal notranslate"><span class="pre">V</span></code> est sélectionné.</p></li>
+<li><p>Jouez ensuite avec les valeurs de <em>Number Of Steps</em> et de <em>Step Size</em>.</p></li>
+</ul>
+</section>
+<section id="representation-stream-lines-trace-en-temps-reel">
+<h2>Représentation <em>Stream Lines</em> – tracé en temps réel<a class="headerlink" href="#representation-stream-lines-trace-en-temps-reel" title="Lien vers cette rubrique">#</a></h2>
+<p>Les détails de cet exemple sont expliqués à <a class="reference external" href="https://www.kitware.com/new-animated-stream-lines-representation-for-paraview-5-3/">cette page</a>.
+Voici les étapes pour reproduire la vue ci-dessous :</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<ul class="simple">
+<li><p>Dans <em>Tools</em> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <em>Manage Plugins</em>, activez le
+<em>StreamLinesRepresentation</em>.</p></li>
+<li><p>Du fichier <code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/disk_out_ref.ex2</span></code>, chargez <code class="docutils literal notranslate"><span class="pre">Pres</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Temp</span></code> et <code class="docutils literal notranslate"><span class="pre">V</span></code>.</p>
+<ul>
+<li><p>Affichez <code class="docutils literal notranslate"><span class="pre">Pres</span></code> en <em>Surface</em>, avec <em>opacité</em> = <code class="docutils literal notranslate"><span class="pre">0.25</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Ajoutez un filtre <em>Calculator</em> avec la formule <code class="docutils literal notranslate"><span class="pre">V</span></code> et utilisez la
+représentation <em>Stream Lines</em> (affichez aussi la source).</p>
+<ul>
+<li><p>Dans les propriétés du <em>Calculator</em>, coloriez selon <em>Temp</em> et
+doublez le <em>Step Length</em>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-6 sd-col-xs-6 sd-col-sm-6 sd-col-md-6 sd-col-lg-6 docutils">
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/streams.png"><img alt="_images/streams.png" src="_images/streams.png" style="width: 100%;" />
+</a>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="filtres-pour-donnees-3d-sous-forme-de-colonnes">
+<h2>Filtres pour données 3D sous forme de colonnes<a class="headerlink" href="#filtres-pour-donnees-3d-sous-forme-de-colonnes" title="Lien vers cette rubrique">#</a></h2>
+<p>Supposons que nous avons des données sous la forme d’un fichier CSV ayant les
+colonnes <code class="docutils literal notranslate"><span class="pre">x,y,z,scalar</span></code>.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text">Pour des coordonnées <strong>aléatoires</strong> :</p>
+<ul class="simple">
+<li><p class="sd-card-text">Exemple avec 100 points :
+<code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/tabulatedPoints.txt</span></code></p></li>
+<li><p class="sd-card-text">On peut utiliser un filtre <em>Table To Points</em> et configurer les champs
+<em>X/Y/Z Column</em>.</p></li>
+<li><p class="sd-card-text">Ensuite, on peut ajouter un filtre <em>Glyph</em> pour voir des sphères à la
+place des points et on peut les colorier selon <code class="docutils literal notranslate"><span class="pre">scalar</span></code>.</p></li>
+<li><p class="sd-card-text">En l’absence de topologie, on peut passer les points via un filtre
+<em>Delaunay 3D</em>, suivi d’un filtre <em>Extract Edges</em> et ensuite d’un
+filtre <em>Tube</em>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<p class="sd-card-text">Pour une <strong>grille structurée</strong> :</p>
+<ul class="simple">
+<li><p class="sd-card-text">Exemple avec 10×10×10 points :
+<code class="docutils literal notranslate"><span class="pre">~/prv101-main/lab/tabulatedGrid.txt</span></code></p></li>
+<li><p class="sd-card-text">On peut utiliser un filtre <em>Table To Structured Grid</em> et configurer
+les champs <em>Whole Extent</em> de <code class="docutils literal notranslate"><span class="pre">0</span></code> à <code class="docutils literal notranslate"><span class="pre">9</span></code> pour chaque dimension et
+les champs <em>X/Y/Z Column</em>.</p>
+<ul>
+<li><p class="sd-card-text">Les données doivent présenter une topologie implicite pour que ce
+filtre fonctionne.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Rappel : ce format de fichier est déconseillé pour les grands ensembles de
+données, car cela cause du gaspillage d’espace disque et de bande passante.</p>
+<ul class="simple">
+<li><p>Le fichier <code class="docutils literal notranslate"><span class="pre">tabulatedPoints.txt</span></code> a une taille de 6231 octets vs 1600 octets
+en données binaires à simple précision.</p></li>
+<li><p>Le fichier <code class="docutils literal notranslate"><span class="pre">tabulatedGrid.txt</span></code> a une taille de 20 013 octets vs 4000 octets
+pour le champs <code class="docutils literal notranslate"><span class="pre">scalar</span></code> en données binaires à simple précision.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Lien vers cette rubrique">#</a></h2>
+<p>Les différents filtres de ParaView permettent d’extraire et de visualiser une
+meilleure qualité d’information à partir de données brutes, ce qui est
+indispensable pour la communication scientifique. Cependant, leur utilisation
+peut avoir certains impacts collatéraux :</p>
+<ul class="simple">
+<li><p>De nombreux filtres de visualisation transforment les données structurées
+(en grille) en données non structurées. Par exemple : <em>Clip</em>, <em>Slice</em>, etc.</p></li>
+<li><p>L’empreinte mémoire et la charge du processeur peuvent augmenter très
+rapidement. Par exemple, couper <span class="math notranslate nohighlight">\(400^3\)</span> valeurs à 150 millions de
+cellules peut prendre environ une heure sur un seul cœur CPU. Il devient
+alors préférable de travailler en mode distribué.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3-donnees.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Importer des données</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-aux-filtres">Introduction aux filtres</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-visualiser-des-donnees-2d-en-3d">Exemple – Visualiser des données 2D en 3D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-optimisation-3d">Exemple – Optimisation 3D</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quelques-exercices-avec-les-filtres">Quelques exercices avec les filtres</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recreez-cette-visualisation-avec-un-filtre-contour">Recréez cette visualisation avec un filtre <em>Contour</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bonifiez-la-visualisation-avec-un-filtre-clip">Bonifiez la visualisation avec un filtre <em>Clip</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recreez-cette-visualisation-avec-un-filtre-threshold">Recréez cette visualisation avec un filtre <em>Threshold</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recreez-cette-visualisation-avec-cameras-liees">Recréez cette visualisation avec caméras liées</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lignes-de-flux-et-glyphes">Lignes de flux et glyphes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-pour-la-maison-remplir-le-volume-entier-de-vecteurs">Exercice pour la maison – Remplir le volume entier de vecteurs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-integrale-de-ligne">Convolution intégrale de ligne</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representation-stream-lines-trace-en-temps-reel">Représentation <em>Stream Lines</em> – tracé en temps réel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtres-pour-donnees-3d-sous-forme-de-colonnes">Filtres pour données 3D sous forme de colonnes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Calcul Québec
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Calcul Québec.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

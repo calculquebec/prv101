@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction &#8212; PRV101</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/translations.js?v=e6b791cb"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1-introduction';</script>
+    <link rel="icon" href="_static/logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Architecture et interface graphique" href="2-architecture.html" />
+    <link rel="prev" title="Visualisation de données 2D et 3D avec ParaView" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Passer au contenu principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Haut de page</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Alerte de version"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Visualisation de données 2D et 3D avec ParaView (PRV101)</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Recherche</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapitres</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-architecture.html">Architecture et interface graphique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-donnees.html">Importer des données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-filtres.html">Enrichir la visualisation avec des filtres</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Liens externes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://docs.alliancecan.ca/wiki/Technical_documentation/fr">Documentation technique de l’Alliance</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.calculquebec.ca/services-aux-chercheurs/formation/">Formations de Calcul Québec</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1-introduction.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Thème" data-bs-title="Thème"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Clair"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Sombre"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Paramètres système"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equipe-nationale-de-visualisation">Équipe nationale de visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation-scientifique-de-donnees-definies-dans-lespace">Visualisation scientifique de données définies dans l’espace</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tracage-1d-2d-vs-visualisation-multi-dimensionnelle">Traçage 1D/2D vs visualisation multi-dimensionnelle</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outils-de-visualisation-multi-dimensionnelle">Outils de visualisation multi-dimensionnelle</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paraview-et-visit">ParaView et VisIt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pourquoi-paraview-pour-cet-atelier">Pourquoi ParaView pour cet atelier?</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Lien vers cette rubrique">#</a></h1>
+<p><a class="reference external" href="../en/1-introduction.html">English</a></p>
+<section id="equipe-nationale-de-visualisation">
+<h2>Équipe nationale de visualisation<a class="headerlink" href="#equipe-nationale-de-visualisation" title="Lien vers cette rubrique">#</a></h2>
+<p>L’Alliance de recherche numérique du Canada offre non seulement des ressources
+de calcul et de stockage à la communauté de la recherche, mais aussi des
+formations et du soutien pour une utilisation efficace des ressources. Et l’une
+des équipes de soutien se spécialise particulièrement en <strong>visualisation
+scientifique</strong>.</p>
+<ul class="simple">
+<li><p>Documentation de l’Alliance : <a class="reference external" href="https://docs.alliancecan.ca/wiki/Visualization/fr">https://docs.alliancecan.ca/wiki/Visualization/fr</a></p></li>
+<li><p>Site Web externe : <a class="reference external" href="https://ccvis.netlify.app">https://ccvis.netlify.app</a></p>
+<ul>
+<li><p><a class="reference external" href="https://ccvis.netlify.app/about">Qui sommes-nous</a>?</p></li>
+<li><p><a class="reference external" href="https://ccvis.netlify.app/contests">Compétitions de visualisation</a> :</p>
+<ul>
+<li><p><em>Visualize This</em>, de 2016 à 2023</p></li>
+<li><p><em>IEEE SciVis</em>, en 2021</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/gallery.png"><img alt="_images/gallery.png" src="_images/gallery.png" style="width: 720px;" />
+</a>
+</figure>
+</section>
+<section id="visualisation-scientifique-de-donnees-definies-dans-lespace">
+<h2>Visualisation scientifique de données définies dans l’espace<a class="headerlink" href="#visualisation-scientifique-de-donnees-definies-dans-lespace" title="Lien vers cette rubrique">#</a></h2>
+<p>C’est le processus permettant l’analyse de données sous une <strong>forme visuelle</strong>.</p>
+<ul class="simple">
+<li><p>Il est plus facile de comprendre des images que de grands ensembles de
+nombres.</p></li>
+<li><p>Cela permet d’explorer interactivement des données, de déboguer une analyse
+et de communiquer avec les pairs.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Domaine de recherche</p></th>
+<th class="head"><p>Données à visualiser</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mécanique des fluides</p></td>
+<td><p>Écoulements 2D/3D, densité, température, traceurs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Climat, météorologie, océanographie, intérieurs planétaires</p></td>
+<td><p>Fluides dynamiques, nuages, chimie, etc.</p></td>
+</tr>
+<tr class="row-even"><td><p>Astrophysique, de la formation des galaxies et des étoiles à
+l’hydrodynamique stellaire</p></td>
+<td><p>Fluides 2D/3D, données particulaires, champ de rayonnement ≤6D, champs
+magnétiques, champs gravitationnels</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chimie quantique</p></td>
+<td><p>Fonctions d’onde 3D</p></td>
+</tr>
+<tr class="row-even"><td><p>Dynamique moléculaire (physique, chimie, biologie)</p></td>
+<td><p>Particules (atomes, molécules)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bioinformatique</p></td>
+<td><p>Réseaux, arbres, séquences</p></td>
+</tr>
+<tr class="row-even"><td><p>Imagerie médicale</p></td>
+<td><p>IRM, CT scans, ultrason, données temporelles</p></td>
+</tr>
+<tr class="row-odd"><td><p>Systèmes d’information géographique</p></td>
+<td><p>Altitude, rivières, villes, routes, strates, etc.</p></td>
+</tr>
+<tr class="row-even"><td><p>Sciences humaines et sociales</p></td>
+<td><p>Données abstraites, ou l’un des types ci-dessus</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="tracage-1d-2d-vs-visualisation-multi-dimensionnelle">
+<h3>Traçage 1D/2D vs visualisation multi-dimensionnelle<a class="headerlink" href="#tracage-1d-2d-vs-visualisation-multi-dimensionnelle" title="Lien vers cette rubrique">#</a></h3>
+<p>Quelles sont les différences entre le traçage de graphiques 1D/2D et la
+visualisation 2D/3D?</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Traçage 1D/2D</p></th>
+<th class="head"><p>Visualisation 2D/3D</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Créer des graphiques de données typiquement tabulaires</p></td>
+<td><p>Afficher des ensembles de données multi-dimensionnelles, c’est-à-dire
+des données sur des grilles structurées (uniformes et multi-résolution)
+ou non structurées (selon une certaine topologie en 2D/3D)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jusqu’à quelques milliers de valeurs à la fois</p></td>
+<td><p>Données potentiellement très massives (millions ou milliards de points)</p></td>
+</tr>
+<tr class="row-even"><td><p>Création généralement rapide sur un ordinateur</p></td>
+<td><p>Le rendu est souvent lourd sur CPU et/ou GPU</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interaction optionelle pour comprendre les données</p></td>
+<td><p>Besoin d’interagir en 3D, d’appliquer des filtres pour extraire des
+informations</p></td>
+</tr>
+<tr class="row-even"><td><p>Bibliothèques fortement recommandées en <strong>Python</strong> :
+<a class="reference external" href="https://matplotlib.org">Matplotlib</a>,
+<a class="reference external" href="https://seaborn.pydata.org">Seaborn</a>,
+<a class="reference external" href="https://plotly.com/python">Plotly</a>,
+<a class="reference external" href="https://bokeh.org">Bokeh</a>,
+<a class="reference external" href="https://altair-viz.github.io">Altair</a>,
+<a class="reference external" href="https://plotnine.org">Plotnine</a>,
+<a class="reference external" href="https://holoviews.org">Holoviews</a>.
+Bibliothèque recommandée en <strong>R</strong> :
+<a class="reference external" href="https://ggplot2.tidyverse.org">ggplot2</a>.
+Pour des graphes (réseaux) : <a class="reference external" href="https://gephi.org/">Gephi</a>.</p></td>
+<td><p>(<em>Nous verrons les deux outils les plus populaires dans les prochaines
+sections</em>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Voici des exemples de traçages 1D/2D :</p>
+<ul class="simple">
+<li><p><strong>1D</strong> : les valeurs dépendantes <span class="math notranslate nohighlight">\(y = f(x)\)</span> ne sont que des valeurs
+<strong>associées</strong> aux coordonnées 1D selon <span class="math notranslate nohighlight">\((x,)\)</span>.</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/ex1D-adapt-5.png"><img alt="_images/ex1D-adapt-5.png" src="_images/ex1D-adapt-5.png" style="width: 360px;" />
+</a>
+</figure>
+<ul class="simple">
+<li><p><strong>2D</strong> : les couleurs ou les intensités de gradients sont <strong>associées</strong> aux
+coordonnées 2D selon <span class="math notranslate nohighlight">\((x,y)\)</span>.</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/ex2D-fuji.png"><img alt="_images/ex2D-fuji.png" src="_images/ex2D-fuji.png" style="width: 480px;" />
+</a>
+</figure>
+<p>Alors que plusieurs des outils mentionnés ci-haut permettent de générer ces
+deux figures 1D/2D, que devrait-on utiliser pour faire de la visualization 3D?</p>
+</section>
+</section>
+<section id="outils-de-visualisation-multi-dimensionnelle">
+<h2>Outils de visualisation multi-dimensionnelle<a class="headerlink" href="#outils-de-visualisation-multi-dimensionnelle" title="Lien vers cette rubrique">#</a></h2>
+<p>D’emblée, il vaut mieux <strong>éviter les outils propriétaires</strong>, sauf s’il y a un
+réel avantage (probablement pas). Voici pourquoi :</p>
+<ul class="simple">
+<li><p>Coûte une grande quantité d’argent à l’achat initial.</p></li>
+<li><p>La license peut imposer des limitations sur l’endroit où l’outil peut être
+utilisé, sur quel type de machine ou de plateforme, etc.</p></li>
+<li><p>La communauté utilisatrice est généralement plus petite que pour les outils à
+source ouvert, et il est plus difficile d’obtenir de l’aide.</p></li>
+<li><p>Une fois que vous commencez à accumuler des scripts, vous vous retrouvez
+contraint d’utiliser ces outils et, par conséquent, de payer régulièrement de
+l’argent.</p></li>
+</ul>
+<p><strong>La visualisation en 3D</strong> apporte son lot de particularités :</p>
+<ul class="simple">
+<li><p>Plus difficile à naviguer.</p></li>
+<li><p>Plusieurs champs superposées <span class="math notranslate nohighlight">\(\Rightarrow\)</span> besoin de visualiser par
+couches et d’utiliser des filtres interactifs.</p></li>
+<li><p>Données massives <span class="math notranslate nohighlight">\(\Rightarrow\)</span> temps de traitement plus long
+<span class="math notranslate nohighlight">\(\Rightarrow\)</span> traitement distribué ou GPU.</p></li>
+</ul>
+<p>L’outil de visualisation 3D <strong>doit avoir les caractéristiques suivantes</strong> :</p>
+<ul class="simple">
+<li><p>Code source ouvert + multi-plateforme (Linux/MacOS/Windows) + usage général.</p></li>
+<li><p>Pouvoir visualiser des champs scalaires et vectoriels.</p>
+<ul>
+<li><p>Prise en charge de données sur des maillages structurés et non structurés
+en 2D et en 3D, sur des particules, des polygones, des topologies
+irrégulières ou des maillages à multi-résolution.</p></li>
+</ul>
+</li>
+<li><p>Capacité à traiter de très grands ensembles de données (de Go à To),
+jusqu’à <span class="math notranslate nohighlight">\(10^{\sim 12}\)</span> éléments.</p>
+<ul>
+<li><p>Pouvoir utiliser la puissance des grappes de calcul (jusqu’à
+<span class="math notranslate nohighlight">\(10^3-10^5\)</span> coeurs CPU par tâche).</p></li>
+</ul>
+</li>
+<li><p>Prise en charge des formats de données les plus courants, lecture et écriture
+en parallèle.</p></li>
+<li><p>Manipulations interactives via l’interface graphique et automatisation via
+des scripts Python.</p></li>
+</ul>
+<section id="paraview-et-visit">
+<h3>ParaView et VisIt<a class="headerlink" href="#paraview-et-visit" title="Lien vers cette rubrique">#</a></h3>
+<p>Depuis le début des années 2000, les deux outils conformes les plus populaires
+sont ParaView (~85%) et VisIt (~15%).</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+ParaView</div>
+<figure class="align-default">
+<img alt="_images/paraview.jpg" src="_images/paraview.jpg" />
+</figure>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference external" href="https://www.paraview.org/">https://www.paraview.org/</a></p></li>
+<li><p class="sd-card-text">Collaboration lancée en 2000 entre Los Alamos NL et Kitware Inc.,
+rejointe plus tard par Sandia NL et d’autres partenaires ; première
+version publique en 2002.</p></li>
+<li><p class="sd-card-text">Développé pour visualiser des données très volumineuses sur des
+machines à mémoire distribuée.</p>
+<ul>
+<li><p class="sd-card-text">Utilise MPI pour le parallélisme à mémoire distribuée sur les
+grappes de calcul.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Prend en charge plus de 130 formats de fichiers différents.</p></li>
+<li><p class="sd-card-text">Basé sur VTK (Visualization Toolkit) :</p>
+<ul>
+<li><p class="sd-card-text">Développés par les mêmes auteurs.</p></li>
+<li><p class="sd-card-text">ParaView = Interface graphique sur les classes C++ de VTK.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Large écosystème d’outils : Web, <em>in-situ</em>, Cinema.</p></li>
+<li><p class="sd-card-text">Dernière version suggérée : 6.1.1</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+VisIt</div>
+<figure class="align-default">
+<img alt="_images/visit.png" src="_images/visit.png" />
+</figure>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference external" href="https://visit-dav.github.io/visit-website">https://visit-dav.github.io/visit-website</a></p></li>
+<li><p class="sd-card-text">Première version en automne 2002.</p></li>
+<li><p class="sd-card-text">Développé pour visualiser des résultats de simulations à l’échelle
+du téraoctet.</p>
+<ul>
+<li><p class="sd-card-text">Utilise MPI pour le parallélisme à mémoire distribuée sur les
+grappes de calcul.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Plus de 80 fonctionnalités de visualisation (contour, maillage,
+coupe, volume, molécule, …)</p></li>
+<li><p class="sd-card-text">Prend en charge plus de 110 formats de fichiers différents.</p></li>
+<li><p class="sd-card-text">Intégration complète avec la bibliothèque VTK.</p></li>
+<li><p class="sd-card-text">Plus petit écosystème.</p></li>
+<li><p class="sd-card-text">Dernière version suggérée : 3.4.2</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="pourquoi-paraview-pour-cet-atelier">
+<h3>Pourquoi ParaView pour cet atelier?<a class="headerlink" href="#pourquoi-paraview-pour-cet-atelier" title="Lien vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><p>Il fallait faire un choix.</p>
+<ul>
+<li><p>Les binaires de ParaView et de VisIt sont largement disponibles et
+leur développement est toujours actif.</p></li>
+<li><p>Les deux permettent la visualisation client-serveur à distance et offrent
+une excellente scalabilité.</p></li>
+<li><p>Cependant, ParaView et VisIt ont une interface très différente.</p></li>
+</ul>
+</li>
+<li><p>ParaView est fortement intégré avec VTK (mêmes développeurs) et peut lire
+davantage de formats de données en entrée.</p></li>
+<li><p>Un certain nombre de projets complémentaires :</p>
+<ul>
+<li><p><strong>vtk.js</strong> est une bibliothèque de rendu scientifique pour le Web (WebGL
+autonome, aucun rendu sur serveur).</p>
+<ul>
+<li><p><strong>ParaView Glance</strong> est une application Web permettant la visualisation
+scientifique 3D directement dans le navigateur.</p></li>
+<li><p><strong>ParaView Cinema</strong> permet la visualisation interactive d’images
+pré-rendues (rotation, panoramique, zoom, activation/désactivation de
+variables).</p></li>
+</ul>
+</li>
+<li><p><strong>Trame</strong> est une plateforme Web de tableaux de bord 3D. Elle se connecte à
+un serveur distant doté d’une interface Python utilisant ParaView et VTK
+pour générer des visualisations 3D interactives.</p>
+<ul>
+<li><p>Le serveur distant exécute du code Python et retourne des <em>widgets</em>
+interactifs (VTK, vtk.js, ParaView Python, Matplotlib, Plotly, etc.) qui
+s’affichent dans votre navigateur.</p></li>
+<li><p>Trame constitue donc un remplaçant moderne de ParaViewWeb (une ancienne
+bibliothèque JavaScript).</p></li>
+</ul>
+</li>
+<li><p><strong>Catalyst2</strong> est une bibliothèque de <em>visualisation in situ</em> utilisable à
+même votre code de simulation ; intéraction via des scripts ParaView.</p></li>
+</ul>
+</li>
+</ul>
+<p>L’équipe nationale de visualisation offre aussi <a class="reference external" href="https://docs.alliancecan.ca/wiki/Visualization/fr#Formation">d’autres formations sur VisIt</a>.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Visualisation de données 2D et 3D avec ParaView</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2-architecture.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Architecture et interface graphique</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equipe-nationale-de-visualisation">Équipe nationale de visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation-scientifique-de-donnees-definies-dans-lespace">Visualisation scientifique de données définies dans l’espace</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tracage-1d-2d-vs-visualisation-multi-dimensionnelle">Traçage 1D/2D vs visualisation multi-dimensionnelle</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outils-de-visualisation-multi-dimensionnelle">Outils de visualisation multi-dimensionnelle</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paraview-et-visit">ParaView et VisIt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pourquoi-paraview-pour-cet-atelier">Pourquoi ParaView pour cet atelier?</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Calcul Québec
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Calcul Québec.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

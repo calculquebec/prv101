@@ -381,3 +381,18 @@ données, car cela cause du gaspillage d’espace disque et de bande passante.
   en données binaires à simple précision.
 - Le fichier ``tabulatedGrid.txt`` a une taille de 20 013 octets vs 4000 octets
   pour le champs ``scalar`` en données binaires à simple précision.
+
+Conclusion
+----------
+
+Les différents filtres de ParaView permettent d’extraire et de visualiser une
+meilleure qualité d’information à partir de données brutes, ce qui est
+indispensable pour la communication scientifique. Cependant, leur utilisation
+peut avoir certains impacts collatéraux :
+
+- De nombreux filtres de visualisation transforment les données structurées
+  (en grille) en données non structurées. Par exemple : *Clip*, *Slice*, etc.
+- L’empreinte mémoire et la charge du processeur peuvent augmenter très
+  rapidement. Par exemple, couper :math:`400^3` valeurs à 150 millions de
+  cellules peut prendre environ une heure sur un seul cœur CPU. Il devient
+  alors préférable de travailler en mode distribué.

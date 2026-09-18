@@ -26,6 +26,36 @@ Table des matières
 
 #. :doc:`1-introduction`
 
+   #. Équipe nationale de visualisation
+   #. Visualisation scientifique de données définies dans l’espace
+   #. Outils de visualisation multi-dimensionnelle
+
+#. :doc:`2-architecture`
+
+   #. Architecture parallèle distribuée
+   #. Démarrer ParaView
+   #. Survol de l’interface graphique
+
+#. :doc:`3-donnees`
+
+   #. Sources de données
+   #. VTK, le *Visualization Toolkit* derrière ParaView
+   #. Fichiers VTK de l’ancien format
+   #. Fichiers VTK XML
+   #. Fichiers VTKHDF
+   #. Fichiers NetCDF et HDF5
+   #. Récapitulatif des formats de fichiers en entrée
+
+#. :doc:`4-filtres`
+
+   #. Introduction aux filtres
+   #. Quelques exercices avec les filtres
+   #. Lignes de flux et glyphes
+   #. Convolution intégrale de ligne
+   #. Représentation *Stream Lines* -- tracé en temps réel
+   #. Filtres pour données 3D sous forme de colonnes
+   #. Conclusion
+
 .. note::
 
     Cet atelier a été conçu pour être guidé par un formateur ou une formatrice

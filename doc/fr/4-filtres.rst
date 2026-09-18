@@ -308,8 +308,8 @@ Pour reproduire cette visualisation :
   ``V`` est sélectionné.
 - Jouez ensuite avec les valeurs de *Number Of Steps* et de *Step Size*.
 
-Représentation *Stream Lines* - tracé en temps réel
----------------------------------------------------
+Représentation *Stream Lines* -- tracé en temps réel
+----------------------------------------------------
 
 Les détails de cet exemple sont expliqués à `cette page
 <https://www.kitware.com/new-animated-stream-lines-representation-for-paraview-5-3/>`__.

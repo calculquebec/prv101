@@ -1,8 +1,7 @@
-VTKDIR = $(HOME)/Documents/local/vtk
-NETCDFDIR = /usr/local
 SGrid: SGrid.cpp
-	g++ $^ -o $@ -I$(VTKDIR)/include/vtk-6.1 -L$(VTKDIR)/lib \
-	-lvtkIOXML-6.1.1 -lvtkCommonDataModel-6.1.1 -lvtkCommonCore-6.1.1
+	g++ $^ -o $@ -I"${EBROOTVTK}/include/vtk-9.4" \
+	-lvtkIOXML-9.4 -lvtkCommonDataModel-9.4 -lvtkCommonCore-9.4 \
+	-lvtksys-9.4
 writeVolume: writeVolume.cpp
 	g++ $^ -o $@
 # writeVolume: writeVolume.f90

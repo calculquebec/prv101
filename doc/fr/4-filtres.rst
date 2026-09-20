@@ -150,8 +150,8 @@ Recréez cette visualisation avec un filtre *Contour*
         - Indices :
 
           - Filtre de type *Contour*.
-          - Isosurface à ``0.16``.
-          - Échelle de couleurs de ``0.15`` à ``0.20``.
+          - Isosurface à ``0.157``.
+          - Échelle de couleurs de ``0.15`` à ``0.178``.
 
         *(3 minutes + solution)*
 
@@ -267,8 +267,8 @@ Voici un exemple de visualisation des flux à l’intérieur d’un volume :
     .. grid-item::
         :columns: 12
 
-        4. Ajoutez des glyphes aux lignes de flux pour indiquer l’orientation
-           et l’amplitude :
+        4. Pour ajouter des glyphes aux lignes de flux afin de visualiser
+           l’orientation et l’amplitude :
 
            - Sélectionnez le *StreamTracer* dans le *Pipeline Browser*.
            - Ajoutez-lui un filtre *Glyph* de *Type* = ``Arrow``, avec :
@@ -327,11 +327,12 @@ Voici les étapes pour reproduire la vue ci-dessous :
 
           - Affichez ``Pres`` en *Surface*, avec *opacité* = ``0.25``.
 
-        - Ajoutez un filtre *Calculator* avec la formule ``V`` et utilisez la
-          représentation *Stream Lines* (affichez aussi la source).
+        - Ajoutez un filtre *Calculator* avec la formule ``V``.
 
-          - Dans les propriétés du *Calculator*, coloriez selon *Temp* et
-            doublez le *Step Length*.
+          - Coloriez selon *Temp* et utilisez la représentation
+            *Stream Lines*.
+          - Doublez le *Step Length*.
+          - Faites afficher la source.
 
     .. grid-item::
         :columns: 6

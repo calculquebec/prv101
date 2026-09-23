@@ -121,8 +121,6 @@ Pour vous familiariser :
 
 1. Dans la barre d’outils, trouvez les boutons :
 
-   - *Connect*
-   - *Disconnect*
    - *Toggle Color Legend Visibility*
    - *Edit Color Map*
    - *Rescale to Data Range*

@@ -116,6 +116,14 @@ deux figures 1D/2D, que devrait-on utiliser pour faire de la visualization 3D?
 Outils de visualisation multi-dimensionnelle
 --------------------------------------------
 
+**La visualisation en 3D** apporte son lot de particularités :
+
+- Plus difficile à naviguer.
+- Plusieurs champs superposées :math:`\Rightarrow` besoin de visualiser par
+  couches et d’utiliser des filtres interactifs.
+- Données massives :math:`\Rightarrow` temps de traitement plus long
+  :math:`\Rightarrow` traitement distribué ou GPU.
+
 D’emblée, il vaut mieux **éviter les outils propriétaires**, sauf s’il y a un
 réel avantage (probablement pas). Voici pourquoi :
 
@@ -127,14 +135,6 @@ réel avantage (probablement pas). Voici pourquoi :
 - Une fois que vous commencez à accumuler des scripts, vous vous retrouvez
   contraint d’utiliser ces outils et, par conséquent, de payer régulièrement de
   l’argent.
-
-**La visualisation en 3D** apporte son lot de particularités :
-
-- Plus difficile à naviguer.
-- Plusieurs champs superposées :math:`\Rightarrow` besoin de visualiser par
-  couches et d’utiliser des filtres interactifs.
-- Données massives :math:`\Rightarrow` temps de traitement plus long
-  :math:`\Rightarrow` traitement distribué ou GPU.
 
 L’outil de visualisation 3D **doit avoir les caractéristiques suivantes** :
 

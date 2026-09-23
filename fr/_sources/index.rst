@@ -1,0 +1,94 @@
+Visualisation de données 2D et 3D avec ParaView
+===============================================
+
+`English <../en/index.html>`__
+
+À propos
+--------
+
+- Cet atelier de formation est de niveau débutant.
+
+  - L’objectif principal est d’apprendre **les bases du logiciel** de
+    visualisation 2D et 3D **ParaView**.
+
+- Le contenu est une version simplifiée et traduite du `matériel de formation
+  original <https://folio.vastcloud.org/introParaview.html>`__ (en anglais)
+  géré par notre collègue **Alex Razoumov**, expert de ParaView.
+
+  - Note : certains fichiers de données proviennent des `exemples de ParaView
+    <https://docs.paraview.org/en/latest/Tutorials/SelfDirectedTutorial/index.html>`__.
+
+- Les différents concepts sont montrés avec ParaView version 6.0 ou plus
+  récente.
+
+Table des matières
+------------------
+
+#. :doc:`1-introduction`
+
+   #. Équipe nationale de visualisation
+   #. Visualisation scientifique de données définies dans l’espace
+   #. Outils de visualisation multi-dimensionnelle
+
+#. :doc:`2-architecture`
+
+   #. Architecture parallèle distribuée
+   #. Démarrer ParaView
+   #. Survol de l’interface graphique
+
+#. :doc:`3-donnees`
+
+   #. Sources de données
+   #. VTK, le *Visualization Toolkit* derrière ParaView
+   #. Fichiers VTK de l’ancien format
+   #. Fichiers VTK XML
+   #. Fichiers VTKHDF
+   #. Fichiers NetCDF et HDF5
+   #. Récapitulatif des formats de fichiers en entrée
+
+#. :doc:`4-filtres`
+
+   #. Introduction aux filtres
+   #. Quelques exercices avec les filtres
+   #. Lignes de flux et glyphes
+   #. Convolution intégrale de ligne
+   #. Représentation *Stream Lines* -- tracé en temps réel
+   #. Filtres pour données 3D sous forme de colonnes
+   #. Conclusion
+
+.. note::
+
+    Cet atelier a été conçu pour être guidé par un formateur ou une formatrice
+    de Calcul Québec sur notre plateforme infonuagique. Les fichiers nécessaires
+    pour les exercices sont dans votre répertoire personnel sur la plateforme.
+
+    Vous pouvez aussi suivre cet atelier par vous-même et faire les exercices
+    sur votre ordinateur (en ayant préalablement installé `ParaView 6.1
+    <https://www.paraview.org/download/?version=v6.1>`__) ou
+    sur n’importe quelle grappe de Calcul Québec ou de l’Alliance de recherche
+    numérique du Canada. Le temps d’attente pour l’exécution des tâches sera
+    toutefois plus long que sur la plateforme infonuagique. Téléchargez les
+    fichiers nécessaires avec la commande suivante ou `consultez-les en ligne
+    <https://github.com/calculquebec/prv101>`__ :
+
+    .. code-block:: console
+
+        git clone https://github.com/calculquebec/prv101 prv101-main
+
+.. toctree::
+    :caption: Chapitres
+    :maxdepth: 2
+    :titlesonly:
+    :hidden:
+
+    1-introduction
+    2-architecture
+    3-donnees
+    4-filtres
+
+.. toctree::
+    :caption: Liens externes
+    :hidden:
+
+    Documentation technique de l’Alliance <https://docs.alliancecan.ca/wiki/Technical_documentation/fr>
+    Formations de Calcul Québec <https://www.calculquebec.ca/services-aux-chercheurs/formation/>
